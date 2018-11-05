@@ -1,0 +1,50 @@
+/* pages/lotteryRecord/lotteryRecord.wxss */
+.con{
+  width: 690rpx;
+  margin: 20rpx auto 0;
+  box-shadow:0 2px 4px rgba(222,222,222,0.7);
+  border-radius: 20rpx;
+  background-color:#fff; 
+}
+.con-banner{
+  width: 690rpx;
+  height: 360rpx;
+  border-radius: 20rpx 20rpx 0 0rpx;
+}
+.con-tit{
+  margin: 10rpx 20rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.con-tit view:first-of-type{
+  font-size: 26rpx;
+  color: rgb(51, 51, 51);
+}
+.con-tit view:last-of-type{
+  font-size: 26rpx;
+  color: rgb(229, 56, 50);
+}
+.con-tit text{
+  font-size: 24rpx;
+}
+.con-status{
+  padding: 0 20rpx 20rpx;
+  display: flex;
+  justify-content: space-between;
+  font-size: 28rpx;
+  color:rgb(166, 166, 166);
+}
+.con-status image{
+  width: 14rpx;
+  height: 28rpx;
+  margin-left: 12rpx;
+  position: relative;
+  top: 4rpx;
+}
+
+.noMsg{
+  text-align: center;
+  margin-top:50rpx;
+  font-size:24rpx;
+  color:#ccc;
+}

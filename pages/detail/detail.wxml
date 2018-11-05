@@ -1,0 +1,110 @@
+<!--pages/detail/detail.wxml-->
+
+<view class='detail'>
+  <view class='detail-top'>
+    <swiper autoplay='true' circular='true'>
+      <block wx:for="{{detailMsg.detail}}" wx:key="{{index}}">
+          <swiper-item>
+            <image src='{{item.detail_img_url}}' bindtap='showImg' data-img='{{item.detail_img_url}}'></image>
+          </swiper-item>     
+      </block>
+    </swiper>
+    <view class='detail-top-c'>
+      <text>奖品：{{detailMsg.activity.product_name}}</text>
+    </view>
+    <view class='cD'>{{detailMsg.activity.lottery_time}} 后自动开奖</view>
+  </view>
+ 
+  <view class='detail-prize'>
+    <view>{{detailMsg.activity.title}}</view>
+  </view>
+
+  <view class='detail-company'>
+    <view class='detail-company-1'>赞助商介绍：</view>
+    <view class='detail-company-2'>{{detailMsg.activity.brief}}</view>
+
+    <navigator wx:if='{{detailMsg.activity.app_id != "" || detailMsg.activity.app_id != null}}' bindtap='click' data-id='{{detailMsg.activity.advert_id}}' target='{{detailMsg.activity.type == 0 ? "miniProgram" : "self"}}'  open-type='navigate' app-id='{{detailMsg.activity.app_id}}' path='{{detailMsg.activity.path}}' data-qr='{{detailMsg.activity.qr_url}}'>
+      <view>
+        <image src='{{detailMsg.activity.icon}}'></image>
+        <text>{{detailMsg.activity.name}}</text>
+      </view>
+      <view>
+        <text>点击体验</text>
+        <image src='../../image/arrow1.png'></image>
+      </view>
+    </navigator>
+    <navigator bindtap='click' data-id='{{detailMsg.activity.advert_id}}' wx:else url='../h5ad/h5ad?h5ad={{detailMsg.activity.href}}'>
+      <view>
+        <image src='{{detailMsg.activity.icon}}'></image>
+        <text>{{detailMsg.activity.title}}</text>
+      </view>
+      <view>
+        <text>点击体验</text>
+        <image src='../../image/arrow1.png'></image>
+      </view>
+    </navigator>
+    <view class='detail-company-prompt'>点击体验，进入赞助商小程序授权成功可提升中奖概率</view>
+  </view>
+
+  <!-- 广告位 -->
+  <actionSheet id='actionSheet'></actionSheet>
+
+  <!-- <ad unit-id="adunit-35bb96f2a6c7a1ec"></ad> -->
+  <ad unit-id="adunit-35bb96f2a6c7a1ec"></ad>
+  <!-- 广告位结束 -->
+
+  <view class='detail-reserve'>
+    <view class='detail-reserve-con'>
+      <view class='detail-reserve-con-in'>
+        <text>规则：点击抽奖，邀请5人参与，获奖概率可提升37%</text>
+        <form bindsubmit="submit" report-submit='true'>
+          <button wx:if="{{ detailMsg.activity.participate == 1}}" id='detail-btn-reserve' data-id='{{detailMsg.activity.id}}'  form-type="submit" size="mini">抽奖</button>
+          <button wx:if="{{ detailMsg.activity.participate == 2}}" id='detail-btn-reserve' disabled='true' class='btn-reserve'   size="mini">待开奖</button>            
+        </form>
+
+        <button id='detail-btn-share' wx:if="{{detailMsg.activity.participate == 2 }}" open-type='share' size="mini"><image src='../../image/share.png'></image>分享好友助力抽奖</button>     
+
+        <view class='detail-more detail-more1'>
+          <view>已有{{detailMsg.activity.share_count}}好友助力， 
+            <navigator url='../shareAvatar/shareAvatar?id={{options.id}}&uid={{uid}}&avatar={{detailMsg.activity.share_count}}'>查看全部 ></navigator>
+          </view>     
+          
+        </view>
+
+        <view class='detail-avatar-b'>
+          <block wx:for="{{detailMsg.share}}" wx:key="{{index}}">
+            <image class='detail-avatar-img' wx:if='{{index < 11}}' src='{{item.avatar_url}}'></image>    
+          </block>         
+        </view>   
+      </view>
+
+      <view class='detail-avatar'>
+        <view class='detail-avatar-title'>
+          <image src='../../image/line-left.png'></image>
+          <image src='../../image/detail-avatar.png'></image>
+          <text>已参与</text>
+          <image src='../../image/line-right.png'></image>
+        </view>         
+
+        <view class='detail-more'>
+          <view>已有{{detailMsg.activity.participants + detailMsg.activity.false_user}}人参与， <navigator url='../avatar/avatar?id={{detailMsg.activity.id}}&avatar={{detailMsg.activity.participants + detailMsg.activity.false_user}}'>查看全部 ></navigator></view>     
+        </view>
+
+        <view class='detail-avatar-b'>
+          <block wx:for="{{detailMsg.avatar}}" wx:key="{{index}}">
+            <image class='detail-avatar-img' wx:if='{{index < 11}}' src='{{item.avatar_url}}'></image>    
+          </block>         
+        </view>   
+
+        
+         
+      </view>
+
+    </view>
+  </view>
+</view>
+
+
+<!-- <actionSheet id='actionSheet'></actionSheet>
+
+<ad unit-id="adunit-35bb96f2a6c7a1ec"></ad> -->

@@ -1,0 +1,86 @@
+<!--pages/details/details.wxml-->
+
+<view class='content'>
+  <!-- 头部 -->
+  <view class='header'>
+    <view class='head'>
+      <image src='../../image/banner.jpg' class='headPic'></image>
+      <view class='headFre'>
+        <view class='freText'>免费抽奖:
+          <text>蓝牙耳机</text>
+        </view>
+        <view class='freTime'>
+          <text>01:05:20</text>后自动开奖</view>
+      </view>
+    </view>
+
+    <!-- 抽奖动态 -->
+    <view class='lottery'>
+      <view class='lottText'>
+        <image src="../../image/Rectangle 3 Copy 5@2x.png"></image>
+        <text>邀请好友参与，他中奖，我也中奖</text>
+      </view>
+      <view class='dynamics'>
+        <view class='dynam'>
+          <image src='../../image/Group 2@2x.png'></image>
+          <text class='dynamText'>已有 <text class='firendNum'>0</text>为好友帮您抽奖，中奖概率×
+          <text class='probability'>1</text>倍</text>
+          <text class='dyFind'>查看我邀请的朋友></text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 赞助商介绍 -->
+    <view class='sponsor'>
+      <view class='spon'>
+        <image src="../../image/Rectangle 3 Copy 5@2x.png"></image>
+        <text>赞助商介绍</text>
+      </view>
+      <view class='introduce'>
+      <view class='intTexts'>
+        <text class='intText'>对诗登榜简介对诗登榜简介对诗登榜简介对诗对诗登榜简介对诗登榜简介对诗登榜简介对诗对诗登榜简介对诗登榜简介对诗登榜简介对诗</text>
+      
+      </view>
+        <navigator class='introd'>
+          <view>
+            <image src='../../image/Group 2@2x.png'></image>
+            <text>对诗赞助</text>
+          </view>
+          <view>
+            <text>></text>
+          </view>
+        </navigator>
+      </view>
+    </view>
+    <!-- 商品详情 -->
+    <view class='shopDetails'>
+      <view class='detailText'>
+        <image src="../../image/Group 5 Copy@2x.png"></image>
+      </view>
+      <view class='details'>
+        对诗登榜简介对诗登榜简介对诗登榜简介对诗对诗登榜简介对诗登榜简介对诗登榜简介对诗对诗登榜简介对诗登榜简介对诗登榜简介对诗对诗登榜简介对诗登榜简介对诗登榜简介对诗对诗登榜简介对诗登榜简介对诗登榜简介对诗对诗登榜简介对诗登榜简介对诗登榜简介对诗对诗登榜简介对诗登榜简介对诗登榜简介对诗对诗登榜简介对诗登榜简介对诗登榜简介对诗对诗登榜简介对诗登榜简介对诗登榜简介对诗对诗登榜简介对诗登榜简介对诗登榜简介对诗对诗登榜简介对诗登榜简介对诗登榜简介对诗对诗登榜简介对诗登榜简介对诗登榜简介对诗
+      </view>
+    </view>
+
+    <!-- 关注我们 -->
+    <view class='about'>
+      <view class='aboutsUs'>
+        <image src="../../image/Rectangle 3 Copy 5@2x.png"></image>
+        <text>点击关注我们，领取更多福利</text>
+      </view>
+      <view class='aboutText'>
+        <text>点击关注我们，领取更多福利点击关注我们，领取更多福利点击关注我们，领取更多福利</text>
+      </view>
+      <view class='aboutBut'>
+        <text>QQWERB123</text>
+        <image src='../../image/Group 4@2x.png'></image>
+      </view>
+    </view>
+  </view>
+
+</view>
+
+<view class='footer'>
+    <button class='home' bindtap='swithTab'>主页</button>
+    <button class='share'>分享给好友</button>
+  </view>

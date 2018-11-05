@@ -1,0 +1,26 @@
+<!--pages/question/question.wxml-->
+<view class='text'>
+  <view class='text-tit'>好友助力</view>
+  <view class='text-con'>
+    好友助力是通过邀请微信好友参与的方式来提升自己的中奖概率。点击界面中的找好友助力按钮分享给好友,好友点击助力即可完成。
+  </view>
+</view>
+
+<view class='text'>
+  <view class='text-tit'>如何分享</view>
+  <view class='text-con'>
+    a. 进入0元购抽奖小程序,在首页顶部,点击分享给好友转发给微信好友或微信群邀请好友来参与抽奖。
+  </view>
+  <view class='text-con'>
+    b. 在抽奖详情页点击下方分享按钮可邀请好友来参与抽奖。
+  </view>
+</view>
+
+<view class='text'>
+  <view class='text-tit'>关于是否中奖</view>
+  <view class='text-con'>
+    参与抽奖后,微信会以服务通知的方式告知抽奖结果,点击消息通知进入0元购小程序即可查看是否中奖。
+  </view>
+</view>
+
+<button open-type='contact'>仍有问题，请联系客服</button>

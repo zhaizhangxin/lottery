@@ -1,0 +1,43 @@
+<!--pages/confirmOrder/confirmOrder.wxml-->
+<view class='address' bindtap='chooseAddress'>
+  <block  wx:if="{{orderMsg.address == '' || orderMsg.address == null}}">
+    <view class='address-add'>
+      <view>+</view>
+      <view>新建地址</view>  
+    </view>  
+  </block>
+  <block wx:else> 
+    <view class='address-con'>
+      <view class='address-con-detail'>
+        <view>{{orderMsg.address.userName}} {{orderMsg.address.telNumber}}</view>
+        <view><image src='../../image/address-icon.png'></image>{{orderMsg.address.provinceName}}{{orderMsg.address.cityName}}{{orderMsg.address.countyName}} {{orderMsg.address.detailInfo}}</view>
+      </view>
+      <view class='address-con-arrow'>
+        <image src='../../image/me-arrow.png'></image>
+      </view>
+    </view>
+  </block>
+  <image class='line-address' src='../../image/line-address.png'></image>
+</view>
+
+<view class='detail'>
+  <view class='detail-tit'><image src='{{orderMsg.product.icon}}'></image> {{orderMsg.product.name}}</view>
+  <view class='detail-banner'><image src='{{orderMsg.product.img_url}}'></image></view>
+  <view class='detail-style'>
+    <text>奖品</text>
+    <text>{{orderMsg.product.product_name}}</text>
+  </view>
+  <view class='detail-style'>
+    <text>配送方式</text>
+    <text>快递发货 免邮</text>
+  </view>
+</view>
+
+
+<view class='detail-btn'>
+  <view>实付：<text>￥0</text></view>
+  <form bindsubmit="subOrder" report-submit='true'>
+    <button form-type='submit'>确认</button>
+  </form>
+  
+</view>

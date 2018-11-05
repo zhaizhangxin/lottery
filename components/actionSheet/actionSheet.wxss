@@ -1,0 +1,45 @@
+/* components/actionSheet.wxss */
+
+/* 
+ * actionSheet
+ */
+ .actionSheet{
+   width: 100%;
+   height: 100vh;
+   position: fixed;
+   top: 0;
+   left: 0;
+   right: 0;
+   background-color: rgba(0, 0, 0, 0.5);
+   z-index: 9999;
+ }
+ .actionSheet-con{
+   width: 100%;
+   height: 0px;
+   position: fixed;
+   bottom: 0;
+   left: 0;
+   right: 0;
+   background-color: rgb(255, 255, 255);
+ }
+ .actionSheet-bg{
+   width: 100%;
+   height: calc(100% - 275px);
+ }
+.actionSheet-con image{
+  display: block;
+  border:none;
+  width: 150px;
+  height: 150px;
+  margin: 30px auto; 
+}
+.actionSheet-con view{
+  width: 196px;
+  font-size: 28rpx;
+  color: #666;
+  margin: 0 auto;
+  text-align: center;
+}
+.actionSheet-con view text{
+  color: #FF3750;
+}

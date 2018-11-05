@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "ad-fixed": "/components/fixed/fixed"
+  }
+}

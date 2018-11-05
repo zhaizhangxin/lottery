@@ -1,0 +1,53 @@
+<!--pages/share/share.wxml-->
+<view class='title'>
+  <image src='{{msg.img_url}}'></image>
+  <view class='title-name'>奖品：{{msg.product_name}}</view>
+  <view class='title-data'>{{msg.lottery_time}} 自动开奖</view>
+</view>
+
+<navigator wx:if='{msg.app_id != "" || msg.app_id != null}}' class='company' target='miniProgram' open-type='navigate' app-id='{{msg.app_id}}' path='{{msg.path}}'>
+  <view class='company-title'>赞助商</view>
+  <view class='company-con'>
+    {{msg.name}}
+    <image class='company-icon' src='{{msg.icon}}'></image>
+    <image class='compnay-arrow' src='../../image/me-arrow.png'></image>
+  </view>
+</navigator>
+<navigator wx:else url='../h5ad/h5ad?h5ad={{msg .href_url}}'>
+  <view class='company-title'>赞助商</view>
+  <view class='company-con'>
+    {{msg.name}}
+    <image class='company-icon' src='{{msg.icon}}'></image>
+    <image class='compnay-arrow' src='../../image/me-arrow.png'></image>
+  </view>
+</navigator>
+
+<view class='brief'>
+  {{msg.brief}}
+</view>
+
+<view class='share-outer'>
+  <view class='share'>
+    <view class='share-con'>
+      <button wx:if="{{ msg.is_share == 1}}" id='share-con-btn' size="mini" open-type='getUserInfo' bindgetuserinfo='getUserInfo'>帮助好友</button>
+      <button wx:if="{{ msg.is_share == 2}}" id='share-con-btn' class='btn-reserve' size="mini">已助力</button>
+
+      <view class='share-more'>
+        <view>已有{{msg.share_count}}好友助力， 
+          <navigator url='../shareAvatar/shareAvatar?id={{options.id}}&uid={{options.uid}}&avatar={{msg.share_count}}'>查看全部</navigator>
+        </view>     
+      </view>
+
+      <view class='share-img'>
+        <image class='share-icon' src='../../image/detail-avatar.png'></image>
+        <image class='share-avatar' wx:for="{{msg.avatar_obj}}" wx:key="{{index}}" wx:if='{{index < 10 }}' src='{{item.avatar_url}}'></image>   
+      </view>
+     
+    </view>
+  </view>
+</view>
+
+<view class='b-btn'>
+  <button id='b-btn-share' open-type='share' size="mini">分享</button>
+  <navigator class='b-btn-nav' open-type='switchTab' url='../index/index'>参与更多优惠活动</navigator>
+</view>

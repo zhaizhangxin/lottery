@@ -1,0 +1,6 @@
+<view class='fixed' wx:if='{{fs}}'>
+  <view bindtap='_close' data-type='fs'><icon type='{{msg.icon}}' size='15' color='#999'></icon></view>
+  <navigator target='miniProgram' app-id='{{msg.appid}}' bindtap='_click' data-clickurl='{{msg.clickurl}}' path='{{msg.path}}'>
+    <image src='{{msg.image}}'></image>
+  </navigator>
+</view>

@@ -1,0 +1,8 @@
+{
+  "navigationBarBackgroundColor": "#EC5B5A",
+  "navigationBarTitleText": "口袋夺奖",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "ad-fixed": "/components/fixed/fixed"
+  }
+}

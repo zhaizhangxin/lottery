@@ -1,0 +1,200 @@
+/* pages/indexs/indexs.wxss */
+
+.com {
+  background: #f4f4f4;
+}
+
+.top-backimg {
+  width: 100%;
+  height: 320rpx;
+}
+
+.top_img {
+  /* position: relative; */
+}
+
+.top-homebg {
+  position: absolute;
+  top: 132rpx;
+  left: 24rpx;
+  width: 700rpx;
+  height: 230rpx;
+}
+
+.top-num {
+  position: absolute;
+  top: 144rpx;
+  left: 26rpx;
+  width: 186rpx;
+  height: 40rpx;
+}
+
+.homePic {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  top: 192rpx;
+  left: 32rpx;
+  width: 91%;
+}
+
+.top-pic {
+  width: 328rpx;
+  height: 98rpx;
+}
+
+/* 抽奖次数 */
+
+.frequency {
+  position: absolute;
+  top: 144rpx;
+  left: 220rpx;
+  color: #be8c54;
+  font-family: PingFangSC-Semibold;
+  font-size: 28rpx;
+  font-weight: 600;
+  line-height: 40rpx;
+}
+
+.fre {
+  font-weight: 0;
+  font-size: 18rpx;
+}
+
+/* 中奖人数 */
+.prize{
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  left: 50rpx;
+  top: 300rpx;
+  width: 86%;
+}
+.prizeSwiper{
+  display: flex;
+}
+.prizePic{
+  margin-right: 10rpx;
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 50%;
+}
+.prizeText{
+  font-size: 24rpx;
+  color: #666;
+}
+.prizeNum{
+  font-size: 24rpx;
+  font-family: MicrosoftYaHei;
+  color: #ec5b5a;
+}
+.roll-swiper{
+  height: 36rpx;
+  width: 400rpx;
+  overflow: hidden;
+}
+/* 赞助商 */
+.sponsor{
+  position: absolute;
+  right: 0;
+  top: 54rpx;
+}
+.sponImg{
+  width: 200rpx;
+  height: 50rpx;
+}
+.sponText{
+  position: absolute;
+  top: 8rpx;
+  left: 28rpx;
+  font-size: 24rpx;
+  font-family:MicrosoftYaHei;
+  color: #be8c54;
+}
+
+/* 信息流商品 */
+
+.conView {
+  margin-top: 56rpx;
+}
+
+.content {
+  margin-top: 28rpx;
+  padding: 0 24rpx;
+  border-radius: 20rpx;
+}
+
+.contents {
+  position: relative;
+  margin-top: 10rpx;
+  width: 100%;
+  border-radius: 20rpx;
+  background: #fff;
+}
+
+.shopImg {
+  width: 100%;
+  height: 320rpx;
+  border-radius: 20rpx 20rpx 0 0;
+  display: block;
+}
+
+.shopsCon {
+  display: flex;
+  justify-content: space-between;
+}
+
+.shopNames {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10rpx;
+  margin-left: 20rpx;
+}
+
+.conName {
+  font-size: 32rpx;
+  font-family: MicrosoftYaHei-Bold;
+  font-weight: bold;
+  color: #666;
+}
+
+.conTime {
+  font-size: 24rpx;
+  font-family: MicrosoftYaHei;
+  color: #999;
+}
+.conBtn{
+  width: 250rpx;
+  height: 98rpx;
+}
+.commodity{
+  position: relative;
+}
+.conText{
+  position: absolute;
+  top: 28rpx;
+  left: 68rpx;
+  font-size: 28rpx;
+  font-family:  MicrosoftYaHei-Bold;
+  font-weight: bold;
+  color: #fff;
+}
+/* 邀请好友 */
+.invitaPoper{
+  margin-top: 50rpx;
+}
+
+.Invitation{
+  width: 100%;
+  height: 400rpx;
+}
+
+.invitaCont{
+  margin-top: -210rpx;
+  position: relative;
+  /* margin-top: 28rpx; */
+  padding: 0 24rpx;
+  border-radius: 20rpx;
+
+}
+

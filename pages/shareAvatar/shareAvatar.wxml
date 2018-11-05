@@ -1,0 +1,8 @@
+<!--pages/shareAvatar/shareAvatar.wxml-->
+<view class='people'>{{options.avatar}} 位参与者</view>
+
+<view class='avatar'>
+  <image mode='widthFix' lazy-load='true'	 wx:for='{{avatar}}' wx:key='{{index}}'  src='{{item.avatar_url}}'></image>
+</view>
+
+

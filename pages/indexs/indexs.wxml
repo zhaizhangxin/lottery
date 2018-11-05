@@ -1,0 +1,74 @@
+<!--pages/indexs/indexs.wxml-->
+<view class='com'>
+  <view class='top-back'>
+    <image src='../../image/home_bg_1@2x.png' class='top-backimg'></image>
+    <view class='top_img'>
+      <image src='../../image/home_bg_2@2x.png' class='top-homebg'></image>
+      <image src='../../image/home_tit_1@2x.png' class='top-num'></image>
+      <!-- 抽奖次数 -->
+      <view class='frequency'>5
+        <text class='fre'>次</text>
+      </view>
+      <view class='homePic'>
+        <!-- 签到图片 -->
+        <image src='../../image/home_bt_1@2x.png' class='top-pic'></image>
+        <!-- 分享图片 -->
+        <image src='../../image/home_bt_2@2x.png' class='top-pic'></image>
+      </view>
+      <!-- 中奖人数 -->
+      <view class='prize'>
+        <swiper class='roll-swiper' autoplay='true' interval='3000' circular='true' vertical='true'>
+          <block wx:for="{{activety}}" wx:key="{{index}}">
+            <swiper-item>
+              <view class='prizeSwiper'>
+                <image src='../../image/home_bt_2@2x.png' class='prizePic'></image>
+                <view class='prizeText'>
+                  在
+                  <text>{{item.time}}</text> 获得奖品
+                  <text>*****</text>
+                </view>
+              </view>
+            </swiper-item>
+          </block>
+        </swiper>
+
+        <view class='prizeNum'>
+          已中奖人数：999
+        </view>
+      </view>
+
+    </view>
+  </view>
+
+  <view class='conView'>
+    <block wx:for="{{actContent}}" wx:key="{{index}}">
+      <view class='invitaPoper'>
+        <image src='../../image/home_bg_1@2x (1).png' class='Invitation' wx:if="{{item.status == 2}}"></image>
+        <image src='../../image/Group 5@2x.png' class='Invitation' wx:if="{{item.status == 3}}"></image>
+
+        <view class="{{item.status == 2 || item.status == 3?'invitaCont':'content'}}">
+            <view class='contents' bindtap='detaliJump' data-id='{{item.id}}'>
+              <image src='../../image/banner.jpg' class='shopImg'></image>
+              <view class='sponsor'>
+                <image src='../../image/home_jb@2x.png' class='sponImg'></image>
+                <text class='sponText'>对诗登榜 赞助</text>
+              </view>
+              <view class='shopsCon'>
+                <view class='shopNames'>
+                  <text class='conName'>免费抽奖:蓝牙耳机</text>
+                  <text class='conTime' wx:if="{{item.status == 1}}">后自动开奖</text>
+                  <text class='conTime' wx:else>截止 邀请前5名得</text>
+                </view>
+                <view class='commodity'>
+                  <image src='../../image/home_bt_3@2x.png' class='conBtn'></image>
+                  <text class='conText' wx:if="{{item.status == 1}}">免费领取</text>
+                  <text class='conText' wx:else>立即参与</text>
+                </view>
+              </view>
+            </view>
+        </view>
+      </view>
+    </block>
+
+  </view>
+</view>

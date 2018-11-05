@@ -1,0 +1,21 @@
+
+/* 
+ * fixed
+ */
+.fixed{
+  position: fixed;
+  bottom:230rpx;
+  right:20rpx;
+  z-index: 999;
+}
+.fixed view{
+  position: absolute;
+  top:-20px;
+  right: 0;
+}
+.fixed image{
+  display: block;
+  width:120rpx;
+  height:120rpx;
+}
+

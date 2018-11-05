@@ -1,0 +1,10 @@
+<!--components/actionSheet.wxml-->
+<view class='actionSheet' wx:if='{{animationStatus}}'>
+  <view class='actionSheet-bg' catchtap='_animationInner'></view>
+  <view class='actionSheet-con' animation='{{animation}}'>
+    <image src='{{animationUrl}}' catchtap='_showQrCode'></image>
+    <view>
+      <text>单击</text>小程序二维码后，
+      <text>长按识别</text>即可进入小程序哦~</view>
+  </view>
+</view>

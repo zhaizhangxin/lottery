@@ -1,0 +1,65 @@
+{
+	"description": "项目配置文件。",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.2.2",
+	"appid": "wxd17beefaa53e52ee",
+	"projectname": "lottery",
+	"isGameTourist": false,
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 2,
+			"list": [
+				{
+					"id": 0,
+					"name": "分享",
+					"pathName": "pages/share/share",
+					"query": "id=996&uid=10003",
+					"scene": "1007"
+				},
+				{
+					"id": 1,
+					"name": "query",
+					"pathName": "pages/login/login",
+					"query": "key=WYzY2U0ODM",
+					"scene": "1007"
+				},
+				{
+					"id": 2,
+					"name": "app消息卡片",
+					"pathName": "pages/login/login",
+					"query": "id=1",
+					"scene": "1036",
+					"referrerInfo": {
+						"appId": "123"
+					}
+				}
+			]
+		}
+	}
+}

@@ -1,0 +1,51 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/index/index",
+    "pages/indexs/indexs",
+    "pages/me/me",
+    "pages/detail/detail",
+    "pages/details/details",
+    "pages/h5ad/h5ad",
+    "pages/avatar/avatar",
+    "pages/share/share",
+    "pages/shareAvatar/shareAvatar",
+    "pages/lotteryRecord/lotteryRecord",
+    "pages/winningRecord/winningRecord",
+    "pages/question/question",
+    "pages/confirmOrder/confirmOrder",
+    "pages/lottery/lottery"
+  ],
+  "window": {
+    "backgroundTextStyle": "dart",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "口袋夺奖",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#333333",
+    "selectedColor": "#e8362a",
+    "borderStyle": "white",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/indexs/indexs",
+        "iconPath": "image/ic_home@2x.png",
+        "selectedIconPath": "image/ic_home_on@2x.png",
+        "text": "主页"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "image/ic_sj@2x.png",
+        "selectedIconPath": "image/ic_home_on@2x.png",
+        "text": "晒奖"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "iconPath": "image/ic_my@2x.png",
+        "selectedIconPath": "image/ic_my_on@2x.png",
+        "text": "我的"
+      }
+    ]
+  }
+}

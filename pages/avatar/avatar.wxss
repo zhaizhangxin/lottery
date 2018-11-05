@@ -1,0 +1,21 @@
+/* pages/avatar/avatar.wxss */
+.people{
+  color: rgb(51, 51, 51);
+  font-size: 28rpx;
+  margin: 20rpx auto;
+  text-align: center;
+}
+
+.avatar{
+  /* display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-content:space-around; */
+  margin: 0 1%;
+}
+.avatar image{
+  width: 9%;
+  height: 66rpx;
+  margin-left:0.9%;
+  margin-top: -2px;
+}

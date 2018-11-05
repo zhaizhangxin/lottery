@@ -1,0 +1,47 @@
+<!--pages/me/me.wxml-->
+<view class='top'>
+  <open-data type='userAvatarUrl'></open-data>
+  <open-data type='userNickName'></open-data>
+</view>
+
+<view class='record'>
+  <navigator url='../lotteryRecord/lotteryRecord' class='record-l'>
+    <view>{{msg.all}}</view>
+    <view>已抽奖</view>
+  </navigator>
+  <navigator url='../winningRecord/winningRecord' class='record-r'>
+    <view>{{msg.order}}</view>
+    <view>已中奖</view>
+  </navigator>
+</view>
+
+<view class='con'>
+  <navigator  url='../winningRecord/winningRecord'>
+    <view class='con-tit'>
+      <image src='../../image/me-icon-1.png'></image>
+      <text>中奖信息</text>     
+    </view>
+    <view>
+     <image class='con-arr' src='../../image/me-arrow.png'></image>
+    </view>   
+  </navigator>
+
+  <navigator  url='../question/question'>
+    <view class='con-tit'>
+      <image src='../../image/me-icon-3.png'></image>
+      <text>常见问题</text>     
+    </view>
+    <view>
+     <image class='con-arr' src='../../image/me-arrow.png'></image>
+    </view>   
+  </navigator>
+
+  <button id='contact' open-type="contact">
+    <view  class='contact-tit'>
+      <image src='../../image/me-icon-4.png'></image>
+      <text>联系客服</text>
+    </view>   
+    <image class='con-arr' src='../../image/me-arrow.png'></image>
+  </button>
+  
+</view>

@@ -1,0 +1,99 @@
+/* pages/page/page.wxss */
+.top{
+  background-color:#fff;
+  padding: 30rpx;
+  display: flex;
+  align-items: center;
+}
+open-data[type=userAvatarUrl]{
+  display: block;
+  overflow: hidden;
+  width: 128rpx;
+  height: 128rpx;
+  border-radius: 64rpx;
+  margin-right: 30rpx;
+}
+open-data[type=userNickName]{
+  font-size: 36rpx;
+  color: rgb(51, 51, 51);
+}
+
+
+.record{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  background-color: #fff;
+  padding-bottom:20rpx; 
+  font-size:30rpx;
+  color:rgb(51, 51, 51);
+}
+.record-l,.record-r{
+  margin: 0 100rpx;
+}
+.record-l view:first-child,.record-r view:first-child{
+  font-weight: bold;
+}
+
+
+.con{
+  background-color:#fff;
+  margin-top:20rpx;
+}
+.con navigator{
+  height: 88rpx;
+  line-height: 88rpx;
+  padding:0 30rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgb(238, 238, 238);
+  font-size: 30rpx;
+  color: rgb(51, 51, 51);
+}
+.con-tit text{
+  height: 88rpx;
+  line-height: 88rpx;
+  font-size: 30rpx;
+  color: rgb(51, 51, 51);
+  vertical-align: middle;
+}
+.con-tit image{
+  width: 42rpx;
+  height: 42rpx;
+  margin-right: 22rpx;
+  vertical-align: middle;
+}
+.con-arr{
+  width: 14rpx;
+  height: 26rpx;
+}
+
+#contact::after{
+  border: none;
+}
+#contact{
+  height: 90rpx;
+  margin: 0;
+  background-color:#fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding:0 30rpx;
+}
+#contact .contact-tit {
+  font-size: 30rpx;
+  color: rgb(51, 51, 51);
+  display: flex;
+  align-items: center;
+}
+#contact .contact-tit image{
+  width: 42rpx;
+  height: 42rpx;
+  margin-right: 22rpx;
+}
+#contact .con-arr{
+  width: 14rpx;
+  height: 26rpx;
+}

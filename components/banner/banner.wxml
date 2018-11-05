@@ -1,0 +1,7 @@
+<view class='banner' wx:if='{{bs}}'>
+  <view class='close' bindtap='_close' data-type='bs'><image src='{{initAd.closeSrc}}'></image></view>
+  <navigator target='miniProgram' app-id='{{msg.appid}}' bindtap='_click' data-clickurl='{{msg.clickurl}}' path='{{msg.path}}'>
+    <image src='{{msg.image}}'></image>
+  </navigator>
+  <view class='{{initAd.adTextClass}}'>{{initAd.ad}}</view>
+</view>

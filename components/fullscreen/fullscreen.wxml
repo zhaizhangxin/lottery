@@ -1,0 +1,8 @@
+<!--components/fullscreen/fullscreen.wxml-->
+<view class='fullscreen' wx:if='{{fss}}'>
+  <view class='{{initAd.countDownClass}}' bindtap='_close' data-type='fss'>{{countDown}} {{initAd.jump}}</view>
+  <navigator target='miniProgram' app-id='{{msg.appid}}' bindtap='_click' data-clickurl='{{msg.clickurl}}' path='{{msg.path}}'>
+    <image src='{{msg.image}}'></image>
+  </navigator>
+  <view class='{{initAd.adTextClass}}'>{{initAd.ad}}</view>
+</view>

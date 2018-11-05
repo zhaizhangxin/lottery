@@ -1,0 +1,161 @@
+/* pages/share/share.wxss */
+.title{
+  background-color: #fff;
+  padding-bottom: 30rpx;
+  color: rgb(51,51,51);
+}
+.title image{
+  display: block;
+  width: 690rpx;
+  height: 360rpx;
+  border-radius: 20rpx;
+  margin: 0 auto;
+}
+.title-name{
+  margin: 30rpx 50rpx 20rpx;
+  /* overflow: hidden;
+  white-space: nowrap;
+  overflow-wrap:normal; */
+  font-size: 36rpx;
+  
+}
+.title-data{
+  margin: 0 50rpx;
+  font-size: 28rpx;
+}
+
+
+.company{
+  display: flex;
+  justify-content:space-between;
+  align-items:center;
+  background-color:#fff;
+  padding: 32rpx 50rpx; 
+  margin: 20rpx 0;
+  font-size: 28rpx;
+  color: rgb(51,51,51);
+}
+.company-con{
+  display: flex;
+  align-items: center;
+}
+.company-icon{
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 25rpx;
+  margin: 0 20rpx 0 10rpx;
+}
+.compnay-arrow{
+  width: 14rpx;
+  height: 26rpx;
+}
+
+
+.brief{
+  font-size: 28rpx;
+  color: rgb(51,51,51);
+  background-color: #fff;
+  padding: 20rpx 50rpx;
+  text-align: justify;
+}
+
+
+.share-outer{
+  width: 100%;
+  background-color: #fff;
+  overflow: hidden;
+  margin: 20rpx auto;
+}
+.share{
+  background-color: #fff1ea;
+  margin: 20rpx 50rpx;
+  padding: 20rpx;
+  border-radius: 20rpx; 
+}
+.share-con{
+  border: 1px solid #eda687;
+  border-radius: 20rpx;
+}
+button::after{
+  border: none;
+}
+#share-con-btn{
+  display: block;
+  padding: 0;
+  width: 162rpx;
+  height:162rpx;
+  line-height: 162rpx;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 32rpx;
+  box-shadow: 0 4px 8px rgba(96, 24, 14, 0.2);
+  background-image: linear-gradient(135deg,rgba(253,60,42,.8),rgba(254,97,57,.8));
+  margin: 40rpx auto;
+}
+.btn-reserve{
+  background-image:  linear-gradient(135deg,rgba(254,191,178,.9),rgba(254,191,178,.8)) !important;
+}
+.share-more view{
+  text-align: center;
+  font-size: 28rpx;
+  color: #bbb;
+  padding-bottom: 20rpx;
+}
+.share-more navigator{
+  display: inline-block;
+  color: #3a91d6;
+}
+.share-img{  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 20rpx;
+}
+.share-icon{
+  width: 37rpx;
+  height: 34rpx;
+  margin-right:30rpx; 
+}
+.share-avatar{
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 25rpx;
+  margin-left:-10rpx;
+}
+.share-more{
+  margin-left:20rpx; 
+  color: #999;
+}
+
+
+.b-btn{
+  width: 100%;
+  padding: 20rpx 0;
+  background-color:#fff; 
+  display: flex;
+  justify-content: space-between;
+  font-size: 28rpx;
+  text-align: center;
+}
+button::after{
+  border: none;
+}
+#b-btn-share{
+  padding: 0;
+  width: 260rpx;
+  height: 85rpx;
+  line-height: 85rpx;
+  color: #e8362a;
+  border: 1px solid #e8362a;
+  background-color: rgba(255, 255, 255, 0);
+  margin-left: 50rpx; 
+}
+.b-btn-nav{
+  width: 258rpx;
+  height: 85rpx;
+  line-height: 85rpx;
+  color: #fff;  
+  border-radius: 5px;
+  margin-right:50rpx; 
+  background-color: #e8362a; 
+}

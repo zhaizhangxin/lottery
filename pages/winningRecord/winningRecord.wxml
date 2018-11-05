@@ -1,0 +1,32 @@
+<!--pages/winningRecord/winningRecord.wxml-->
+
+<block wx:if='{{item.status == "待完善"}}' wx:for='{{msg}}' wx:key="{{index}}">
+  <navigator class='con'  url='../confirmOrder/confirmOrder?id={{item.id}}'>
+    <image class='con-banner' src='{{item.snap_product.img_url}}'></image>
+    <view class='con-tit'>
+      <view>奖品：{{item.snap_product.product_name}}</view>
+      <view style='color:{{item.color}}'>{{item.status}}</view>
+    </view>
+    <view class='con-status'>
+        <view>已中奖</view>
+    </view>
+  </navigator>
+</block>
+<block wx:if='{{item.status != "待完善"}}' wx:for='{{msg}}' wx:key="{{index}}">
+  <navigator class='con' url='../lottery/lottery?id={{item.activity_id}}'>
+    <image class='con-banner' src='{{item.snap_product.img_url}}'></image>
+    <view class='con-tit'>
+      <view>奖品：{{item.snap_product.product_name}}</view>
+      <view style='color:{{item.color}}'>{{item.status}}</view>
+    </view>
+    <view class='con-status'>
+        <view>已中奖</view>
+    </view>
+  </navigator>
+</block>
+
+ 
+<view class='noMsg' wx:if="{{msg == '' || msg == null}}">
+  当前没有中奖记录，快去参与更多抽奖吧...
+</view>
+

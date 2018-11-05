@@ -1,0 +1,11 @@
+<!--pages/login/login.wxml-->
+<view class='login' wx:if="{{hasUserInfo}}">
+  <image src='../../image/login.jpg'></image>
+  <view class='logo'>
+    <image src='../../image/logo.png'></image>
+    <view>口袋夺奖</view>
+  </view>
+  
+  <image class='start' src='../../image/start.png'></image>
+  <button size='mini' open-type='getUserInfo' bindgetuserinfo='getUserInfo'></button>
+</view>

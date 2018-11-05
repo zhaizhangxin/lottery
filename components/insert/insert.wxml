@@ -1,0 +1,8 @@
+<view class='insert' wx:if='{{is}}'>
+  <navigator target='miniProgram' app-id='{{msg.appid}}' bindtap='_click' data-clickurl='{{msg.clickurl}}' path='{{msg.path}}'>
+    <image src='{{msg.image}}'></image>
+    <view class='{{initAd.adTextClass}}'>{{initAd.ad}}</view>
+  </navigator>
+  <view class='close' bindtap='_close' data-type='is'><image src='{{initAd.closeSrc}}'></image></view>
+  
+</view>

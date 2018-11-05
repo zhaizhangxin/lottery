@@ -1,0 +1,234 @@
+/* pages/detail/detail.wxss */
+.detail-top {
+  width: 100%;
+  background: #fff;
+}
+.detail-top swiper{
+  width:690rpx;
+  height:360rpx;
+  margin:0 auto;
+}
+.detail-top image{
+  display:block;
+  width:690rpx;
+  height:360rpx;
+  border-radius:20rpx;
+}
+.detail-top-c{
+  font-size:36rpx;
+  margin:30rpx 50rpx 0 50rpx;
+  padding-bottom:20rpx;
+  display:flex;
+  justify-content:space-between;
+}
+.detail-top .cD{
+  font-size:28rpx;
+  margin-left: 50rpx;
+  padding-bottom:20rpx; 
+  color: #bbb;
+}
+.detail-top .cD text{
+  color:rgb(255,50,43);
+}
+.detail-top-c text:nth-of-type(1){
+  color:rgb(51, 51, 51);
+  margin-right:10rpx;
+}
+.detail-top-c text:nth-of-type(2){
+  color:rgb(232, 54, 42)
+}
+.detail-top-c text:nth-of-type(2) text{
+  font-size:24rpx;
+  color:rgb(232, 54, 42)
+}
+
+
+.detail-prize{
+  background: rgb(255, 241, 234);
+  margin-top:20rpx;
+}
+.detail-prize view{
+  width: 650rpx;
+  margin: 0 auto;
+  padding:20rpx 0 ;
+  font-size:28rpx;
+  color:rgb(102,102,102);
+}
+
+
+.detail-company{
+  /* height: 230rpx; */
+  background:#fff;
+  margin-top:20rpx; 
+  padding: 0 50rpx 20rpx;
+  color:rgb(51, 51, 51);
+  text-align: justify;
+}
+.detail-company-1{
+  padding:20rpx 0;
+  font-size:28rpx;
+}
+.detail-company-2{
+  margin-bottom:20rpx; 
+  font-size:24rpx;
+}
+.detail-company navigator{
+  width:650rpx;
+  height:80rpx;
+  line-height:80rpx;
+  font-size:24rpx;
+  color:#fff;
+  background-color:rgb(246, 179, 127);
+  border-radius:40rpx;
+  display:flex;
+  justify-content:space-between;
+  box-shadow:0 4px 8px rgba(246, 179, 127, 0.4);
+}
+.detail-company navigator view{
+  display: flex;
+  align-items:center;
+}
+.detail-company navigator view:nth-of-type(1) image{
+  width: 50rpx;
+  height: 50rpx;
+  border-radius:25rpx;
+  margin: 0 10rpx 0 40rpx;
+  animation: turn 2.6s infinite ease;
+}
+@keyframes turn{
+  0%{
+    transform: rotateY(0);
+  }
+  100%{
+    transform: rotateY(360deg);
+  }
+}
+.detail-company navigator view:nth-of-type(2) image{
+  width:13rpx;
+  height: 25rpx;
+  margin: 0 40rpx 0 10rpx;
+}
+.detail-company-prompt{
+  font-size:24rpx;
+  color:rgb(232, 54, 42);
+  margin:10rpx auto 0;
+  text-align: center;
+}
+
+.detail-reserve{
+  background: #fff;
+  /* min-height: 380rpx; */
+  padding:20rpx 0;
+  margin: 20rpx 0;
+}
+.detail-reserve-con{
+  width:650rpx;
+  min-height: 380rpx;
+  background-color:rgb(255, 241, 234);
+  border-radius: 20rpx;
+  margin: 0 auto;
+  display: flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  box-shadow: 0 4rpx 8rpx rgba(96, 24, 14, 0.2)
+}
+.detail-reserve-con-in{
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+  width: 610rpx;
+  border-radius: 20rpx;
+  background-color:rgb(255, 241, 234);
+  margin-top:20rpx; 
+}
+.detail-reserve-con-in text{
+  font-size: 24rpx;
+  color:rgb(232, 54, 42);
+  margin:18rpx 0 20rpx;
+}
+button::after{
+  border: none;
+}
+#detail-btn-reserve{
+  padding: 0;
+  width: 162rpx;
+  height:162rpx;
+  line-height: 162rpx;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 32rpx;
+  box-shadow: 0 4px 8px rgba(96, 24, 14, 0.2);
+  background-image: linear-gradient(135deg,rgba(253,60,42,.8),rgba(254,97,57,.8));
+}
+.btn-reserve{
+  background-image:  linear-gradient(135deg,rgba(254,191,178,.9),rgba(254,191,178,.8)) !important;
+}
+#detail-btn-share{
+  width: 470rpx;
+  height: 76rpx;
+  line-height:76rpx;
+  background-color: rgba(255, 255, 255, 0);
+  font-size:24rpx;
+  color:rgb(232, 54, 42);
+  border:1px solid #e8362a;
+  border-radius: 38rpx;
+  margin-top:10rpx;
+}
+#detail-btn-share image{
+  padding: 0;
+  width:34rpx;
+  height:34rpx;
+  margin-right: 20rpx;
+}
+.detail-avatar-title{
+  display: flex;
+  justify-content:space-around;
+  align-items:center;
+  margin: 0 auto 30rpx;
+}
+.detail-avatar-title image:first-child,.detail-avatar-title image:last-child{
+  width:168rpx;
+  height: 1px;
+}
+.detail-avatar-title image:nth-of-type(2){
+  margin-left: 10rpx;
+  width: 37rpx;
+  height: 34rpx;
+}
+.detail-avatar-title text{
+  font-size:24rpx;
+  color: rgb(255, 122, 65);
+  margin: 0 10rpx;
+}
+.detail-more1{
+  margin-top: 20rpx;
+}
+.detail-more view{
+  text-align: center;
+  font-size: 24rpx;
+  color: #bbb;
+  padding-bottom: 20rpx;
+}
+.detail-more navigator{
+  display: inline-block;
+  color: #3a91d6;
+}
+.detail-avatar-b{
+  width: 465rpx;
+  display: flex;
+  /* flex-wrap:wrap; */
+  /* margin-left:20rpx; */
+  justify-content: center;
+  margin-bottom:30rpx;
+}
+.detail-avatar-img{
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 25rpx;
+  margin-left:-10rpx;
+}
+
+
+
+

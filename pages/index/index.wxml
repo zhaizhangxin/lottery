@@ -1,0 +1,80 @@
+<!--index.wxml-->
+
+
+<view class='top-share'>
+  <image src='../../image/gift.png'></image>
+  <view class='top-text1'>天天免费抽奖</view>
+  <view class='top-text2'>分享提升得奖概率</view>
+  
+  <button id='detail-btn-share'  open-type='share'><image src='../../image/forward.png'></image></button> 
+</view>
+
+
+<view class='roll'> 
+  <view class='roll-swiper-t'>
+    <image src='../../image/announcement.png'></image>
+    <view>已中奖人数：{{rollMsg.count}}</view>
+  </view>
+  <swiper class='roll-swiper' autoplay='true' interval='3000' circular='true' vertical='true' >
+    <block wx:for="{{rollMsg.roll}}" wx:key="{{index}}" wx:if='{{index < rollMsg.roll.length/3}}'>
+      <swiper-item>
+        <view class='roll-swiper-item' wx:if='{{rollMsg.roll[index*3] != null}}'> 
+          <image class='roll-avatar' src='{{rollMsg.roll[index*3].avatar_url}}'></image>
+          <view class='roll-con'>
+            在 <text>{{rollMsg.roll[index*3].time}}</text>，
+            获得 <text class='roll-h'>{{rollMsg.roll[index*3].name}}</text>
+          </view>     
+        </view>     
+        <view class='roll-swiper-item' wx:if='{{rollMsg.roll[index*3+1] != null}}'> 
+          <image class='roll-avatar' src='{{rollMsg.roll[index*3+1].avatar_url}}'></image>
+          <view class='roll-con'>
+            在 <text>{{rollMsg.roll[index*3+1].time}}</text>，
+            获得 <text class='roll-h'>{{rollMsg.roll[index*3+1].name}}</text>
+          </view>     
+        </view>  
+        <view class='roll-swiper-item' wx:if='{{rollMsg.roll[index*3+2] != null}}'> 
+          <image class='roll-avatar' src='{{rollMsg.roll[index*3+2].avatar_url}}'></image>
+          <!-- <view class='roll-nickName'><text>{{item.nick_name}}</text></view> -->
+          <view class='roll-con'>
+            在 <text>{{rollMsg.roll[index*3+2].time}}</text>，
+            获得 <text class='roll-h'>{{rollMsg.roll[index*3+2].name}}</text>
+          </view>     
+        </view>  
+      </swiper-item>
+    </block>  
+  </swiper>
+</view>
+
+
+<view class='activity'>
+  <view class='act-con' wx:for='{{activityMsg}}' wx:key='{{item.id}}'> 
+
+    <view class='act-con-t'>
+      <navigator url='../detail/detail?id={{item.id}}'>
+        <image src='{{item.img_url}}'></image>
+        <button wx:if="{{ item.participate == 1}}" size="mini">免费领取</button>
+        <button wx:if="{{ item.participate == 2}}" size="mini" style='background-color:#FF9999'>待开奖</button>
+        <view class='act-con-t-name' >{{item.name}} 赞助</view>   
+      </navigator>  
+              
+    </view>
+
+    <view class='act-con-b'>
+      <view class='act-con-b-l'>
+        <view>免费抽奖：{{item.product_name}}</view>
+        <view class='act-con-b-l-text'>{{item.lottery_time}} 后自动开奖</view>
+        <view wx:if='{{item.restrict != 0}}'>参与条件：<text>{{item.restrict}}</text></view>
+      </view>
+      <view class='act-con-b-r'>
+        <navigator open-type='navigate' target='miniProgram' app-id='wxb19a236e51a8d248'>领取更多</navigator>
+      </view>
+    </view>
+
+    <view class='act-con-avatar' wx:if="{{item.participate == 2}}">
+      <view class='success'><image  src='../../image/success.png'></image>已参与</view>
+    </view>
+
+  </view>
+</view>
+
+<ad-fixed ad-id='float'></ad-fixed>

@@ -1,0 +1,26 @@
+<!--pages/lotteryRecord/lotteryRecord.wxml-->
+<navigator url='../detail/detail?id={{item.id}}' class='con' wx:for='{{msg.not_lottery}}' wx:key="{{index}}">
+  <image class='con-banner' src='{{item.img_url}}'></image>
+  <view class='con-tit'>
+    <view>奖品：{{item.product_name}}</view>
+    <view style='color:rgb(16, 169, 84)'>未开奖</view>
+  </view>
+  <view class='con-status'>
+      <view>{{item.lottery_time}} 后自动开奖</view>
+  </view>
+</navigator>
+
+<navigator url='../lottery/lottery?id={{item.id}}' class='con' wx:for='{{msg.lottery}}' wx:key="{{index}}">
+  <image class='con-banner' src='{{item.img_url}}'></image>
+  <view class='con-tit'>
+    <view>奖品：{{item.product_name}}</view>
+    <view>已结束</view>
+  </view>
+  <view class='con-status'>
+      <view>{{item.lottery_time}} 自动开奖</view>
+  </view>
+</navigator>
+
+<view class='noMsg' wx:if="{{msg == ''}}">
+  当前没有抽奖数据...
+</view>
