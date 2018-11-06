@@ -1,0 +1,96 @@
+/* pages/reviewArea/reviewArea.wxss */
+page{
+  height: 100%;
+  background: #f4f4f4;
+}
+.content{
+  background: #f4f4f4;
+}
+
+.contArea{
+  padding: 26rpx 26rpx 0 26rpx;  
+  border-radius: 20rpx;
+}
+
+.reviewArea{
+  padding: 30rpx;
+  background: #fff;
+}
+.reviewArea textarea{
+  font-size:24rpx;
+  font-family:MicrosoftYaHei;
+  color: #c4c4c4;
+  width: 100%;
+  height: 162rpx;
+}
+.revieImg{
+  display: flex;
+  flex-wrap: wrap;
+  /* max-height: 590rpx;
+  overflow: hidden; */
+}
+.image{
+  margin-bottom: 10rpx;
+  width: 190rpx;
+  height: 190rpx;
+}
+.image:nth-child(2){
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+}
+.image:nth-child(5){
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+}
+.image:nth-child(8){
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+}
+.moment_img{
+  width: 100%;
+  height: 100%;
+}
+
+.placeholder{
+  font-size:24px;
+  font-family:MicrosoftYaHei;
+  color: #c4c4c4;
+}
+
+/* 按钮 */
+.areaBut{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 64rpx;
+}
+.cancel{
+  width: 300rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  background: #c4c4c4;
+  border-radius: 20rpx;
+  font-size:28rpx;
+  font-family:MicrosoftYaHei-Bold;
+  font-weight:bold;
+  color: #fff;
+  text-align: center;
+  border: none;
+  border-color: transparent;
+}
+.mission{
+  width:300rpx;
+  height:70rpx;
+  line-height: 70rpx;
+  background:linear-gradient(172deg,rgba(252,249,209,1) 0%,rgba(239,212,157,1) 100%);
+  border-radius:20rpx;
+  font-size:28rpx;
+  font-family:MicrosoftYaHei-Bold;
+  font-weight:bold;
+  color: #be8c54;
+  text-align: center;
+  border: none;
+  border-color: transparent;
+}
+button::after{
+  border: none;
+}

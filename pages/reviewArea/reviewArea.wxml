@@ -1,0 +1,23 @@
+<!--pages/reviewArea/reviewArea.wxml-->
+<view class='content'>
+  <view class='contArea'>
+    <view class='reviewArea'>
+      <textarea placeholder-class="placeholder" placeholder='请填写评论' placeholder-style="font-size:24rpx;color:#c4c4c4" maxlength="-1" bindinput='input'></textarea>
+
+      <view class='revieImg'>
+        <view class='image' wx:for="{{img_url}}" wx:key="{{index}}">
+          <image class='moment_img' src='{{item}}'></image>
+        </view>
+        <view class='image' style='display:{{hideAdd?"none":"block"}}'>
+          <image src='../../image/pl_tj@2x.png' bindtap='chooseImage' class='moment_img'></image>
+        </view>
+      </view>
+
+    </view>
+
+    <view class='areaBut'>
+      <button class='cancel' bindtap='cancelBtn'>取消</button>
+      <button class='mission' bindtap='missionBtn'>提交</button>
+    </view>
+  </view>
+</view>

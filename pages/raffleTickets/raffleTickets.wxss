@@ -1,0 +1,75 @@
+/* pages/raffleTickets/raffleTickets.wxss */
+.content{
+  background: #f4f4f4;
+}
+.raffle{
+  padding: 54rpx 74rpx 0 74rpx;
+}
+.contRaffle{
+  background:linear-gradient(180deg,rgba(255,254,239,1) 0%,rgba(255,250,236,1) 44%,rgba(224,204,160,1) 100%);
+  border-radius:20rpx;
+  padding: 24rpx 50rpx 74rpx 50rpx;
+}
+.header{
+  display: flex;
+}
+open-data[type=userAvatarUrl] {
+  display: block;
+  overflow: hidden;
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+}
+
+open-data[type=userNickName] {
+  margin-left: 20rpx;
+  font-size: 20rpx;
+  font-family: PingFangSC-Semibold;
+  font-weight: 600;
+  color: #BE8C54;
+  text-align: center;
+  line-height: 60rpx;
+}
+
+
+.raffleTickets{
+  margin-top: 40rpx;
+  background: #fff;
+  padding: 50rpx 20rpx 22rpx 20rpx;
+  border-radius: 20rpx;
+}
+
+.raffText{
+  text-align: center;
+  font-size:24rpx;
+  font-family:PingFangSC-Semibold;
+  font-weight:600;
+  color: #BE8C54;
+  display: block;
+}
+.raffImg{
+  padding: 20rpx 0;
+  width: 460rpx;
+  height: 250rpx;
+}
+.raffShop{
+  font-size:24rpx;
+  font-family:MicrosoftYaHei-Bold;
+  font-weight:bold;
+  color: #666;
+  text-align: center;
+  display: block;
+}
+.rsffEr{
+  padding: 36rpx 0 20rpx 140rpx; 
+  width: 180rpx;
+  height: 180rpx;
+}
+.raffAdd{
+  margin-top: 24rpx;
+  text-align: center;
+  font-size:24rpx;
+  font-family:MicrosoftYaHei;
+  color: #4a4a4a;
+  display: block;
+}

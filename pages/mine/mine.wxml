@@ -1,0 +1,62 @@
+<!--pages/mine/mine.wxml-->
+<view class='content'>
+  <!-- 用户信息 -->
+  <view class='header' bindtap="raffleTickets">
+    <view class='head'>
+      <open-data type="userAvatarUrl"></open-data>
+      <open-data type="userNickName"></open-data>
+    </view>
+    <view class='headRight'>
+      <view>常见问题
+        <image src='../../image/my_cjwt@2x.png' class='headImg'></image>
+      </view>
+      <view class='headText'>联系客服
+        <image src='../../image/my_lxkf@2x.png' class='headImg'></image>
+      </view>
+    </view>
+  </view>
+
+  <!-- 中奖信息 -->
+  <view class='details'>
+    <view class="swiper-tab">
+      <view class="swiper-tab-item {{currentTab==0?'active':''}}" data-current="0" bindtap="clickTab">已中奖</view>
+      <view class="swiper-tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="clickTab">已抽奖</view>
+    </view>
+
+    <swiper current="{{currentTab}}" duration="300" bindchange="swiperTab" style='height:800rpx'>
+      <swiper-item>
+        <view class='shopDetails'>
+          <view class='shops'>
+            <view class='participate'>您已经参与</view>
+            <image src='../../image/banner.jpg' class='shopsImg'></image>
+            <view class='shopsInfor'>
+              <view class='shopNme'>
+                <text class='shopInName'>免费抽奖:<text>蓝牙耳机</text></text>
+                <text class='inform'>已经开奖</text>
+              </view>
+              <text class='information'>已经开奖</text>
+            </view>
+          </view>
+        </view>
+
+      </swiper-item>
+      <swiper-item>
+
+        <view class='shopDetails'>
+          <view class='shops'>
+            <view class='participate'>您已经参与</view>
+            <image src='../../image/banner.jpg' class='shopsImg'></image>
+            <view class='shopsInfor'>
+              <view class='shopNme'>
+                <text class='shopInName'>免费抽奖:<text>蓝牙耳机</text></text>
+                <text class='inform'>01:38:24<text>后自动开奖</text></text>
+              </view>
+              <text class='information'>等待开奖</text>
+            </view>
+          </view>
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+
+</view>

@@ -1,0 +1,85 @@
+/* pages/prizes/prizes.wxss */
+.content{
+  background: #f4f4f4;
+}
+
+.prizes{
+  background: #fff;
+  padding: 24rpx 0 37rpx 0;
+  margin-top: 20rpx;
+}
+
+/* 用户信息 */
+.prizeUser{
+  display: flex;
+  /* margin-top: 24rpx; */
+  margin-left: 24rpx;
+}
+.userPic{
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+}
+.userName{
+  display: flex;
+  flex-direction: column;
+  margin-left: 16rpx;
+}
+.userNike{
+  font-size:24rpx;
+  font-family:MicrosoftYaHei-Bold;
+  font-weight:bold;
+  color: #666;
+}
+.prizeGoods{
+  font-size:18rpx;
+  font-family:MicrosoftYaHei;
+  color: #999;
+}
+
+/* 文字 */
+.prizeText{
+  line-height: 30rpx;
+  padding: 10rpx 40rpx 0 100rpx;
+}
+.prizeText text{
+  font-size:24rpx;
+  font-family:MicrosoftYaHei;
+  color: #666;
+}
+
+/* 图片 */
+.truePic{
+  padding: 10rpx 40rpx 0 100rpx;
+}
+.truePic image{
+  width: 190rpx;
+  height: 190rpx;
+}
+.prizePics{
+  display: inline-block;
+}
+.prizePics:nth-child(2){
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+}
+.prizePics:nth-child(5){
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+}
+.prizePics:nth-child(8){
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+}
+
+/* 晒奖按钮 */
+.prizeBut{
+  position: fixed;
+  bottom: 300rpx;
+  right: 20rpx;
+}
+.prizeBut button{
+  width: 120rpx;
+  height: 120rpx;
+  font-size: 18rpx;
+}

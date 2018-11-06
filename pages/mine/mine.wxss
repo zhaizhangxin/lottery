@@ -1,0 +1,144 @@
+/* pages/mine/mine.wxss */
+
+.content {
+  background: #f4f4f4;
+}
+
+/* 用户信息 */
+
+.header {
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  padding: 30rpx 60rpx 46rpx 56rpx;
+}
+
+.head {
+  display: flex;
+}
+
+open-data[type=userAvatarUrl] {
+  display: block;
+  overflow: hidden;
+  width: 128rpx;
+  height: 128rpx;
+  border-radius: 50%;
+}
+
+open-data[type=userNickName] {
+  margin-left: 20rpx;
+  font-size: 24rpx;
+  font-family: MicrosoftYaHei-Bold;
+  font-weight: bold;
+  color: #666;
+  text-align: center;
+  line-height: 128rpx;
+}
+
+.headImg {
+  margin-left: 10rpx;
+  height: 36rpx;
+  width: 36rpx;
+  vertical-align: sub;
+}
+
+.headRight {
+  padding: 16rpx 0;
+}
+
+.headRight view {
+  font-size: 24rpx;
+  font-family: MicrosoftYaHei;
+  color: #999;
+}
+
+.headText {
+  margin-top: 22rpx;
+}
+
+/* 中奖信息 */
+
+.swiper-tab {
+  background: #fff;
+  padding: 0 60rpx 34rpx 54rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.swiper-tab-item {
+  display: inline-block;
+  width: 300rpx;
+  height: 70rpx;
+  color: #fff;
+  border-radius: 20rpx;
+  font-size: 28rpx;
+  font-family: MicrosoftYaHei-Bold;
+  font-weight: bold;
+  background: #c4c4c4;
+  text-align: center;
+  line-height: 70rpx;
+}
+
+.active {
+  color: #be8c54;
+  background: linear-gradient(172deg, rgba(252, 249, 209, 1) 0%, rgba(239, 212, 157, 1) 100%);
+}
+
+
+
+.shopDetails{
+  padding: 0 24rpx;
+  margin-top: 28rpx;
+}
+.shops{
+  position: relative;
+  background: #fff;
+  border-radius: 20rpx;
+}
+
+.participate{
+  position: absolute;
+  top: 46rpx;
+  right: 0;
+  padding: 10rpx 30rpx 10rpx 40rpx;
+  background:linear-gradient(172deg,rgba(252,249,209,1) 0%,rgba(239,212,157,1) 100%);
+  border-radius:28rpx 0px 0px 28rpx;
+  font-size:24rpx;
+  font-family:MicrosoftYaHei;
+  color: #BE8C54;
+}
+
+
+.shopsImg{
+  height: 320rpx;
+  width: 100%;
+  border-radius: 20rpx 20rpx 0 0;
+  display: block;
+}
+.shopsInfor{
+  display: flex;
+  justify-content: space-between;
+  padding: 10rpx 62rpx 18rpx 18rpx;
+}
+.shopNme{
+  display: flex;
+  flex-direction: column;
+}
+.shopInName{
+  font-size:32rpx;
+  font-family:MicrosoftYaHei-Bold;
+  font-weight:bold;
+  color: #666;
+}
+.inform{
+  font-size:24rpx;
+  font-family:MicrosoftYaHei;
+  color: #999;
+}
+.information{
+  font-size:28rpx;
+  font-family:MicrosoftYaHei-Bold;
+  font-weight:bold;
+  color: #999;
+  line-height: 70rpx;
+}
