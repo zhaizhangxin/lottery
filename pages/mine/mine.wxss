@@ -94,6 +94,7 @@ open-data[type=userNickName] {
   position: relative;
   background: #fff;
   border-radius: 20rpx;
+  margin-top: 20rpx;
 }
 
 .participate{
@@ -123,6 +124,7 @@ open-data[type=userNickName] {
 .shopNme{
   display: flex;
   flex-direction: column;
+  width: 74%;
 }
 .shopInName{
   font-size:32rpx;

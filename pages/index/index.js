@@ -64,7 +64,7 @@ Page({
 
         wx.hideLoading();
         if (res.statusCode == 200) {
-
+          console.log(res.data.msg);
           this.setData({
             rollMsg: res.data.msg,
           })

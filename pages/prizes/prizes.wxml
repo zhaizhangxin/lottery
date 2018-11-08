@@ -15,7 +15,7 @@
     </view>
     <!-- 图片 -->
     <view class='truePic'>
-      <view wx:for="{{prizeImg}}" wx:for-item="image" class='prizePics'>
+      <view wx:for="{{prizeImg}}" wx:for-item="image" class='prizePics' wx:key="{{index}}">
         <image src='{{image}}' bindtap='previewImage' data-src='{{image}}'></image>
       </view>
     </view>

@@ -6,26 +6,46 @@
       <image src='../../image/home_bg_2@2x.png' class='top-homebg'></image>
       <image src='../../image/home_tit_1@2x.png' class='top-num'></image>
       <!-- 抽奖次数 -->
-      <view class='frequency'>5
+      <view class='frequency'>{{lottery_num}}
         <text class='fre'>次</text>
       </view>
       <view class='homePic'>
         <!-- 签到图片 -->
-        <image src='../../image/home_bt_1@2x.png' class='top-pic'></image>
+        <image src='../../image/home_bt_1@2x.png' class='top-pic' bindtap='signIn'></image>
         <!-- 分享图片 -->
         <image src='../../image/home_bt_2@2x.png' class='top-pic'></image>
       </view>
+      <!-- 签到成功 -->
+      <view style='position:relative;'>
+        <view class='successFully' bindtap='signIn' wx:if="{{signInSuccess}}">
+          <image src='../../image/tk_qd_1@2x.png' class='successImg'></image>
+          <text class='signSuccess'>签到成功！抽奖次数 + <text class='succText'>1</text></text>
+        </view> 
+        <image src='../../image/close@2x.png' class='successExit' bindtap='successExit' wx:if="{{signInSuccess}}"></image>
+      </view>
+      <view class='successMask' wx:if="{{signInSuccess}}"></view>
+
+      <!-- 今日已签到 -->
+      <view style='position:relative;'>
+        <view class='successFully' bindtap='signIn' wx:if="{{aleadySign}}">
+          <image src='../../image/tk_qd_2@2x.png' class='successImg'></image>
+          <text class='signSuccess'>今日已签到，明天再来吧！</text>
+        </view>
+        <image src='../../image/close@2x.png' class='successExit' bindtap='successExit' wx:if="{{aleadySign}}"></image>
+      </view>
+      <view class='successMask' wx:if="{{aleadySign}}"></view>
+
       <!-- 中奖人数 -->
       <view class='prize'>
         <swiper class='roll-swiper' autoplay='true' interval='3000' circular='true' vertical='true'>
-          <block wx:for="{{activety}}" wx:key="{{index}}">
+          <block wx:for="{{rollMsg}}" wx:key="{{index}}">
             <swiper-item>
               <view class='prizeSwiper'>
-                <image src='../../image/home_bt_2@2x.png' class='prizePic'></image>
+                <image src='{{item.avatar_url}}' class='prizePic'></image>
                 <view class='prizeText'>
                   在
                   <text>{{item.time}}</text> 获得奖品
-                  <text>*****</text>
+                  <text>{{item.name}}</text>
                 </view>
               </view>
             </swiper-item>
@@ -33,7 +53,7 @@
         </swiper>
 
         <view class='prizeNum'>
-          已中奖人数：999
+          已中奖人数：{{wining_num}}
         </view>
       </view>
 
@@ -41,34 +61,85 @@
   </view>
 
   <view class='conView'>
-    <block wx:for="{{actContent}}" wx:key="{{index}}">
+    <!-- 天天免费领 -->
+    <block wx:if="{{lottery != []}}">
       <view class='invitaPoper'>
-        <image src='../../image/home_bg_1@2x (1).png' class='Invitation' wx:if="{{item.status == 2}}"></image>
-        <image src='../../image/Group 5@2x.png' class='Invitation' wx:if="{{item.status == 3}}"></image>
-
-        <view class="{{item.status == 2 || item.status == 3?'invitaCont':'content'}}">
-            <view class='contents' bindtap='detaliJump' data-id='{{item.id}}'>
-              <image src='../../image/banner.jpg' class='shopImg'></image>
-              <view class='sponsor'>
-                <image src='../../image/home_jb@2x.png' class='sponImg'></image>
-                <text class='sponText'>对诗登榜 赞助</text>
+        <view class='invita' wx:for="{{lottery}}" wx:key="{{index}}">
+          <view class='contents' bindtap='detaliJump' data-id='{{item.id}}'>
+            <image src='{{item.img_url}}' class='shopImg'></image>
+            <view class='sponsor'>
+              <image src='../../image/home_jb@2x.png' class='sponImg'></image>
+              <text class='sponText'>{{item.name}} 赞助</text>
+            </view>
+            <view class='shopsCon'>
+              <view class='shopNames'>
+                <text class='conName'>免费抽奖:{{item.product_name}}</text>
+                <text class='conTime'>{{item.lottery_time}} 后自动开奖</text>
               </view>
-              <view class='shopsCon'>
-                <view class='shopNames'>
-                  <text class='conName'>免费抽奖:蓝牙耳机</text>
-                  <text class='conTime' wx:if="{{item.status == 1}}">后自动开奖</text>
-                  <text class='conTime' wx:else>截止 邀请前5名得</text>
-                </view>
-                <view class='commodity'>
-                  <image src='../../image/home_bt_3@2x.png' class='conBtn'></image>
-                  <text class='conText' wx:if="{{item.status == 1}}">免费领取</text>
-                  <text class='conText' wx:else>立即参与</text>
-                </view>
+              <view class='commodity'>
+                <image src='../../image/home_bt_3@2x.png' class='conBtn'></image>
+                <text class='conText'>免费领取</text>
               </view>
             </view>
+          </view>
         </view>
       </view>
     </block>
 
+    <!-- 邀请好友 -->
+    <block wx:if="{{rank != []}}">
+      <view class='invitaPoper'>
+        <image src='../../image/home_bg_1@2x(1).png' class='Invitation'></image>
+        <view class='collCot'>
+          <view wx:for="{{rank}}" wx:key="{{index}}" class='collectCont'>
+            <view class='contents' bindtap='detaliJump' data-id='{{item.id}}'>
+              <image src='{{item.img_url}}' class='shopImg'></image>
+              <view class='sponsor'>
+                <image src='../../image/home_jb@2x.png' class='sponImg'></image>
+                <text class='sponText'>{{item.name}} 赞助</text>
+              </view>
+              <view class='shopsCon'>
+                <view class='shopNames'>
+                  <text class='conName'>免费抽奖:{{item.product_name}}</text>
+                  <text class='conTime'>{{item.lottery_time}}截止 邀请前5名得</text>
+                </view>
+                <view class='commodity'>
+                  <image src='../../image/home_bt_3@2x.png' class='conBtn'></image>
+                  <text class='conText'>立即参与</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <!-- 排名 -->
+    <block wx:if="{{collect != []}}">
+      <view class='invitaPoper'>
+        <image src='../../image/Group5@2x.png' class='Invitation'></image>
+        <view class='collCot'>
+          <view wx:for="{{collect}}" wx:key="{{index}}" class='collectCont'>
+            <view class='contents' bindtap='detaliJump' data-id='{{item.id}}'>
+              <image src='{{item.img_url}}' class='shopImg'></image>
+              <view class='sponsor'>
+                <image src='../../image/home_jb@2x.png' class='sponImg'></image>
+                <text class='sponText'>{{item.name}} 赞助</text>
+              </view>
+              <view class='shopsCon'>
+                <view class='shopNames'>
+                  <text class='conName'>免费抽奖:{{item.product_name}}</text>
+                  <text class='conTime'>{{item.lottery_time}}截止 邀请前5名得</text>
+                </view>
+                <view class='commodity'>
+                  <image src='../../image/home_bt_3@2x.png' class='conBtn'></image>
+                  <text class='conText'>立即参与</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
   </view>
 </view>

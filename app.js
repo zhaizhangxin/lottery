@@ -12,7 +12,8 @@ App({
 
           // 发送 res.code 到后台换取 openId, sessionKey, unionId
           wx.request({
-            url: reqUrl + 'token',
+            // url: reqUrl + 'token',
+            url: reqUrl + 'award_token',
             data: {
               code: res.code
             },

@@ -42,6 +42,50 @@
   width: 328rpx;
   height: 98rpx;
 }
+/* 签到 */
+.successMask{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+.successFully{
+  position: fixed;
+  background: #fff;
+  top: 28%;
+  left: 14%;
+  padding: 136rpx 80rpx;
+  z-index: 99;
+  border-radius: 28rpx;
+}
+.successImg{
+  position: absolute;
+  top: -42rpx;
+  left: 100rpx;
+  width: 336rpx;
+  height: 98rpx;
+  display: block;
+}
+.successExit{
+  position: absolute;
+  right: 60rpx;
+  top: -22rpx;
+  width: 60rpx;
+  height: 60rpx;
+  display: block;
+  z-index: 99;
+}
+.signSuccess{
+  font-size:34rpx;
+  font-family:MicrosoftYaHei;
+  color: #999;
+}
+.succText{
+  color: #e44348;
+}
 
 /* 抽奖次数 */
 
@@ -82,6 +126,11 @@
 .prizeText{
   font-size: 24rpx;
   color: #666;
+  width: 382rpx;
+  height: 36rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .prizeNum{
   font-size: 24rpx;
@@ -126,8 +175,8 @@
 
 .contents {
   position: relative;
-  margin-top: 10rpx;
-  width: 100%;
+  margin: 10rpx 20rpx 28rpx 20rpx;
+  /* width: 100%; */
   border-radius: 20rpx;
   background: #fff;
 }
@@ -181,9 +230,12 @@
 }
 /* 邀请好友 */
 .invitaPoper{
-  margin-top: 50rpx;
+  margin-top: 50rpx;  
 }
 
+.collCot{
+  margin-top: -230rpx;
+}
 .Invitation{
   width: 100%;
   height: 400rpx;

@@ -1,4 +1,6 @@
 // pages/mine/mine.js
+const reqUrl = require('../../utils/reqUrl.js');
+
 Page({
 
   /**
@@ -35,7 +37,39 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.showLoading({
+      title: '加载中...',
+      mask: true
+    })
 
+    //获取抽奖记录
+    wx.request({
+      url: reqUrl + 'award_lottery_recode',
+      header: {
+        token: wx.getStorageSync('token')
+      },
+      method: 'GET',
+      success: res => {
+        console.log(res)
+        if (res.statusCode == 200) {
+
+          this.setData({
+            msg: res.data.msg,
+            height: 460 * res.data.msg.length
+          })
+        } else {
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'none',
+            mask: true
+          })
+        }
+
+        wx.hideLoading();
+      },
+      fail: function (res) { },
+      complete: function (res) { },
+    })
   },
 
   /**

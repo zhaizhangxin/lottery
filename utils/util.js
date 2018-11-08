@@ -9,7 +9,7 @@ function formatTime(time) {
   time = time % 60
   var second = time
 
-  return ([hour, minute, second]).map(function (n) {
+  return ([hour, minute, second]).map(function(n) {
     n = n.toString()
     return n[1] ? n : '0' + n
   }).join(':')
