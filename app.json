@@ -51,5 +51,9 @@
         "text": "我的"
       }
     ]
-  }
+  },
+  "navigateToMiniProgramAppIdList": [
+    "wxe78526dc49c29425","wxb19a236e51a8d248","wx04ae6db5ac8838c8","wx7cbe42eb3c3ff960","wxb19a236e51a8d248","wx938b41d0d7e8def0","wx7f70229ab1e51c1a"
+
+  ]
 }

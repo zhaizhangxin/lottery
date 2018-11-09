@@ -79,6 +79,7 @@
   background: none;
   width: 180rpx;
   height: 180rpx;
+  border-radius: 50%;
 }
 
 .dynamImg::after {
@@ -88,6 +89,15 @@
 .dynamImg image {
   width: 180rpx;
   height: 180rpx;
+}
+.nickName{
+  margin-top: 10rpx;
+  font-size:14rpx;
+  font-family:PingFangSC-Semibold;
+  font-weight:600;
+  color: #BE8C54;
+  display: block;
+  text-align: center;
 }
 
 /* 免费抽奖并已参与 */
@@ -233,6 +243,8 @@
   background: rgba(0, 0, 0, 0.5);
 }
 
+
+
 .drawer_screen {
   padding: 0 34rpx;
   padding-top: 14rpx;
@@ -249,6 +261,7 @@
 .drawer {
   width: 370rpx;
   height: 370rpx;
+  height: 105px;
   overflow: auto;
 }
 

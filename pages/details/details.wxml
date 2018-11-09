@@ -32,25 +32,35 @@
     <view class='lottery'>
       <view class='lottText'>
         <image src="../../image/Rectangle 3 Copy 5@2x.png"></image>
-        <text wx:if="{{detailMsg.product_type == 1}}">邀请好友参与，他中奖，我也中奖</text>
-        <text wx:if="{{detailMsg.product_type == 2}}">邀请好友参与，排名越高者得</text>
-        <text wx:if="{{detailMsg.product_type == 3}}">邀请好友参与，集齐就开奖</text>
+        <text wx:if="{{detailMsg.product_type == 1 && detailMsg.activity.status == 1}}">邀请好友参与，他中奖，我也中奖</text>
+        <text wx:if="{{detailMsg.product_type == 2 && detailMsg.activity.status == 1}}">邀请好友参与，排名越高者得</text>
+        <text wx:if="{{detailMsg.product_type == 3 && detailMsg.activity.status == 1}}">邀请好友参与，集齐就开奖</text>
+        <text wx:if="{{detailMsg.activity.status == -1}}">中奖名单</text>
       </view>
       <view class='dynamics'>
         <view class='dynam'>
 
-          <block wx:if="{{detailMsg.activity.participate == 1}}">
-            <form report-submit='true' bindsubmit='luckDraw'>
+          <block wx:if="{{detailMsg.activity.participate == 1 && detailMsg.activity.status == 1}}">
+            <form report-submit='true' bindsubmit='luckDraw' wx:if="{{report}}">
               <button form-type='submit' class='dynamImg'>
                 <image src='../../image/Group2@2x.png'></image>
               </button>
             </form>
+            <button open-type='getUserInfo' class='dynamImg' bindgetuserinfo='getUserInfo' wx:else>
+              <image src='../../image/Group2@2x.png'></image>
+            </button>
           </block>
 
+          <!-- 中奖名单 -->
+          <block wx:if="{{detailMsg.activity.status == -1}}">
+              <image src='{{detailMsg.luck_user.avatar_url}}' class='dynamImg'></image>
+              <text class='nickName'>{{detailMsg.luck_user.nick_name}}</text>
+          </block>
+          
           <!-- 免费抽奖且已参与 -->
-          <block wx:if="{{detailMsg.product_type == 1 && detailMsg.activity.participate == 2}}">
+          <block wx:if="{{detailMsg.product_type == 1 && detailMsg.activity.participate == 2 && detailMsg.activity.status == 1}}">
             <image src='../../image/Group9@2x.png' class='groop'></image>
-             <button open-type='share' class='openShare'>
+            <button open-type='share' class='openShare'>
               <image src='../../image/cj_bt2@2x(1).png'></image>
             </button>
             <text class='dynamText'>
@@ -60,13 +70,13 @@
           </block>
 
           <!-- 已邀请好友(排名) -->
-          <block wx:if="{{detailMsg.product_type == 2 && detailMsg.activity.participate == 2}}">
+          <block wx:if="{{detailMsg.product_type == 2 && detailMsg.activity.participate == 2 && detailMsg.activity.status == 1}}">
             <image src='../../image/Group9@2x.png' class='groop'></image>
             <button open-type='share' class='openShare'>
               <image src='../../image/cj_bt2@2x(1).png'></image>
             </button>
           </block>
-          
+
           <!-- 邀请好友，排名 -->
           <block wx:if="{{detailMsg.product_type == 2}}">
             <text class='dyFind' bindtap='shareAvatar' style='margin-top:40rpx'>查看我邀请的朋友></text>
@@ -99,7 +109,7 @@
           <view class='draw_box' bindtap='rankingTop' wx:if="{{rankingStatus}}"></view>
 
           <!-- 邀请好友（参与）集齐开奖 -->
-          <block wx:if="{{detailMsg.product_type == 3 && detailMsg.activity.participate == 2}}">
+          <block wx:if="{{detailMsg.product_type == 3 && detailMsg.activity.participate == 2 && detailMsg.activity.status == 1}}">
             <image src='../../image/Group9@2x.png' class='groop'></image>
             <button open-type='share' class='openShare'>
               <image src='../../image/cj_bt2@2x(1).png'></image>
@@ -108,16 +118,16 @@
 
           <!-- 邀请好友集齐开奖 -->
           <block wx:if="{{detailMsg.product_type == 3}}">
-            <text class='dyFind' bindtap='shareAvatar' style='margin-top:40rpx'>查看我邀请的朋友></text>        
+            <text class='dyFind' bindtap='shareAvatar' style='margin-top:40rpx'>查看我邀请的朋友></text>
             <view class='dragonball'>
               <text>已邀请{{detailMsg.activity.dragonball}}人，共{{detailMsg.activity.restrict}}人自动开奖</text>
-            </view>  
+            </view>
           </block>
 
           <!-- 邀请好友总数 -->
           <view class='drawer_screen' bindtap='shareAvatar' wx:if="{{shareAvatarStatus}}">
-            <view class='drawer'>
-              <image src='../../image/tc_top1@2x.png' class='brawImg'></image>
+            <image src='../../image/tc_top1@2x.png' class='brawImg'></image>
+            <scroll-view scroll-y="true" style="height: 370rpx;" class='drawer' bindscrolltolower="lowers">
               <view class='draText'>
                 <text wx:if="{{dragonball == 0}}">您还没有邀请好友</text>
                 <text wx:else>已邀请<text>{{dragonball}}</text>人参与，共
@@ -125,17 +135,17 @@
               </view>
               <view class='draPic'>
                 <block wx:if="{{dragonball == 0}}">
-                  <button class='avatIcon'>
-                    <image src='../../image/tc_bt@2x.png'></image>
-                  </button>
-                </block>
-                <block wx:else>
-                  <block wx:for="{{shareImg}}" wx:key="{{index}}">
-                    <image class='frePic' src='{{item.avatar_url}}'></image>
+                    <button class='avatIcon'>
+                      <image src='../../image/tc_bt@2x.png'></image>
+                    </button>
                   </block>
+                <block wx:else>
+                <block wx:for="{{shareImg}}" wx:key="{{index}}">
+                  <image class='frePic' src='{{item.avatar_url}}'></image>
                 </block>
+              </block> 
               </view>
-            </view>
+            </scroll-view>
           </view>
           <view class='draw_box' bindtap='shareAvatarTop' wx:if="{{shareAvatarStatus}}"></view>
 
@@ -153,17 +163,18 @@
           </block>
           <!-- 参与总人数 -->
           <view class='drawer_screen' bindtap='avatarPic' wx:if="{{showModalStatus}}">
-            <view class='drawer'>
-              <image src='../../image/tc_top2@2x.png' class='brawImg'></image>
+            <image src='../../image/tc_top2@2x.png' class='brawImg'></image>
+            <scroll-view scroll-y="true" style="height: 370rpx;" class='drawer' bindscrolltolower="lower">
+              <!-- <view class='drawer'> -->
               <view class='draText'>
                 <text>已<text>{{detailMsg.activity.participants}}</text>人参与</text>
               </view>
-              <view class='draPic'>
+              <view class='draPic' style='height:300rpx'>
                 <block wx:for="{{avatarImg}}" wx:key="{{index}}">
                   <image class='frePic' src='{{item.avatar_url}}'></image>
                 </block>
               </view>
-            </view>
+            </scroll-view>
           </view>
           <view class='draw_box' bindtap='exitTop' wx:if="{{showModalStatus}}"></view>
 
@@ -181,7 +192,9 @@
         <view class='intTexts'>
           <text class='intText'>{{detailMsg.activity.brief}}</text>
         </view>
-        <navigator class='introd'>
+
+        <navigator class='introd' wx:if='{{detailMsg.activity.app_id != "" || detailMsg.activity.app_id != null}}' bindtap='click' data-id='{{detailMsg.activity.advert_id}}' target='{{detailMsg.activity.ad_type == 0 ? "miniProgram" : "self"}}' open-type='navigate'
+          app-id='{{detailMsg.activity.app_id}}' path='{{detailMsg.activity.path}}' data-qr='{{detailMsg.activity.qr_url}}'>
           <view>
             <image src='{{detailMsg.activity.icon}}'></image>
             <text>{{detailMsg.activity.name}}</text>
@@ -190,8 +203,24 @@
             <text>></text>
           </view>
         </navigator>
+        <navigator class='introd' bindtap='click' data-id='{{detailMsg.activity.advert_id}}' wx:else url='../h5ad/h5ad?h5ad={{detailMsg.activity.href_url}}'>
+          <view>
+            <image src='{{detailMsg.activity.icon}}'></image>
+            <text>{{detailMsg.activity.name}}</text>
+          </view>
+          <view>
+            <text>></text>
+          </view>
+        </navigator>
+
       </view>
     </view>
+    <!-- 广告位 -->
+    <actionSheet id='actionSheet'></actionSheet>
+
+    <ad unit-id="adunit-35bb96f2a6c7a1ec"></ad>
+    <!-- 广告位结束 -->
+
     <!-- 商品详情 -->
     <view class='shopDetails'>
       <view class='detailText'>
@@ -215,7 +244,7 @@
       </view>
       <view class='aboutBut'>
         <text>{{detailMsg.platform.href}}</text>
-        <image src='../../image/Group4@2x.png'></image>
+        <image src='../../image/Group4@2x.png' data-href="{{detailMsg.platform.href}}" bindtap='detaGroup'></image>
       </view>
     </view>
   </view>
@@ -224,5 +253,17 @@
 
 <view class='footer'>
   <button class='home' bindtap='swithTab'>主页</button>
-  <button class='share'>分享给好友</button>
+  <button class='share' bindtap="listenerButton">分享给好友</button>
 </view>
+
+<!--默认action-sheet为隐藏，由button触发-->
+<action-sheet hidden="{{actionSheetHidden}}" bindchange="listenerActionSheet">
+   <action-sheet-item>
+         <button open-type="share">分享给好友</button>
+   </action-sheet-item>
+   <action-sheet-item>
+      <button bindtap='shareCord' data-id="{{id}}" data-src="{{detailMsg.activity.img_url}}" data-name="{{detailMsg.activity.product_name}}">生成分享卡片</button>
+  </action-sheet-item>
+   <!--自动隐藏action-sheet-->
+   <action-sheet-cancel>取消</action-sheet-cancel>
+</action-sheet>

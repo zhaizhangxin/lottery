@@ -1,19 +1,7 @@
 <!--pages/raffleTickets/raffleTickets.wxml-->
 <view class='content'>
   <view class='raffle'>
-    <view class='contRaffle'>
-      <view class='header'>
-        <open-data type="userAvatarUrl"></open-data>
-        <open-data type="userNickName"></open-data>
-      </view>
-
-      <view class='raffleTickets'>
-        <text class='raffText'>给你分享一张抽奖券，免费抽取大奖</text>
-        <image src='../../image/banner.jpg' class='raffImg'></image>
-        <text class='raffShop'>免费抽取:<text>蓝牙耳机</text></text>
-        <image src='../../image/banner.jpg' class='rsffEr'></image>
-        <text class='raffAdd'>识别图中二维码即可参与</text>
-      </view>
-    </view>
+    <image src='{{shareCord}}' class='cotRaffle'></image>
+    <image src='../../image/fx_bt@2x.png' class='raffles' bindtap='saveImage'></image>
   </view>
 </view>

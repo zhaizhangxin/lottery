@@ -13,7 +13,9 @@
         <!-- 签到图片 -->
         <image src='../../image/home_bt_1@2x.png' class='top-pic' bindtap='signIn'></image>
         <!-- 分享图片 -->
-        <image src='../../image/home_bt_2@2x.png' class='top-pic'></image>
+        <button open-type='share' class='top-pic'>
+         <image src='../../image/home_bt_2@2x.png'></image>
+        </button>
       </view>
       <!-- 签到成功 -->
       <view style='position:relative;'>

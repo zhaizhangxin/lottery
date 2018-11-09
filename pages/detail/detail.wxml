@@ -49,7 +49,6 @@
   <!-- 广告位 -->
   <actionSheet id='actionSheet'></actionSheet>
 
-  <!-- <ad unit-id="adunit-35bb96f2a6c7a1ec"></ad> -->
   <ad unit-id="adunit-35bb96f2a6c7a1ec"></ad>
   <!-- 广告位结束 -->
 

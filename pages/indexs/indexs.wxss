@@ -41,7 +41,17 @@
 .top-pic {
   width: 328rpx;
   height: 98rpx;
+  padding: 0;
+  background: none;
 }
+.top-pic::after{
+  border: none;
+}
+.top-pic image{
+  width: 100%;
+  height: 100%;
+}
+
 /* 签到 */
 .successMask{
   position: fixed;
@@ -71,7 +81,7 @@
 }
 .successExit{
   position: absolute;
-  right: 60rpx;
+  right: 108rpx;
   top: -22rpx;
   width: 60rpx;
   height: 60rpx;
@@ -79,7 +89,7 @@
   z-index: 99;
 }
 .signSuccess{
-  font-size:34rpx;
+  font-size:32rpx;
   font-family:MicrosoftYaHei;
   color: #999;
 }

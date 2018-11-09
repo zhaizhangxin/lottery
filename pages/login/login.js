@@ -85,83 +85,118 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    console.log(options);
+    wx.showLoading({
+      title: '加载中...',
+      mask: true
+    })
+    let dataArr = (JSON.stringify(options) == "{}");
+    if (options.uid != '' && dataArr != true) {
+      // 登录
+      var sponsor_id = options.sponsor_id;
+      wx.login({
+        success: res => {
+          // 发送 res.code 到后台换取 openId, sessionKey, unionId
+          wx.request({
+            // url: reqUrl + 'token',
+            url: reqUrl + 'award_token',
+            data: {
+              code: res.code,
+              sponsor_id: sponsor_id
+            },
+            method: 'POST',
+            dataType: 'json',
+            responseType: 'text',
+            success: res => {
+              console.log(res);
+              wx.hideLoading();
+              if (res.statusCode == 200) {
+                //本地缓存存入token、uid
+                wx.setStorageSync("token", res.data.msg);
+                wx.setStorageSync("uid", res.data.uid)
 
-    // wx.showLoading({
-    //   title: '加载中...',
-    //   mask: true
-    // })
-
-    //异步登录执行完的 resolve 
-    getApp().login().then(res => {
-
-      wx.hideLoading()
-      if (res.statusCode == 200) {
-
-        //判断用户是否授权，决定是否显示授权页面
-        if (wx.getStorageSync("nickName")) {
-          // wx.switchTab({
-          //   url: '../index/index',
-          // })
-          wx.switchTab({
-            url: '../indexs/indexs',
+                //存openid,question.js的ad上报需要
+                wx.setStorageSync('openid', res.data.key)
+                // resolve(res)
+              } else {
+                reject(res)
+              }
+            },
+            fail: function(res) {},
+            complete: function(res) {},
           })
         }
+      })
+    } else {
+      //异步登录执行完的 resolve 
+      getApp().login().then(res => {
+
+        wx.hideLoading()
+        if (res.statusCode == 200) {
+
+          //判断用户是否授权，决定是否显示授权页面
+          if (wx.getStorageSync("nickName")) {
+            wx.switchTab({
+              url: '../indexs/indexs',
+            })
+          }
+
+          //获取终端信息
+          // wx.getSystemInfo({
+          //   success: function(res) {
+          //     console.log(res);
+          //     wx.request({
+          //       url: reqUrl + 'getSystemInfo',
+          //       header: {
+          //         token: wx.getStorageSync('token')
+          //       },
+          //       data: res,
+          //       method: 'POST',
+          //       success: res => {
+          //         // console.log(res)
+          //       }
+          //     })
+          //   },
+          // })
 
 
-        //获取终端信息
-        // wx.getSystemInfo({
-        //   success: function(res) {
-        //     console.log(res);
-        //     wx.request({
-        //       url: reqUrl + 'getSystemInfo',
-        //       header: {
-        //         token: wx.getStorageSync('token')
-        //       },
-        //       data: res,
-        //       method: 'POST',
-        //       success: res => {
-        //         // console.log(res)
-        //       }
-        //     })
-        //   },
-        // })
+          //获取app.js存的options，并添加openid属性
+          var options = wx.getStorageSync('options');
+          // options.openid = res.data.key;
+
+          // console.log(options)
+          var appid = options.referrerInfo ? options.referrerInfo.appId : null;
+          // wx.request({
+          //   url: reqUrl + 'putPlatformUserData',
+          //   header: {
+          //     token: wx.getStorageSync('token')
+          //   },
+          //   data: {
+          //     scene: options.scene,
+          //     openid: res.data.key,
+          //     from_appid: appid,
+          //     query: options.query
+          //   },
+          //   method: 'POST',
+          //   success: res => {
+          //     // console.log(res)
+          //   }
+          // })
 
 
-        //获取app.js存的options，并添加openid属性
-        var options = wx.getStorageSync('options');
-        // options.openid = res.data.key;
+        } else {
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'none',
+            duration: 1000
+          })
 
-        // console.log(options)
-        var appid = options.referrerInfo ? options.referrerInfo.appId : null;
+        }
 
-        // wx.request({
-        //   url: reqUrl + 'putPlatformUserData',
-        //   header: {
-        //     token: wx.getStorageSync('token')
-        //   },
-        //   data: {
-        //     scene: options.scene,
-        //     openid: res.data.key,
-        //     from_appid: appid,
-        //     query: options.query
-        //   },
-        //   method: 'POST',
-        //   success: res => {
-        //     // console.log(res)
-        //   }
-        // })
+      })
 
+    }
 
-      } else {
-        wx.showToast({
-          title: res.data.msg,
-          icon: 'none',
-          duration: 1000
-        })
-
-      }
-
-    })
 
   },
 

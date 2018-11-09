@@ -1,21 +1,21 @@
 // pages/prizes/prizes.js
+const reqUrl = require('../../utils/reqUrl');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    prizeImg: [
-      '../../image/banner.jpg', '../../image/banner.jpg', '../../image/banner.jpg', '../../image/banner.jpg', '../../image/banner.jpg', '../../image/banner.jpg'
-    ]
+
   },
   // 点击预览图片
   previewImage: function(e) {
     console.log(e);
     let current = e.target.dataset.src;
+    let avartsrc = e.target.dataset.avartsrc;  
     wx.previewImage({
       current: current,
-      urls: this.data.prizeImg
+      urls: avartsrc
     })
   },
   // 点击跳转评论区
@@ -28,7 +28,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+   
   },
 
   /**
@@ -42,7 +42,26 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    var that = this;
+    wx.request({
+      url: reqUrl + 'award_comment',
+      method: 'GET',
+      data: {
+        page: 1,
+        rows: 10
+      },
+      header: {
+        token: wx.getStorageSync('token')
+      },
+      success: res => {
+        console.log(res);
+        that.setData({
+          comments: res.data.msg
+        })
+      },
+      fail: function (res) { },
+      complete: function (res) { },
+    })
   },
 
   /**

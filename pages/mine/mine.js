@@ -1,5 +1,6 @@
 // pages/mine/mine.js
-const reqUrl = require('../../utils/reqUrl.js');
+const reqUrl = require('../../utils/reqUrl');
+const formatTime = require('../../utils/util.js')
 
 Page({
 
@@ -7,12 +8,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    currentTab:0
-  },
-  raffleTickets:function(){
-    wx.navigateTo({
-      url:'../raffleTickets/raffleTickets'
-    })
+    currentTab:0,
+    //倒计时
+    interval: '',
   },
   // 点击切换
   clickTab:function(e){
@@ -25,7 +23,18 @@ Page({
       })
     }
   },
-
+  currDeils:function(e){
+    let id = e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '../details/details?id=' + id
+    })
+  },  
+  currDeil:function(e){
+    let id = e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '../lottery/lottery?id=' + id
+    })
+  },
   //滑动切换
   swiperTab: function (e) {
     var that = this;
@@ -41,7 +50,35 @@ Page({
       title: '加载中...',
       mask: true
     })
+    // 中奖记录
+    wx.request({
+      url: reqUrl + 'award_order_list',
+      header: {
+        token: wx.getStorageSync('token')
+      },
+      method: 'GET',
+      success: res => {
+        console.log(res)
+        if (res.statusCode == 200) {
+          let msg = res.data.msg;
+          this.setData({
+            orderMsg: res.data.msg,
+            height: 460 * res.data.msg.length
+          })
 
+        } else {
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'none',
+            mask: true
+          })
+        }
+
+        wx.hideLoading();
+      },
+      fail: function (res) { },
+      complete: function (res) { },
+    })
     //获取抽奖记录
     wx.request({
       url: reqUrl + 'award_lottery_recode',
@@ -52,11 +89,41 @@ Page({
       success: res => {
         console.log(res)
         if (res.statusCode == 200) {
-
+          let msg = res.data.msg;
           this.setData({
             msg: res.data.msg,
             height: 460 * res.data.msg.length
           })
+
+          //清除倒计时
+          var interval = this.data.interval;
+          if (interval != '') {
+            for (let i = interval - lottery.length; i <= interval; i++) {
+              clearInterval(i)
+            }
+          }
+
+          //添加倒计时
+          for (let i in msg) {
+            let time = Number(msg[i].lottery_time) - Math.round(new Date / 1000);
+            let countDown = 'msg[' + i + '].lottery_time';
+            msg[i].lottery_time = time;
+            this.setData({
+              [countDown]: formatTime.formatTime(time)
+            })
+
+            this.data.interval = setInterval(() => {
+              if (Number(time) > 0) {
+                time--;
+                this.setData({
+                  [countDown]: formatTime.formatTime(time)
+                })
+
+              } else {
+                clearInterval(interval);
+              }
+            }, 1000)
+          }
         } else {
           wx.showToast({
             title: res.data.msg,

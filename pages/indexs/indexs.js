@@ -156,7 +156,6 @@ Page({
             }
           }
 
-
           //添加倒计时
           for (let i in lottery) {
             let time = Number(lottery[i].lottery_time) - Math.round(new Date / 1000);
@@ -374,9 +373,10 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
+    var uid = wx.getStorageSync('uid');
     return {
       title: '先到先得！口袋喊你大奖一起免费拿',
-      path: '/pages/login/login',
+      path: '/pages/login/login?uid='+uid,
     }
   }
 

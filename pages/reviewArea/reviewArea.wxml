@@ -17,7 +17,8 @@
 
     <view class='areaBut'>
       <button class='cancel' bindtap='cancelBtn'>取消</button>
-      <button class='mission' bindtap='missionBtn'>提交</button>
+      <button class='mission' disabled='true' wx:if="{{missionBtn}}">提交</button>
+      <button class='mission' bindtap='missionBtn' wx:else>提交</button>
     </view>
   </view>
 </view>

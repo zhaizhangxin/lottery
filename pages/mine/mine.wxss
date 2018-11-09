@@ -144,3 +144,11 @@ open-data[type=userNickName] {
   color: #999;
   line-height: 70rpx;
 }
+
+
+#contact{
+  padding: 0;
+}
+#contact::after{
+  border: none;
+}

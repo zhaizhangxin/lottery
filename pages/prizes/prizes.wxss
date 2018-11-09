@@ -78,8 +78,7 @@
   bottom: 300rpx;
   right: 20rpx;
 }
-.prizeBut button{
+.prizeBut image{
   width: 120rpx;
   height: 120rpx;
-  font-size: 18rpx;
 }

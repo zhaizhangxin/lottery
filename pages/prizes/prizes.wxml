@@ -1,48 +1,30 @@
 <!--pages/prizes/prizes.wxml-->
 <view class='content'>
+<block wx:for="{{comments}}" wx:key="{{index}}">
   <view class='prizes'>
     <!-- 用户信息 -->
     <view class='prizeUser'>
-      <image src='../../image/home_bg_1@2x.png' class='userPic'></image>
+      <image src='{{item.avatar_url}}' class='userPic'></image>
       <view class='userName'>
-        <text class='userNike'>用户昵称</text>
-        <text class='prizeGoods'>无线蓝牙耳机<text>获奖用户</text></text>
+        <text class='userNike'>{{item.nickname}}</text>
+        <text class='prizeGoods'>{{item.product_name}}<text>获奖用户</text></text>
       </view>
     </view>
     <!-- 文字 -->
     <view class='prizeText'>
-      <text>正品。做工精致，颜色漂亮，入耳舒适，是一款不错的蓝牙耳机，适合出街听个歌。音质也算不错，清澈耐听。要求低音下潜力度、声场宽阔什么的，就不要买蓝牙了。</text>
+      <text>{{item.context}}</text>
     </view>
     <!-- 图片 -->
     <view class='truePic'>
-      <view wx:for="{{prizeImg}}" wx:for-item="image" class='prizePics' wx:key="{{index}}">
-        <image src='{{image}}' bindtap='previewImage' data-src='{{image}}'></image>
+      <view wx:for="{{item.image}}" wx:for-item="image" class='prizePics' wx:key="{{index}}">
+        <image src='{{image}}' bindtap='previewImage' data-src='{{image}}' data-avartSrc="{{item.image}}"></image>
       </view>
     </view>
   </view>
 
-  <view class='prizes'>
-    <!-- 用户信息 -->
-    <view class='prizeUser'>
-      <image src='../../image/home_bg_1@2x.png' class='userPic'></image>
-      <view class='userName'>
-        <text class='userNike'>用户昵称</text>
-        <text class='prizeGoods'>无线蓝牙耳机<text>获奖用户</text></text>
-      </view>
-    </view>
-    <!-- 文字 -->
-    <view class='prizeText'>
-      <text>正品。做工精致，颜色漂亮，入耳舒适，是一款不错的蓝牙耳机，适合出街听个歌。音质也算不错，清澈耐听。要求低音下潜力度、声场宽阔什么的，就不要买蓝牙了。</text>
-    </view>
-    <!-- 图片 -->
-    <view class='truePic'>
-      <image src='../../image/banner.jpg'></image>
-      <image src='../../image/banner.jpg'></image>
-      <image src='../../image/banner.jpg'></image>
-    </view>
-  </view>
+</block>
 
   <view class='prizeBut'>
-    <button bindtap='reviewArea'>我要晒奖</button>
+    <image src='../../image/sj_bt@2x.png' bindtap='reviewArea'></image>
   </view>
 </view>

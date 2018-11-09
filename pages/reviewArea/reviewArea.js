@@ -1,4 +1,6 @@
 // pages/reviewArea/reviewArea.js
+const reqUrl = require('../../utils/reqUrl');
+
 var imgArr = [];
 Page({
 
@@ -8,7 +10,9 @@ Page({
   data: {
     img_url: [],
     content:'',
-    imgCount:0
+    imgCount:0,
+    productInfo:[],
+    missionBtn:false,
   },
   // 评论信息
   input:function(e){
@@ -46,7 +50,8 @@ Page({
           }
           that.setData({
             imgCount: len,
-            img_url: imgArr
+            img_url: imgArr,
+            tempFiles: res.tempFiles
           })
         }
 
@@ -57,18 +62,84 @@ Page({
 
   // 点击上传图片
   missionBtn:function(){
-    // console.log(this.data.content);
-    // console.log(imgArr);
-    wx.showLoading({
+    var that = this;
+    that.setData({
+      missionBtn:true
+    })
+    wx.showToast({
       title: '上传中...',
       mask: true
     })
-    setTimeout(function(){
-      wx.hideLoading();
-      wx.switchTab({
-        url: '../prizes/prizes',
-      })
-    },1000)
+    var uploadImgCount = 0;
+    for(let i = 0; i < imgArr.length; i++){
+      wx.uploadFile({
+        url: reqUrl + 'award_upload',
+        method: 'POST',
+        filePath: imgArr[i],
+        name: 'file',
+        header: {
+          token: wx.getStorageSync('token'),
+          'content-type': 'multipart/form-data'
+        },
+        success: res => {
+          uploadImgCount++;
+          var data = JSON.parse(res.data);
+          console.log(data);
+          var productInfo = that.data.productInfo;
+          productInfo.push(data.msg)
+          that.setData({
+            productInfo: productInfo
+          })
+          if (uploadImgCount == imgArr.length){
+            wx.hideToast();
+
+            that.award_remake();
+          }
+        },
+        fail: function (res) {
+          wx.hideToast();
+          wx.showModal({
+            title: res.data.msg,
+            content: '上传图片失败',
+            showCancel: false,
+            success: function (res) { }
+          })
+          that.setData({
+            missionBtn: true
+          })
+        },
+        complete: function (res) { },
+      })  
+    }
+  },
+  // 上传评论
+  award_remake:function(){
+    var that = this;
+    wx.request({
+      url: reqUrl + 'award_remake',
+      method: 'POST',
+      data: {
+        text: that.data.content,
+        imgArr: that.data.productInfo
+      },
+      header: {
+        token: wx.getStorageSync('token')
+      },
+      success: res => {
+        console.log(res);
+        if (res.data.error_code == 0){
+          wx.switchTab({
+            url: '../prizes/prizes',
+          })
+        }else{
+          wx.showToast({
+            title: res.data.msg,
+          })
+        }
+      },
+      fail: function (res) { },
+      complete: function (res) { },
+    })
   },
   // 点击取消评论
   cancelBtn:function(){
