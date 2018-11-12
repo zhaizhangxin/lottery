@@ -148,6 +148,7 @@ open-data[type=userNickName] {
 
 #contact{
   padding: 0;
+  background: none;
 }
 #contact::after{
   border: none;

@@ -47,8 +47,7 @@ Page({
    */
   onLoad: function (options) {
     wx.showToast({
-      title: '加载中...',
-      mask: true
+      title: '加载中...'
     })
     this.setData({
       shareCord: options.shareCord

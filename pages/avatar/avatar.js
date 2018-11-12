@@ -33,7 +33,7 @@ Page({
 
     //获取参与抽奖用户头像
     wx.request({
-      url: reqUrl + 'avatar',
+      url: reqUrl + 'award_avatar',
       header: {
         token: wx.getStorageSync('token')
       },

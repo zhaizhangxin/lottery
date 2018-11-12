@@ -42,6 +42,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+    wx.showLoading({
+      title: '加载中...',
+      mask:true
+    })
     var that = this;
     wx.request({
       url: reqUrl + 'award_comment',
@@ -55,6 +59,7 @@ Page({
       },
       success: res => {
         console.log(res);
+        wx.hideLoading();
         that.setData({
           comments: res.data.msg
         })

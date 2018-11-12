@@ -1,13 +1,13 @@
 <!--pages/lottery/lottery.wxml-->
 <view class='detail'>
   <view class='detail-top'>
-     <image src='{{detailMsg.product.img_url}}'></image>
-     <view class='detail-top-c'>
+    <image src='{{detailMsg.product.img_url}}'></image>
+    <view class='detail-top-c'>
       <text>奖品：{{detailMsg.product.product_name}}</text>
-     </view>
+    </view>
     <view class='cD'>{{detailMsg.product.lottery_time}}自动开奖</view>
   </view>
- 
+
   <view class='detail-prize'>
     <view>{{detailMsg.product.title}}</view>
   </view>
@@ -39,15 +39,26 @@
 
   <view class='detail-reserve'>
     <view class='detail-reserve-con'>
+      <view class='detail-reserve-in'>
+        <text>差一点点就中奖啦</text>
+        <text>没关系，送你一个福利哦~</text>
+        <navigator wx:if='{{detailMsg.product.app_id != "" || detailMsg.product.app_id != null}}' target='miniProgram' open-type='navigate' app-id='{{detailMsg.product.app_id}}' path='{{detailMsg.product.path}}'>
+          <button>领取福利</button>
+        </navigator>
+        <navigator wx:else url='../h5ad/h5ad?h5ad={{detailMsg.product.href}}'>
+          <button>领取福利</button>         
+        </navigator>
+      </view>
+
       <view class='detail-reserve-con-in'>
         <view class='detail-avatar-title'>
           <image src='../../image/line-left.png'></image>
           <text>中奖者名单</text>
           <image src='../../image/line-right.png'></image>
-        </view> 
-        <image id='detail-btn-reserve' src='{{detailMsg.luck_user.avatar_url}}'></image>    
-        <text>{{detailMsg.luck_user.nick_name}}</text>                    
-        <navigator open-type='switchTab' url='../index/index' id='detail-btn-nav' >继续抽奖</navigator>     
+        </view>
+        <image id='detail-btn-reserve' src='{{detailMsg.luck_user.avatar_url}}'></image>
+        <text>{{detailMsg.luck_user.nick_name}}</text>
+        <navigator open-type='switchTab' url='../indexs/indexs' id='detail-btn-nav'>继续抽奖</navigator>
       </view>
 
       <view class='detail-avatar'>
@@ -55,18 +66,20 @@
           <image src='../../image/line-left.png'></image>
           <text>参与者名单</text>
           <image src='../../image/line-right.png'></image>
-        </view>         
+        </view>
 
         <view class='detail-more'>
-          <view>感谢{{detailMsg.product.participants + detailMsg.product.false_user}}人参与， <navigator url='../avatar/avatar?id={{detailMsg.product.id}}&avatar={{detailMsg.product.participants + detailMsg.product.false_user}}'>查看全部</navigator></view>     
+          <view>感谢{{detailMsg.product.participants + detailMsg.product.false_user}}人参与，
+            <navigator url='../avatar/avatar?id={{detailMsg.product.id}}&avatar={{detailMsg.product.participants + detailMsg.product.false_user}}'>查看全部</navigator>
+          </view>
         </view>
 
         <view class='detail-avatar-b'>
           <block wx:for="{{detailMsg.avatar}}" wx:key="{{index}}">
-            <image class='detail-avatar-img' wx:if='{{index < 11}}' src='{{item.avatar_url}}'></image>    
-          </block>         
-        </view>   
-         
+            <image class='detail-avatar-img' wx:if='{{index < 11}}' src='{{item.avatar_url}}'></image>
+          </block>
+        </view>
+
       </view>
 
     </view>

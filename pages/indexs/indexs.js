@@ -12,35 +12,36 @@ Page({
     //滚动消息
     rollMsg: '',
     //活动信息
-    lottery:[],
-    rank:[],
-    collect:[],
+    lottery: [],
+    rank: [],
+    collect: [],
     // page:1,
     // pageStatus:true,
 
     //倒计时
     interval: '',
-    signInSuccess:false,
-    aleadySign:false,
+    signInSuccess: false,
+    aleadySign: false,
   },
-  
 
   /**
    * 事件处理函数
    */
 
-  detaliJump:function(e){
+  detaliJump: function(e) {
     // console.log(e);
     let id = e.currentTarget.dataset.id;
     wx.navigateTo({
-      url:'../details/details?id='+id
+      url: '../details/details?id=' + id
+      // url: '../lottery/lottery?id=' + id
+      
     })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
 
 
   },
@@ -48,11 +49,11 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
   // 签到
-  signIn:function(){
+  signIn: function() {
     wx.showLoading({
       title: '加载中...',
       mask: true
@@ -66,39 +67,39 @@ Page({
       method: 'GET',
       dataType: 'json',
       responseType: 'text',
-      success:res =>{
+      success: res => {
         wx.hideLoading();
-        
+
         console.log(res);
-        if (res.data.error_code == 0){
-            that.setData({
-              signInSuccess:true
-            })
-        } else if (res.data.error_code == 40041){
-            that.setData({
-              aleadySign:true
-            })
-        } else{
+        if (res.data.error_code == 0) {
+          that.setData({
+            signInSuccess: true
+          })
+        } else if (res.data.error_code == 40041) {
+          that.setData({
+            aleadySign: true
+          })
+        } else {
           wx.showToast({
             title: res.data.msg,
           })
         }
       },
-      fail: function (res) { },
-      complete: function (res) { },
+      fail: function(res) {},
+      complete: function(res) {},
     })
   },
   // 点击关闭
-  successExit:function(){
+  successExit: function() {
     this.setData({
       signInSuccess: false,
-      aleadySign:false
+      aleadySign: false
     })
   },
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
     wx.showLoading({
       title: '加载中...',
@@ -135,7 +136,7 @@ Page({
           // 天天免费抽奖
           var lottery = res.data.msg.lottery;
           //状态排序，已参与在后面,状态相同,按时间升序
-          var lottery = res.data.msg.lottery.sort(function (a, b) {
+          var lottery = res.data.msg.lottery.sort(function(a, b) {
             if (a.participate === b.participate) {
               return a.lottery_time - b.lottery_time;
             } else {
@@ -180,87 +181,101 @@ Page({
 
           // 邀请好友
           var rank = res.data.msg.rank;
-          //状态排序，已参与在后面,状态相同,按时间升序
-          var rank = res.data.msg.rank.sort(function (a, b) {
-            if (a.participate === b.participate) {
-              return a.lottery_time - b.lottery_time;
-            } else {
-              return a.participate - b.participate;
-            }
-          })
-          this.setData({
-            rank: rank
-          })
-          //清除倒计时
-          var interval = this.data.interval;
-          if (interval != '') {
-            for (let i = interval - rank.length; i <= interval; i++) {
-              clearInterval(i)
-            }
-          }
-          //添加倒计时
-          for (let i in rank) {
-            let time = Number(rank[i].lottery_time) - Math.round(new Date / 1000);
-            let countDown = 'lottery[' + i + '].lottery_time';
-            rank[i].lottery_time = time;
-            this.setData({
-              [countDown]: formatTime.formatTime(time)
-            })
-
-            this.data.interval = setInterval(() => {
-              if (Number(time) > 0) {
-                time--;
-                this.setData({
-                  [countDown]: formatTime.formatTime(time)
-                })
-
+          if (rank != undefined && rank != '') {
+            //状态排序，已参与在后面,状态相同,按时间升序
+            var rank = res.data.msg.rank.sort(function(a, b) {
+              if (a.participate === b.participate) {
+                return a.lottery_time - b.lottery_time;
               } else {
-                clearInterval(interval);
+                return a.participate - b.participate;
               }
-            }, 1000)
+            })
+            this.setData({
+              rank: rank
+            })
+            //清除倒计时
+            var interval = this.data.interval;
+            if (interval != '') {
+              for (let i = interval - rank.length; i <= interval; i++) {
+                clearInterval(i)
+              }
+            }
+            //添加倒计时
+            for (let i in rank) {
+              let time = Number(rank[i].lottery_time) - Math.round(new Date / 1000);
+              let countDown = 'rank[' + i + '].lottery_time';
+              rank[i].lottery_time = time;
+              this.setData({
+                [countDown]: formatTime.formatTime(time)
+              })
+
+              this.data.interval = setInterval(() => {
+                if (Number(time) > 0) {
+                  time--;
+                  this.setData({
+                    [countDown]: formatTime.formatTime(time)
+                  })
+
+                } else {
+                  clearInterval(interval);
+                }
+              }, 1000)
+            }
+          } else {
+            let rank = '';
+            this.setData({
+              rank: rank
+            })
           }
+
           // 排名
           var collect = res.data.msg.collect;
-          //状态排序，已参与在后面,状态相同,按时间升序
-          var collect = res.data.msg.collect.sort(function (a, b) {
-            if (a.participate === b.participate) {
-              return a.lottery_time - b.lottery_time;
-            } else {
-              return a.participate - b.participate;
-            }
-          })
-          this.setData({
-            collect: collect
-          })
-          //清除倒计时
-          var interval = this.data.interval;
-          if (interval != '') {
-            for (let i = interval - collect.length; i <= interval; i++) {
-              clearInterval(i)
-            }
-          }
-          //添加倒计时
-          for (let i in collect) {
-            let time = Number(collect[i].lottery_time) - Math.round(new Date / 1000);
-            let countDown = 'lottery[' + i + '].lottery_time';
-            collect[i].lottery_time = time;
-            this.setData({
-              [countDown]: formatTime.formatTime(time)
-            })
-
-            this.data.interval = setInterval(() => {
-              if (Number(time) > 0) {
-                time--;
-                this.setData({
-                  [countDown]: formatTime.formatTime(time)
-                })
-
+          if (collect != undefined && collect != '') {
+            //状态排序，已参与在后面,状态相同,按时间升序
+            var collect = res.data.msg.collect.sort(function(a, b) {
+              if (a.participate === b.participate) {
+                return a.lottery_time - b.lottery_time;
               } else {
-                clearInterval(interval);
+                return a.participate - b.participate;
               }
-            }, 1000)
+            })
+            this.setData({
+              collect: collect
+            })
+            //清除倒计时
+            var interval = this.data.interval;
+            if (interval != '') {
+              for (let i = interval - collect.length; i <= interval; i++) {
+                clearInterval(i)
+              }
+            }
+            //添加倒计时
+            for (let i in collect) {
+              let time = Number(collect[i].lottery_time) - Math.round(new Date / 1000);
+              let countDown = 'collect[' + i + '].lottery_time';
+              collect[i].lottery_time = time;
+              this.setData({
+                [countDown]: formatTime.formatTime(time)
+              })
+
+              this.data.interval = setInterval(() => {
+                if (Number(time) > 0) {
+                  time--;
+                  this.setData({
+                    [countDown]: formatTime.formatTime(time)
+                  })
+
+                } else {
+                  clearInterval(interval);
+                }
+              }, 1000)
+            }
+          } else {
+            let collect = '';
+            this.setData({
+              collect: collect
+            })
           }
-          // console.log(res)
 
         } else {
           wx.showToast({
@@ -271,8 +286,8 @@ Page({
 
         }
       },
-      fail: function (res) { },
-      complete: function (res) { },
+      fail: function(res) {},
+      complete: function(res) {},
     })
 
   },
@@ -280,21 +295,21 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
     // wx.stopPullDownRefresh();
   },
@@ -302,7 +317,7 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
     // if (this.data.pageStatus && this.data.activityMsg.length % 5 == 0){
 
@@ -372,11 +387,11 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
     var uid = wx.getStorageSync('uid');
     return {
       title: '先到先得！口袋喊你大奖一起免费拿',
-      path: '/pages/login/login?uid='+uid,
+      path: '/pages/login/login?uid=' + uid,
     }
   }
 

@@ -19,7 +19,7 @@ Page({
     page: 1,
     rows: 40,
     actionSheetHidden: true,
-    report:true
+    report: true
 
   },
   // 回到首页
@@ -99,8 +99,13 @@ Page({
 
     }
   },
-  // 获取参与者头像
-  award_avater: function() {
+
+  // 点击显示参与人数
+  avatarPic: function() {
+    wx.showLoading({
+      title: '加载中...',
+      mask: true
+    })
     var that = this;
     wx.request({
       url: reqUrl + 'award_avatar',
@@ -113,21 +118,15 @@ Page({
         token: wx.getStorageSync('token')
       },
       success: res => {
-        console.log(res);
+        wx.hideLoading()
+        // console.log(res);
         that.setData({
-          avatarImg: res.data.msg
+          avatarImg: res.data.msg,
+          showModalStatus: true
         })
       },
       fail: function(res) {},
       complete: function(res) {},
-    })
-  },
-
-  // 点击显示参与人数
-  avatarPic: function() {
-    this.award_avater();
-    this.setData({
-      showModalStatus: true
     })
   },
   // 点击关闭人数
@@ -137,8 +136,13 @@ Page({
     })
   },
 
-  // 获取我邀请的朋友
-  award_shareAvatar: function() {
+
+  // 点击显示我邀请的朋友
+  shareAvatar: function() {
+    wx.showLoading({
+      title: '加载中...',
+      mask: true
+    })
     var that = this;
     wx.request({
       url: reqUrl + 'award_shareAvatar',
@@ -154,22 +158,17 @@ Page({
       },
       success: res => {
         console.log(res);
+        wx.hideLoading();
         that.setData({
           shareImg: res.data.msg.avatar,
           dragonball: res.data.msg.dragonball,
-          restrict: res.data.msg.restrict
+          restrict: res.data.msg.restrict,
+          shareAvatarStatus: true
         })
       },
-      fail: function(res) {},
-      complete: function(res) {},
+      fail: function (res) { },
+      complete: function (res) { },
     })
-  },
-  // 点击显示我邀请的朋友
-  shareAvatar: function() {
-    this.setData({
-      shareAvatarStatus: true
-    })
-    this.award_shareAvatar();
   },
   // 点击关闭我邀请的朋友
   shareAvatarTop: function() {
@@ -177,8 +176,13 @@ Page({
       shareAvatarStatus: false
     })
   },
-  // 邀请排名
-  rankAvater: function() {
+
+  // 点击查看排名
+  ranking: function() {
+    wx.showLoading({
+      title: '加载中...',
+      mask:true
+    })
     var that = this;
     wx.request({
       url: reqUrl + 'award_shareRank',
@@ -190,21 +194,16 @@ Page({
         token: wx.getStorageSync('token')
       },
       success: res => {
+        wx.hideLoading();
         console.log(res);
         that.setData({
-          avatarUrl: res.data.msg.rankList
+          avatarUrl: res.data.msg.rankList,
+          rankingStatus: true
         })
       },
-      fail: function(res) {},
-      complete: function(res) {},
+      fail: function (res) { },
+      complete: function (res) { },
     })
-  },
-  // 点击查看排名
-  ranking: function() {
-    this.setData({
-      rankingStatus: true
-    })
-    this.rankAvater();
 
   },
   // 点击关闭邀请排名
@@ -215,24 +214,64 @@ Page({
   },
   // 点击抽奖
   luckDraw: function(e) {
-    
+    let formId = e.detail.formId;
     var getName = wx.getStorageSync('nickName');
 
-    if (getName != '' && this.data.options.pathId != undefined){
+    if (getName != '' && this.data.options.pathId != undefined) {
       this.getUserInfo();
 
-    }else{
-      this.setData({
-        formId: e.detail.formId
+    } else {
+      wx.showLoading({
+        title: '加载中...',
+        mask: true
       })
-      this.luckName();
+      var that = this;
+      wx.request({
+        url: reqUrl + 'award_lottery',
+        method: 'POST',
+        data: {
+          id: this.data.id,
+          form_id: formId,
+          sponsor_id: this.data.sponsor_id
+        },
+        header: {
+          token: wx.getStorageSync('token')
+        },
+        success: res => {
+          wx.hideLoading();
+          console.log(res);
+          if (res.data.error_code == 0) {
+            if (res.data.msg.product_type == 1) {
+              var luckPic = {
+                avatar_url: res.data.msg
+              };
+              let user_Pic = that.data.detaPic;
+              user_Pic.unshift(luckPic);
+              that.setData({
+                detaPic: user_Pic
+              })
+            }
+            that.setData({
+              'detailMsg.activity.participate': 2
+            })
+          } else {
+            wx.showToast({
+              title: res.data.msg,
+              icon: 'none',
+              mask: true
+            })
+          }
+        },
+        fail: function (res) { },
+        complete: function (res) { },
+      })
     }
 
-    
+
   },
   // 用户授权
   //用户授权事件
-  getUserInfo: function (e) {
+  getUserInfo: function(e) {
     wx.showLoading({
       title: '授权登录中...',
       mask: true
@@ -264,7 +303,7 @@ Page({
           if (res.statusCode == 200) {
             console.log(res);
             this.setData({
-              report:true
+              report: true
             })
           } else {
             wx.showToast({
@@ -275,8 +314,8 @@ Page({
 
           }
         },
-        fail: function (res) { },
-        complete: function (res) { },
+        fail: function(res) {},
+        complete: function(res) {},
       })
 
     } else {
@@ -287,48 +326,6 @@ Page({
         duration: 1000
       })
     }
-  },
-// 点击抽奖
-  luckName:function(){
-    var that = this;
-    wx.request({
-      url: reqUrl + 'award_lottery',
-      method: 'POST',
-      data: {
-        id: this.data.id,
-        form_id: this.data.formId,
-        sponsor_id: this.data.sponsor_id
-      },
-      header: {
-        token: wx.getStorageSync('token')
-      },
-      success: res => {
-        console.log(res);
-        if (res.data.error_code == 0) {
-          if (res.data.msg.product_type == 1) {
-            var luckPic = {
-              avatar_url: res.data.msg
-            };
-            let user_Pic = that.data.detaPic;
-            user_Pic.unshift(luckPic);
-            that.setData({
-              detaPic: user_Pic
-            })
-          }
-          that.setData({
-            'detailMsg.activity.participate': 2
-          })
-        } else {
-          wx.showToast({
-            title: res.data.msg,
-            icon: 'none',
-            mask: true
-          })
-        }
-      },
-      fail: function (res) { },
-      complete: function (res) { },
-    })
   },
   //显示商品详情图片
   showImg(e) {
@@ -462,13 +459,13 @@ Page({
     })
   },
   // 一键复制
-  detaGroup:function(e){
+  detaGroup: function(e) {
     var detaGroup = e.target.dataset.href;
     wx.setClipboardData({
       data: detaGroup,
-      success(res){
+      success(res) {
         wx.getClipboardData({
-          success(res){
+          success(res) {
             console.log(res);
           }
         })
@@ -476,37 +473,42 @@ Page({
     })
   },
   // 生成分享卡片
-  shareCord:function(e){
-    console.log(e);
+  shareCord: function(e) {
+    wx.showLoading({
+      title: '加载中...',
+      mask:true
+    })
+
     wx.request({
-      url: reqUrl+'award_shareImg',
-      method:'POST',
+      url: reqUrl + 'award_shareImg',
+      method: 'POST',
       header: {
         token: wx.getStorageSync('token')
       },
-      data:{
+      data: {
         product_name: e.target.dataset.name,
         product_img: e.target.dataset.src,
         activity_id: e.target.dataset.id,
       },
       dataType: 'json',
       responseType: 'text',
-      success:res=>{
+      success: res => {
         console.log(res);
-        if (res.data.error_code == 0){
+        wx.hideLoading();
+        if (res.data.error_code == 0) {
           wx.navigateTo({
             url: '../raffleTickets/raffleTickets?shareCord=' + res.data.msg
           })
-        }else{
+        } else {
           wx.showToast({
             title: res.data.msg
           })
         }
       }
     })
-    
+
   },
-  optionPath:function(){
+  optionPath: function() {
     wx.showLoading({
       title: '加载中...',
       mask: true
@@ -577,8 +579,8 @@ Page({
 
         wx.hideLoading();
       },
-      fail: function (res) { },
-      complete: function (res) { },
+      fail: function(res) {},
+      complete: function(res) {},
     })
   },
   /**
@@ -612,9 +614,9 @@ Page({
     console.log(this.data.options.pathId);
     if (getName != '' && this.data.options.pathId != undefined) {
       this.setData({
-        report:false
+        report: false
       })
-    }else{
+    } else {
       this.setData({
         report: true
       })
@@ -645,13 +647,13 @@ Page({
                 //存openid,question.js的ad上报需要
                 wx.setStorageSync('openid', res.data.key)
                 this.optionPath();
-                
+
               } else {
                 reject(res)
               }
             },
-            fail: function (res) { },
-            complete: function (res) { },
+            fail: function(res) {},
+            complete: function(res) {},
           })
         }
       })
@@ -702,7 +704,7 @@ Page({
 
     return {
       title: wx.getStorageSync('nickName') + arr[i],
-      path: '/pages/details/details?id=' + id + '&uid=' + uid+'&pathId='+ 1,
+      path: '/pages/details/details?id=' + id + '&uid=' + uid + '&pathId=' + 1,
       success: res => {
 
       },

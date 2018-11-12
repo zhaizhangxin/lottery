@@ -52,7 +52,7 @@ Page({
 
     
     wx.request({
-      url: reqUrl + 'place',
+      url: reqUrl + 'award_place',
       header: {
         token: wx.getStorageSync('token')
       },
@@ -73,7 +73,7 @@ Page({
 
           setTimeout(function (){
             wx.switchTab({
-              url: '../index/index',
+              url: '../indexs/indexs',
             })
           },500)
           
@@ -117,7 +117,7 @@ Page({
 
         //获取订单详情
         wx.request({
-          url: reqUrl + 'order_detail',
+          url: reqUrl + 'award_order_detail',
           header: {
             token: wx.getStorageSync('token')
           },
@@ -145,7 +145,7 @@ Page({
 
               setTimeout(function () {
                 wx.switchTab({
-                  url: '../me/me',
+                  url: '../mine/mine',
                 })
               }, 1000)
             }

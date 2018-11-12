@@ -59,6 +59,7 @@ Page({
       method: 'GET',
       success: res => {
         console.log(res)
+        wx.hideLoading();
         if (res.statusCode == 200) {
           let msg = res.data.msg;
           this.setData({
@@ -87,6 +88,7 @@ Page({
       },
       method: 'GET',
       success: res => {
+        wx.hideLoading();
         console.log(res)
         if (res.statusCode == 200) {
           let msg = res.data.msg;

@@ -41,7 +41,7 @@ Page({
 
         //获取开奖信息
         wx.request({
-          url: reqUrl + 'run_lottery',
+          url: reqUrl + 'award_run_lottery',
           header: {
             token: wx.getStorageSync('token')
           },
