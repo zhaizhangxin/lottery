@@ -5,7 +5,7 @@
     <view class='detail-top-c'>
       <text>奖品：{{detailMsg.product.product_name}}</text>
     </view>
-    <view class='cD'>{{detailMsg.product.lottery_time}}自动开奖</view>
+    <view class='cD'><text class='consTimes'>{{detailMsg.product.lottery_time}}</text> 自动开奖</view>
   </view>
 
   <view class='detail-prize'>
@@ -39,16 +39,18 @@
 
   <view class='detail-reserve'>
     <view class='detail-reserve-con'>
-      <view class='detail-reserve-in'>
-        <text>差一点点就中奖啦</text>
-        <text>没关系，送你一个福利哦~</text>
-        <navigator wx:if='{{detailMsg.product.app_id != "" || detailMsg.product.app_id != null}}' target='miniProgram' open-type='navigate' app-id='{{detailMsg.product.app_id}}' path='{{detailMsg.product.path}}'>
-          <button>领取福利</button>
-        </navigator>
-        <navigator wx:else url='../h5ad/h5ad?h5ad={{detailMsg.product.href}}'>
-          <button>领取福利</button>         
-        </navigator>
-      </view>
+      <block wx:if="{{detailMsg.product.is_luck != 1}}">
+        <view class='detail-reserve-in'>
+          <text>差一点点就中奖啦</text>
+          <text>没关系，送你一个福利哦~</text>
+          <navigator wx:if='{{detailMsg.product.app_id != "" || detailMsg.product.app_id != null}}' target='miniProgram' open-type='navigate' app-id='{{detailMsg.product.app_id}}' path='{{detailMsg.product.path}}'>
+            <button>领取福利</button>
+          </navigator>
+          <navigator wx:else url='../h5ad/h5ad?h5ad={{detailMsg.product.href}}'>
+            <button>领取福利</button>         
+          </navigator>
+        </view>
+      </block>
 
       <view class='detail-reserve-con-in'>
         <view class='detail-avatar-title'>

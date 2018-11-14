@@ -9,12 +9,17 @@ Page({
   },
   // 保存图片
   saveImage:function(){
+    wx.showLoading({
+      title: '保存中...',
+      mask:true
+    })
     wx.downloadFile({
       url: this.data.shareCord,
       success:function(res){
         wx.saveImageToPhotosAlbum({
           filePath: res.tempFilePath,
           success: function (data) {
+            wx.hideLoading();
             wx.showToast({
               title: '保存成功',
               icon: 'success',
@@ -22,6 +27,7 @@ Page({
             })
           },
           fail: function (err) {
+            wx.hideLoading();
             console.log(err);
             if (err.errMsg === "saveImageToPhotosAlbum:fail auth deny") {
               console.log("当初用户拒绝，再次发起授权")
@@ -46,9 +52,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.showToast({
-      title: '加载中...'
-    })
+    // wx.showToast({
+    //   title: '加载中...'
+    // })
     this.setData({
       shareCord: options.shareCord
     })

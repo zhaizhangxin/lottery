@@ -90,8 +90,54 @@ Page({
       title: '加载中...',
       mask: true
     })
+
     let dataArr = (JSON.stringify(options) == "{}");
-    if (options.uid != '' && dataArr != true) {
+
+    if (options.media != '' && options.media != undefined) {
+      this.setData({
+        media: options.media,
+        p:options.p
+      })
+      // 登录
+      wx.login({
+        success: res => {
+            console.log(res);
+          // 发送 res.code 到后台换取 openId, sessionKey, unionId
+          wx.request({
+            // url: reqUrl + 'token',
+            url: reqUrl + 'award_token',
+            data: {
+              code: res.code,
+              media: options.media,
+              p: options.p
+              // sponsor_id:
+            },
+            method: 'POST',
+            dataType: 'json',
+            responseType: 'text',
+            success: res => {
+
+              if (res.statusCode == 200) {
+                wx.hideLoading();
+                //本地缓存存入token、uid
+                wx.setStorageSync("token", res.data.msg);
+                wx.setStorageSync("uid", res.data.uid)
+
+                //存openid,question.js的ad上报需要
+                wx.setStorageSync('openid', res.data.key)
+
+                // resolve(res)
+              } else {
+                console.log(res);
+                // reject(res)
+              }
+            },
+            fail: function (res) { },
+            complete: function (res) { },
+          })
+        }
+      })
+    }else if (options.uid != '' && dataArr != true) {
       // 登录
       var sponsor_id = options.sponsor_id;
       wx.login({
@@ -142,22 +188,22 @@ Page({
           }
 
           //获取终端信息
-          // wx.getSystemInfo({
-          //   success: function(res) {
-          //     console.log(res);
-          //     wx.request({
-          //       url: reqUrl + 'getSystemInfo',
-          //       header: {
-          //         token: wx.getStorageSync('token')
-          //       },
-          //       data: res,
-          //       method: 'POST',
-          //       success: res => {
-          //         // console.log(res)
-          //       }
-          //     })
-          //   },
-          // })
+          wx.getSystemInfo({
+            success: function(res) {
+              console.log(res);
+              wx.request({
+                url: reqUrl + 'award_getSystemInfo',
+                header: {
+                  token: wx.getStorageSync('token')
+                },
+                data: res,
+                method: 'POST',
+                success: res => {
+                  console.log(res)
+                }
+              })
+            },
+          })
 
 
           //获取app.js存的options，并添加openid属性

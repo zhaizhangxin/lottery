@@ -32,7 +32,7 @@ Page({
       wx.setStorageSync('nickName', e.detail.userInfo.nickName)
 
       wx.request({
-        url: reqUrl + 'setinfo',
+        url: reqUrl + 'award_setinfo',
         data: {
           encryptedData: e.detail.encryptedData,
           iv: e.detail.iv
@@ -48,7 +48,7 @@ Page({
 
           if (res.statusCode == 200) {
             wx.request({
-              url: reqUrl + 'shareHelp',
+              url: reqUrl + 'award_shareHelp',
               header: {
                 token: wx.getStorageSync('token')
               },
@@ -143,7 +143,7 @@ Page({
 
         //获取分享详情信息
         wx.request({
-          url: reqUrl + 'shareDetail',
+          url: reqUrl + 'award_shareDetail',
           header: {
             token: wx.getStorageSync('token')
           },

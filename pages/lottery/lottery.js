@@ -75,7 +75,7 @@ Page({
           complete: function (res) { },
         })
 
-
+        // console.log(appid);
 
         wx.request({
           url: 'https://api.koudaihaiwan.com/putPlatformUserData',
@@ -87,7 +87,7 @@ Page({
           },
           method: 'POST',
           success: res => {
-            // console.log(res)
+            console.log(res)
           }
         })
 

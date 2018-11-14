@@ -221,6 +221,10 @@
   font-family: MicrosoftYaHei;
   color: #999;
 }
+.consTimes{
+  color: #E44348;
+  font-weight: bold;
+}
 .conBtn{
   width: 250rpx;
   height: 98rpx;

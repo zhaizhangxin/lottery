@@ -137,6 +137,10 @@ open-data[type=userNickName] {
   font-family:MicrosoftYaHei;
   color: #999;
 }
+.consTimes{
+  color: #E44348;
+  font-weight: bold;
+}
 .information{
   font-size:28rpx;
   font-family:MicrosoftYaHei-Bold;

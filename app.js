@@ -15,7 +15,7 @@ App({
             // url: reqUrl + 'token',
             url: reqUrl + 'award_token',
             data: {
-              code: res.code,
+              code: res.code
               // sponsor_id:
             },
             method: 'POST',
@@ -30,8 +30,6 @@ App({
 
                 //存openid,question.js的ad上报需要
                 wx.setStorageSync('openid', res.data.key)
-
-
 
                 resolve(res)
               }else{

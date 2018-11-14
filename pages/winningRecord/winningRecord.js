@@ -21,7 +21,7 @@ Page({
 
     //获取中奖记录
     wx.request({
-      url: reqUrl + 'order_list',
+      url: reqUrl + 'award_order_list',
       header: {
         token: wx.getStorageSync('token')
       },

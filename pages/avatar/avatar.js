@@ -121,7 +121,7 @@ Page({
       })
 
       wx.request({
-        url: reqUrl + 'avatar',
+        url: reqUrl + 'award_avatar',
         header: {
           token: wx.getStorageSync('token')
         },

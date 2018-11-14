@@ -22,7 +22,7 @@ Page({
 
     //获取抽奖记录信息
     wx.request({
-      url: reqUrl + 'lottery_recode',
+      url: reqUrl + 'award_lottery_recode',
       header: {
         token: wx.getStorageSync('token')
       },

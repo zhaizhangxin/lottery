@@ -107,7 +107,6 @@ Page({
 
   // 点击上报
   click(e) {
-    console.log(222);
     if(this.data.detailMsg.activity.type == 1){
 
       //调用组件actionSheet的_animationOuter方法

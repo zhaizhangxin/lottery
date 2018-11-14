@@ -19,13 +19,13 @@
           <text>{{detailMsg.activity.product_name}}</text>
         </view>
         <view class='freTime' wx:if="{{detailMsg.product_type == 1}}">
-          <text>{{detailMsg.activity.time}}</text>后自动开奖
+          <text class='consTimes'>{{detailMsg.activity.time}}</text>后自动开奖
         </view>
         <view class='freTime' wx:if="{{detailMsg.product_type == 2}}">
-          <text>{{detailMsg.activity.time}}</text>截止 邀请前5名得
+          <text class='consTimes'>{{detailMsg.activity.time}}</text>截止 邀请前5名得
         </view>
         <view class='freTime' wx:if="{{detailMsg.product_type == 3}}">
-          <text>{{detailMsg.activity.time}}</text>截止 邀请前5名得
+          <text class='consTimes'>{{detailMsg.activity.time}}</text>截止 邀请前5名得
         </view>
       </view>
     </view>
@@ -52,6 +52,47 @@
               <image src='../../image/Group2@2x.png'></image>
             </button>
           </block>
+
+          <!-- 确认抽奖 -->
+          <view class='confirmLucky' wx:if="{{confirmLucky}}">
+            <view class='confirms'>
+              <image src='../../image/tc_top5@2x.png' class='confirImg'></image>
+              <view class='confirmCont'>
+                <text class='confirmText'>您将有机会获得</text>
+                <text class='confirmTexts'>{{detailMsg.activity.product_name}}</text>
+                <view class='conSponsor'>
+                  <image src='../../image/tk_bg@2x.png' class='conSponImg' mode="widthFix"></image>
+                  <view class='conSpon'>
+                    <text class='conSponText'>本活动由<text class='conSponNane'>{{detailMsg.activity.name}}</text>赞助</text>
+                    <text class='brief'>{{detailMsg.activity.brief}}</text>
+                    <navigator class='introd introds' style='background:#80B7EF;' wx:if='{{detailMsg.activity.app_id != "" || detailMsg.activity.app_id != null}}' bindtap='click' data-id='{{detailMsg.activity.advert_id}}' target='{{detailMsg.activity.ad_type == 0 ? "miniProgram" : "self"}}' open-type='navigate'
+            app-id='{{detailMsg.activity.app_id}}' path='{{detailMsg.activity.path}}' data-qr='{{detailMsg.activity.qr_url}}'>
+                      <view>
+                        <image src='{{detailMsg.activity.icon}}'></image>
+                        <text style='color:#fff;'>{{detailMsg.activity.name}}</text>
+                      </view>
+                      <view>
+                        <text style='color:#fff;'>></text>
+                      </view>
+                    </navigator>
+                    <navigator class='introd introds' style='background:#80B7EF;' bindtap='click' data-id='{{detailMsg.activity.advert_id}}' wx:else url='../h5ad/h5ad?h5ad={{detailMsg.activity.href_url}}'>
+                      <view>
+                        <image src='{{detailMsg.activity.icon}}'></image>
+                        <text style='color:#fff;'>{{detailMsg.activity.name}}</text>
+                      </view>
+                      <view>
+                        <text style='color:#fff;'>></text>
+                      </view>
+                    </navigator>
+                  </view>
+                </view>
+              </view>
+            </view>
+            <view class='conBtn' bindtap='conLucky'>
+              <image src='../../image/tc_bt@2x(1).png'></image>
+            </view>
+          </view>
+          <view class='confirMask' bindtap='confirMaskExit' wx:if="{{confirmLucky}}"></view>
 
           <!-- 中奖名单 -->
           <block wx:if="{{detailMsg.activity.status == -1}}">
@@ -99,7 +140,7 @@
                   <view class='rankPic'>
                     <view class='rankDra'>
                       <text class='rankIndex'>{{item.ranking}}</text>
-                      <image class='frePic' src='{{item.avatar_url}}'></image>
+                      <image class='frePic_s' src='{{item.avatar_url}}'></image>
                       <text class='rankName'>{{item.nickname}}</text>
                     </view>
                     <text class='rankNum'>{{item.power_number}}人</text>
@@ -216,6 +257,7 @@
           </view>
         </navigator>
 
+
       </view>
     </view>
     <!-- 广告位 -->
@@ -227,11 +269,11 @@
     <!-- 商品详情 -->
     <view class='shopDetails'>
       <view class='detailText'>
-        <image src="../../image/Group 5 Copy@2x.png"></image>
+        <image src="../../image/Group5Copy@2x.png"></image>
       </view>
       <view class='details'>
         <block wx:for="{{detailMsg.detail}}" wx:key="{{index}}">
-          <image src='{{item.detail_img_url}}'></image>
+          <image src='{{item.detail_img_url}}' mode="widthFix"></image>
         </block>
       </view>
     </view>
@@ -266,10 +308,10 @@
 <!--默认action-sheet为隐藏，由button触发-->
 <action-sheet hidden="{{actionSheetHidden}}" bindchange="listenerActionSheet">
    <action-sheet-item>
-         <button open-type="share" class='openTypeBtn' style='height:50rpx;line-height:50rpx;'>分享给好友</button>
+         <button open-type="share" class='openTypeBtn' style='height:50rpx;line-height:50rpx;top:-16rpx;'>分享给好友</button>
    </action-sheet-item>
    <action-sheet-item>
-      <button bindtap='shareCord' class='openTypeBtn' data-id="{{id}}" data-src="{{detailMsg.activity.img_url}}" data-name="{{detailMsg.activity.product_name}}">生成分享卡片</button>
+      <button bindtap='shareCord' class='openTypeBtn' data-id="{{id}}" data-src="{{detailMsg.activity.img_url}}" data-name="{{detailMsg.activity.product_name}}" style='top:10rpx;'>生成分享卡片</button>
   </action-sheet-item>
    <!--自动隐藏action-sheet-->
    <action-sheet-cancel>取消</action-sheet-cancel>

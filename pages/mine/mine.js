@@ -23,11 +23,28 @@ Page({
       })
     }
   },
+  //滑动切换
+  swiperTab: function (e) {
+    var that = this;
+    that.setData({
+      currentTab: e.detail.current
+    });
+  },
+
   currDeils:function(e){
+    console.log(e);
     let id = e.currentTarget.dataset.id;
-    wx.navigateTo({
-      url: '../details/details?id=' + id
-    })
+    let ids = e.currentTarget.dataset.actid;
+    console.log(ids);
+    if (e.currentTarget.dataset.status == 0){
+      wx.navigateTo({
+        url: '../lottery/lottery?id=' + ids
+      })
+    }else{
+      wx.navigateTo({
+        url: '../details/details?id=' + ids
+      })
+    }
   },  
   currDeil:function(e){
     let id = e.currentTarget.dataset.id;
@@ -35,13 +52,7 @@ Page({
       url: '../lottery/lottery?id=' + id
     })
   },
-  //滑动切换
-  swiperTab: function (e) {
-    var that = this;
-    that.setData({
-      currentTba: e.detail.current
-    });
-  },
+  
   /**
    * 生命周期函数--监听页面加载
    */

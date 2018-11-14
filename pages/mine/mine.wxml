@@ -35,7 +35,7 @@
           <block wx:for="{{orderMsg}}" wx:key="{{index}}">
             <view class='shops'>
               <view class='participate'>您已经参与</view>
-              <image src='{{item.product_img}}' class='shopsImg'  data-id='{{item.id}}' bindtap='currDeil'></image>
+              <image src='{{item.product_img}}' class='shopsImg'  data-id='{{item.activity_id}}' bindtap='currDeil'></image>
               <view class='shopsInfor'>
                 <view class='shopNme'>
                   <text class='shopInName'>免费抽奖:<text>{{item.product_name}}</text></text>
@@ -53,12 +53,12 @@
           <block wx:for="{{msg}}" wx:key="{{index}}">
             <view class='shops'>
               <view class='participate'>您已经参与</view>
-              <image src='{{item.img_url}}' class='shopsImg'  data-id='{{item.id}}' bindtap='currDeils'></image>
+              <image src='{{item.img_url}}' class='shopsImg' data-id="{{item.id}}" data-actId='{{item.activity_id}}' data-status="{{item.status}}" bindtap='currDeils'></image>
               <view class='shopsInfor'>
                 <view class='shopNme'>
                   <text class='shopInName'>免费抽奖:<text>{{item.product_name}}</text></text>
                   <text class='inform' wx:if="{{item.status == 0}}">已经开奖</text>
-                  <text class='inform' wx:if="{{item.status == 1}}">{{item.lottery_time}}后 自动开奖</text>
+                  <text class='inform' wx:if="{{item.status == 1}}"> <text class='consTimes'>{{item.lottery_time}}</text> 后 自动开奖</text>
                 </view>
                 <text class='information' wx:if="{{item.status == 0}}">已经开奖</text>
                 <text class='information' wx:if="{{item.status == 1}}">等待开奖</text>

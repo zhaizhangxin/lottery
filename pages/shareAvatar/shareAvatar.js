@@ -34,7 +34,7 @@ Page({
 
     //获取好友助力信息
     wx.request({
-      url: reqUrl + 'shareAvatar',
+      url: reqUrl + 'award_shareAvatar',
       header: {
         token: wx.getStorageSync('token')
       },
@@ -119,7 +119,7 @@ Page({
       })
 
       wx.request({
-        url: reqUrl + 'shareAvatar',
+        url: reqUrl + 'award_shareAvatar',
         header: {
           token: wx.getStorageSync('token')
         },

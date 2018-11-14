@@ -77,7 +77,7 @@
             <view class='shopsCon'>
               <view class='shopNames'>
                 <text class='conName'>免费抽奖:{{item.product_name}}</text>
-                <text class='conTime'>{{item.lottery_time}} 后自动开奖</text>
+                <text class='conTime'><text class='consTimes'>{{item.lottery_time}}</text> 后自动开奖</text>
               </view>
               <view class='commodity' wx:if="{{item.participate == 1}}">
                 <image src='../../image/home_bt_3@2x.png' class='conBtn'></image>
@@ -156,3 +156,5 @@
     </block>
   </view>
 </view>
+
+<ad-fixed ad-id='float'></ad-fixed>

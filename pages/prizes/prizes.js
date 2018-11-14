@@ -20,9 +20,17 @@ Page({
   },
   // 点击跳转评论区
   reviewArea: function() {
-    wx.navigateTo({
-      url: '../reviewArea/reviewArea',
-    })
+    if (this.data.status === 1){
+      wx.navigateTo({
+        url: '../reviewArea/reviewArea',
+      })
+    }else{
+      wx.showToast({
+        title: '只有中奖过的用户才可以发布晒奖哦！',
+        icon:'none',
+        duration:1500
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面加载
@@ -61,7 +69,8 @@ Page({
         console.log(res);
         wx.hideLoading();
         that.setData({
-          comments: res.data.msg
+          comments: res.data.msg.comment,
+          status: res.data.msg
         })
       },
       fail: function (res) { },

@@ -67,7 +67,9 @@ Page({
     console.log(imgArr.length);
     if (that.data.content == '' || imgArr.length == 0) {
       wx.showToast({
-        title: '请填写评论'
+        title: '请填写评论',
+        icon:'none',
+        mask:true
       })
     } else {
       that.setData({
@@ -151,6 +153,8 @@ Page({
         } else {
           wx.showToast({
             title: res.data.msg,
+            icon:'none',
+            mask:true
           })
         }
       },

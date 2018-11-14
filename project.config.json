@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 2,
+			"current": 4,
 			"list": [
 				{
 					"id": 0,
@@ -45,18 +45,36 @@
 				{
 					"id": 1,
 					"name": "query",
-					"pathName": "pages/login/login",
+					"pathName": "pages/details/details",
 					"query": "key=WYzY2U0ODM",
 					"scene": "1007"
 				},
 				{
 					"id": 2,
 					"name": "app消息卡片",
-					"pathName": "pages/login/login",
-					"query": "id=1",
+					"pathName": "pages/lottery/lottery",
+					"query": "id=1379",
 					"scene": "1036",
 					"referrerInfo": {
 						"appId": "123"
+					}
+				},
+				{
+					"id": -1,
+					"name": "scene",
+					"pathName": "pages/details/details",
+					"query": "key=WYzY2U0ODM",
+					"scene": "1007"
+				},
+				{
+					"id": 4,
+					"name": "app",
+					"pathName": "pages/login/login",
+					"query": "media=suLK1A&p=15421004471547435bc7051a02d595d76f8d764ce4",
+					"scene": "1037",
+					"referrerInfo": {
+						"appId": "wx04ae6db5ac8838c8",
+						"extraData": "{         \"media\":\"suLK1A\",         \"p\":\"15421004471547435bc7051a02d595d76f8d764ce4\"        }"
 					}
 				}
 			]

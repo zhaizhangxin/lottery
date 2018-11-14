@@ -26,6 +26,10 @@
 .detail-top .cD text{
   color:rgb(255,50,43);
 }
+.consTimes{
+  color: #E44348;
+  font-weight: bold;
+}
 .detail-top-c text:nth-of-type(1){
   color:rgb(51, 51, 51);
   margin-right:10rpx;
