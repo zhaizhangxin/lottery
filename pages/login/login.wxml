@@ -1,5 +1,5 @@
 <!--pages/login/login.wxml-->
-<view class='login' wx:if="{{hasUserInfo}}">
+<!-- <view class='login' wx:if="{{hasUserInfo}}">
   <image src='../../image/login.jpg'></image>
   <view class='logo'>
     <image src='../../image/logo.png'></image>
@@ -8,4 +8,4 @@
   
   <image class='start' src='../../image/start.png'></image>
   <button size='mini' open-type='getUserInfo' bindgetuserinfo='getUserInfo'></button>
-</view>
+</view> -->

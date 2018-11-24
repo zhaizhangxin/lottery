@@ -1,0 +1,6 @@
+<!--pages/rules/rules.wxml-->
+<view class='content'>
+  <image class='contOne' mode="widthFix" src='../../image/Group@2x.png'></image>
+  <image class='conts' mode="widthFix" src='../../image/wf_2@2x.png'></image>
+  <image class='conts' mode="widthFix" src='../../image/wf_3@2x.png'></image>
+</view>

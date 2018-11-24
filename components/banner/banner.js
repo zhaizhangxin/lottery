@@ -30,6 +30,9 @@ Component({
 
       if (resolve.type != 2) {
         console.error('banner 广告标识和广告位不匹配');
+        this.setData({
+          bs:false
+        })
         return;
       }
 

@@ -11,12 +11,74 @@ Page({
 
     //url传参
     options: null,
+    detailMask:false
 
   },
+  // 点击上报
+  click(e) {
+    if (e.currentTarget.dataset.path) {
+      let url = encodeURIComponent(e.currentTarget.dataset.path);
+      wx.navigateTo({
+        url: '../h5ad/h5ad?h5ad=' + url
+      })
+    }
+    // if (this.data.detailMsg.activity.type == 1) {
+    //   //调用组件actionSheet的_animationOuter方法
+    //   this.selectComponent('#actionSheet').animationOuter(e.currentTarget.dataset.qr)
+    //   return;
+    // }
 
-
-
-
+    wx.showLoading({
+      title: '加载中...',
+      mask: true
+    })
+    var that = this;
+    wx.request({
+      url: reqUrl + 'award_click',
+      data: {
+        id: e.currentTarget.dataset.id
+      },
+      header: {
+        token: wx.getStorageSync('token')
+      },
+      method: 'GET',
+      success: function (res) {
+        console.log(res);
+        if (e.currentTarget.dataset.qr != '') {
+          var url = e.currentTarget.dataset.qr;
+          var imgArr = [];
+          imgArr.push(url);
+          wx.previewImage({
+            current: imgArr[0], // 当前显示图片的http链接 
+            urls: imgArr // 需要预览的图片http链接”列表“ 
+          });
+        }
+        wx.hideLoading();
+      },
+      fail: function (res) { },
+      complete: function (res) { },
+    })
+  },
+// 点击关闭弹窗
+  detailExit:function(){
+    this.setData({
+      detailMask:false
+    })
+  },
+  // 一键复制
+  detaGroup: function (e) {
+    var detaGroup = e.target.dataset.href;
+    wx.setClipboardData({
+      data: detaGroup,
+      success(res) {
+        wx.getClipboardData({
+          success(res) {
+            console.log(res);
+          }
+        })
+      }
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载
@@ -38,7 +100,7 @@ Page({
 
       
       if (res.statusCode == 200) {
-
+        var that = this;
         //获取开奖信息
         wx.request({
           url: reqUrl + 'award_run_lottery',
@@ -55,10 +117,18 @@ Page({
             // console.log(res)
 
             if (res.statusCode == 200) {
-              this.setData({
+              that.setData({
                 detailMsg: res.data.msg
               })
-
+              if (res.data.msg.product.is_luck != 1){
+                  that.setData({
+                    detailMask:true
+                  })
+              }else{
+                that.setData({
+                  detailMask: false
+                })
+              }
 
             } else {
               wx.showToast({

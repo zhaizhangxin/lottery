@@ -1,130 +1,205 @@
 /* pages/indexs/indexs.wxss */
-
-.com {
+.content{
   background: #f4f4f4;
 }
-
-
-.top-backimg {
+/* 头部 */
+.header{
+  position: relative;
+}
+.headPic{
   width: 100%;
   height: 320rpx;
 }
-
-.top_img {
-  /* position: relative; */
-}
-
-.top-homebg {
+/* 规则图标 */
+.ruleIcon{
   position: absolute;
-  top: 132rpx;
-  left: 24rpx;
-  width: 700rpx;
-  height: 230rpx;
+  top: 30rpx;
+  right: 28rpx;
+  width: 102rpx;
+  height: 102rpx;
 }
-
-.top-num {
+/* 抽奖机会 */
+.opportunity{
   position: absolute;
-  top: 144rpx;
-  left: 26rpx;
-  width: 186rpx;
-  height: 40rpx;
+  top: 148rpx;
+  left: 126rpx;
+  width: 500rpx;
+  height: 70rpx;
+  background: #513A2E;
+  border-radius: 50rpx;
 }
-
-.homePic {
+.opport{
+  text-align: center;
+  color: #fff;
+  font-family:Helvetica;
+  font-size: 28rpx;
+  display: block;
+  line-height: 70rpx;
+}
+.opportNum{
+  font-size: 40rpx;
+}
+/* 签到 */
+.signIn{
   position: absolute;
-  display: flex;
-  justify-content: space-between;
-  top: 192rpx;
-  left: 32rpx;
-  width: 91%;
+  top: 244rpx;
+  left: 56rpx;
+  width: 300rpx;
+  height: 90rpx;
 }
-
-.top-pic {
-  width: 328rpx;
-  height: 98rpx;
-  padding: 0;
-  background: none;
-}
-.top-pic::after{
-  border: none;
-}
-.top-pic image{
+.signImg{
   width: 100%;
   height: 100%;
 }
-
-/* 签到 */
+.signIn text{
+  position: absolute;
+  left: 46rpx;
+  font-size:32rpx;
+  line-height: 90rpx;
+  font-family:Helvetica;
+  color: #513A2E;
+  font-weight:400;
+}
+.signIns{
+  position: absolute;
+  top: 244rpx;
+  left: 56rpx;
+  width: 300rpx;
+  height: 90rpx;
+}
+.signIns text{
+  position: absolute;
+  left: 68rpx;
+  font-size:32rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  line-height: 90rpx;
+  color: #fff;
+}
+/* 签到弹框 */
 .successMask{
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0,0,0,0.5);
   z-index: 10;
 }
 .successFully{
   position: fixed;
+  top: 26%;
+  left: 7%;
   background: #fff;
-  top: 28%;
-  left: 14%;
-  padding: 136rpx 80rpx;
   z-index: 99;
-  border-radius: 28rpx;
-  width: 384rpx;
+  border-radius: 20rpx;
+}
+.success{
+  padding: 40rpx 24rpx 24rpx 24rpx;
 }
 .successImg{
-  position: absolute;
-  top: -42rpx;
-  left: 106rpx;
-  width: 336rpx;
-  height: 98rpx;
+  margin: auto;
+  width: 246rpx;
+  height: 70rpx; 
   display: block;
-}
-.successExit{
-  position: absolute;
-  right: 108rpx;
-  top: -22rpx;
-  width: 60rpx;
-  height: 60rpx;
-  display: block;
-  z-index: 99;
 }
 .signSuccess{
+  margin-top: 36rpx;
+  width: 600rpx;
+  height: 200rpx;
+  background: #E6E9EE;
+  text-align: center;
+  line-height: 200rpx;
+  font-size:40rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color: #513A2E;
+  display: block;
+}
+.signExit{
+  margin: auto;
+  margin-top: 34rpx;
+  background: none;
   font-size:32rpx;
-  font-family:MicrosoftYaHei;
-  color: #999;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color: #4a4a4a;
 }
-.succText{
-  color: #e44348;
+.signExit::after{
+  border: none;
+  outline: none;
 }
 
-/* 抽奖次数 */
-
-.frequency {
+/* 分享 */
+.share{
   position: absolute;
-  top: 144rpx;
-  left: 220rpx;
-  color: #be8c54;
-  font-family: PingFangSC-Semibold;
-  font-size: 28rpx;
-  font-weight: 600;
-  line-height: 40rpx;
+  top: 244rpx;
+  right: 56rpx;
+  padding: 0;
+  margin: 0;
+  width: 300rpx;
+  height: 90rpx;
+}
+.share image{
+  width: 100%;
+  height: 100%;
+}
+.share::after{
+  border: none;
+  outline: none;
+}
+.share text{
+  position: absolute;
+  left: 46rpx;
+  font-size:32rpx;
+  line-height: 90rpx;
+  font-family:Helvetica;
+  color: #513A2E;
+  font-weight:400;
 }
 
-.fre {
-  font-weight: 0;
-  font-size: 18rpx;
-}
-
-/* 中奖人数 */
-.prize{
+/* 扫码进群 */
+.codeGroup{
   display: flex;
   justify-content: space-between;
-  position: absolute;
-  left: 50rpx;
-  top: 300rpx;
-  width: 86%;
+  padding: 14rpx 34rpx;
+  margin-top: 36rpx;
+  margin-left: 24rpx;
+  background: #fff;
+  width: 640rpx;
+  height: 46rpx;
+  line-height: 46rpx;
+  border-radius: 20rpx;
+}
+.scanCode{
+  display: flex;
+
+}
+.scan{
+  margin-top: 10rpx;
+  margin-right: 10rpx;
+  width: 30rpx;
+  height: 30rpx;
+}
+.codeGroup text{
+  font-size:32rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color: #666;
+}
+/* 中奖播报 */
+.coll{
+  padding: 16rpx 24rpx;
+}
+.collRow{
+  display: flex;
+  justify-content: space-between;
+  height: 36rpx;
+  line-height: 36rpx;
+}
+.roll-swiper{
+  width: 430rpx;
+  height: 36rpx;
 }
 .prizeSwiper{
   display: flex;
@@ -136,130 +211,115 @@
   border-radius: 50%;
 }
 .prizeText{
-  font-size: 24rpx;
+  width: 80%;
+  font-size:24rpx;
+  font-family:Helvetica;
   color: #666;
-  width: 382rpx;
-  height: 36rpx;
   overflow: hidden;
-  text-overflow: ellipsis;
+  text-overflow:ellipsis;
   white-space: nowrap;
 }
-.prizeNum{
-  font-size: 24rpx;
-  font-family: MicrosoftYaHei;
-  color: #ec5b5a;
+.collText{
+  font-size:24rpx;
+  font-family:Helvetica;
+  color: #D83A3A;
 }
-.roll-swiper{
-  height: 36rpx;
-  width: 400rpx;
-  overflow: hidden;
-}
-/* 赞助商 */
-.sponsor{
-  position: absolute;
-  right: 0;
-  top: 54rpx;
-}
-
-.sponText{
-  padding:10rpx 30rpx 10rpx 40rpx;
-  font-size: 24rpx;
-  font-family:MicrosoftYaHei;
-  color: #be8c54;
-  background:linear-gradient(172deg,rgba(252,249,209,1) 0%,rgba(239,212,157,1) 100%);
-  border-radius:28rpx 0px 0px 28rpx;
-}
-
-/* 信息流商品 */
-
-.conView {
-  margin-top: 56rpx;
-}
-
-.content {
-  margin-top: 28rpx;
+/* 免费抽奖 */
+.freeDraw{
   padding: 0 24rpx;
-  border-radius: 20rpx;
 }
-
-.contents {
+.freeCont{
   position: relative;
-  margin: 10rpx 20rpx 28rpx 20rpx;
-  /* width: 100%; */
-  border-radius: 20rpx;
+  margin-top: 40rpx;
   background: #fff;
+  border-radius: 20rpx;
+  width: 700rpx;
 }
-
-.shopImg {
+.freeImg{
+  border-radius: 20rpx 20rpx 0 0;
   width: 100%;
   height: 320rpx;
-  border-radius: 20rpx 20rpx 0 0;
   display: block;
 }
-
-.shopsCon {
+.sponText{
+  position: absolute;
+  top: 46rpx;
+  right: 0;
+  padding:10rpx 20rpx 10rpx 30rpx;
+  font-size:24rpx;
+  font-family:MicrosoftYaHei;
+  color: #fff;
+  display: block;
+  background:rgba(0,0,0,0.3);
+  border-radius:28rpx 0 0 28rpx;
+}
+.shopsCon{
   display: flex;
   justify-content: space-between;
+  padding: 20rpx 24rpx;
 }
-
-.shopNames {
+.shopNames{
   display: flex;
-  flex-direction: column;
-  margin-top: 10rpx;
-  margin-left: 20rpx;
+  flex-wrap: wrap;
+  /* width: 80%; */
 }
-
-.conName {
-  font-size: 32rpx;
-  font-family: MicrosoftYaHei-Bold;
-  font-weight: bold;
+.conName{
+  font-size:32rpx;
+  font-family:MicrosoftYaHei-Bold;
+  font-weight:bold;
   color: #666;
 }
-
-.conTime {
-  font-size: 24rpx;
-  font-family: MicrosoftYaHei;
+.conTime{
+  font-size:24rpx;
+  font-family:MicrosoftYaHei;
   color: #999;
 }
 .consTimes{
-  color: #E44348;
-  font-weight: bold;
+  color: #E74E53;
+  font-weight:bold;
+}
+
+.conText{
+  font-size:28rpx;
+  font-family:Helvetica;
+  color: #513A2E;
+  background: #F8D652;
+  width: 200rpx;
+  height: 60rpx;
+  text-align: center;
+  line-height: 60rpx;
+  display: block;
+  border-radius: 50rpx;
 }
 .conBtn{
-  width: 250rpx;
-  height: 98rpx;
+  font-size:28rpx;
+  font-family:PingFangSC-Regular;
+  color: #999;
+  background: #E6E9EE;
+  width: 200rpx;
+  height: 60rpx;
+  text-align: center;
+  line-height: 60rpx;
+  display: block;
+  border-radius: 50rpx;
 }
-.commodity{
-  position: relative;
-}
-.conText{
-  position: absolute;
-  top: 28rpx;
-  left: 68rpx;
-  font-size: 28rpx;
-  font-family:  MicrosoftYaHei-Bold;
-  font-weight: bold;
-  color: #fff;
-}
-/* 邀请好友 */
+/* 邀请好友直接送 */
 .invitaPoper{
-  margin-top: 50rpx;  
-}
-
-.collCot{
-  margin-top: -230rpx;
+  margin-top: 20rpx;
+  position: relative;
+  padding-bottom: 20rpx;
+  background:rgba(220,220,220,1);
 }
 .Invitation{
+  position: absolute;
   width: 100%;
-  height: 400rpx;
+  height: 320rpx;
 }
-
-.invitaCont{
-  margin-top: -210rpx;
-  position: relative;
-  /* margin-top: 28rpx; */
+.collCot{
   padding: 0 24rpx;
-  border-radius: 20rpx;
-
+  padding-top: 236rpx;
 }
-
+/* 集齐人数就开奖 */
+.invitaPopers{
+  position: relative;
+}

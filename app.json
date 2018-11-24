@@ -1,8 +1,10 @@
 {
   "pages": [
     "pages/login/login",
-    "pages/index/index",
+    "pages/lottery/lottery",
+    "pages/rules/rules",
     "pages/indexs/indexs",
+    "pages/index/index",
     "pages/prizes/prizes",
     "pages/reviewArea/reviewArea",
     "pages/me/me",
@@ -17,8 +19,7 @@
     "pages/lotteryRecord/lotteryRecord",
     "pages/winningRecord/winningRecord",
     "pages/question/question",
-    "pages/confirmOrder/confirmOrder",
-    "pages/lottery/lottery"
+    "pages/confirmOrder/confirmOrder"
   ],
   "window": {
     "backgroundTextStyle": "dart",
@@ -28,14 +29,14 @@
   },
   "tabBar": {
     "color": "#333333",
-    "selectedColor": "#e8362a",
+    "selectedColor": "#513A2E",
     "borderStyle": "white",
     "backgroundColor": "#ffffff",
     "list": [
       {
         "pagePath": "pages/indexs/indexs",
-        "iconPath": "image/ic_home@2x.png",
-        "selectedIconPath": "image/ic_home_on@2x.png",
+        "iconPath": "image/index-icon.png",
+        "selectedIconPath": "image/index-icon-action.png",
         "text": "主页"
       },
       {
@@ -53,7 +54,6 @@
     ]
   },
   "navigateToMiniProgramAppIdList": [
-    "wxe78526dc49c29425","wxb19a236e51a8d248","wx04ae6db5ac8838c8","wx7cbe42eb3c3ff960","wxb19a236e51a8d248","wx938b41d0d7e8def0","wx7f70229ab1e51c1a"
-
+    "wxd2b9331ac904b5de","wxe784b2d26d254912","wx7f70229ab1e51c1a","wx7cbe42eb3c3ff960","wx04ae6db5ac8838c8","wxb19a236e51a8d248","wxd755964d25b8d3bf","wxe78526dc49c29425","wxb748bbed6783eafc","wxbbf2caef5c941008"
   ]
 }

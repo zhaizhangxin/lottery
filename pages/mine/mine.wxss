@@ -80,8 +80,9 @@ open-data[type=userNickName] {
 }
 
 .active {
-  color: #be8c54;
-  background: linear-gradient(172deg, rgba(252, 249, 209, 1) 0%, rgba(239, 212, 157, 1) 100%);
+  color: #513A2E;
+  background:rgba(248,214,82,1);
+  border-radius:20rpx;
 }
 
 

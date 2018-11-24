@@ -5,7 +5,7 @@
   <view class='title-data'>{{msg.lottery_time}} 自动开奖</view>
 </view>
 
-<navigator wx:if='{msg.app_id != "" || msg.app_id != null}}' class='company' target='miniProgram' open-type='navigate' app-id='{{msg.app_id}}' path='{{msg.path}}'>
+<navigator wx:if='{msg.app_id != ""}}' class='company' target='miniProgram' open-type='navigate' app-id='{{msg.app_id}}' path='{{msg.path}}'>
   <view class='company-title'>赞助商</view>
   <view class='company-con'>
     {{msg.name}}
@@ -13,7 +13,7 @@
     <image class='compnay-arrow' src='../../image/me-arrow.png'></image>
   </view>
 </navigator>
-<navigator wx:else url='../h5ad/h5ad?h5ad={{msg .href_url}}'>
+<navigator wx:else url='../h5ad/h5ad?h5ad={{msg.href_url}}'>
   <view class='company-title'>赞助商</view>
   <view class='company-con'>
     {{msg.name}}

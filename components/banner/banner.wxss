@@ -1,18 +1,21 @@
 /* 
  * banner
  */
-
+page{
+  position: relative;
+}
 .banner{
-  position: fixed;
+  /* position: fixed;
   bottom: 0;
-  right: calc(50% - 375rpx);
+  right: calc(50% - 375rpx); */
   z-index: 999;
 }
 .close image{
   width: 40rpx;
   height: 40rpx;
   position: absolute;
-  top: 0;
+  /* top: 0; */
+  bottom: 1;
   right: 0;
 }
 .banner navigator image{  

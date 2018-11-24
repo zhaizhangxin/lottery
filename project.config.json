@@ -8,10 +8,11 @@
 		"es6": true,
 		"postcss": true,
 		"minified": true,
-		"newFeature": true
+		"newFeature": true,
+		"autoAudits": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.2.2",
+	"libVersion": "2.4.0",
 	"appid": "wxd17beefaa53e52ee",
 	"projectname": "lottery",
 	"isGameTourist": false,
@@ -33,7 +34,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 4,
+			"current": 5,
 			"list": [
 				{
 					"id": 0,
@@ -46,7 +47,7 @@
 					"id": 1,
 					"name": "query",
 					"pathName": "pages/details/details",
-					"query": "key=WYzY2U0ODM",
+					"query": "id=1410&uid=16893",
 					"scene": "1007"
 				},
 				{
@@ -76,6 +77,13 @@
 						"appId": "wx04ae6db5ac8838c8",
 						"extraData": "{         \"media\":\"suLK1A\",         \"p\":\"15421004471547435bc7051a02d595d76f8d764ce4\"        }"
 					}
+				},
+				{
+					"id": 5,
+					"name": "模拟更新",
+					"pathName": "pages/login/login",
+					"query": "",
+					"scene": "1007"
 				}
 			]
 		}

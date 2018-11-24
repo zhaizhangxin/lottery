@@ -57,6 +57,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
     wx.showLoading({
       title: '加载中...',
       mask: true
@@ -74,10 +88,9 @@ Page({
         if (res.statusCode == 200) {
           let msg = res.data.msg;
           this.setData({
-            orderMsg: res.data.msg,
-            height: 460 * res.data.msg.length
+            orderMsg: res.data.msg
           })
-
+          console.log(this.data.height);
         } else {
           wx.showToast({
             title: res.data.msg,
@@ -105,38 +118,38 @@ Page({
           let msg = res.data.msg;
           this.setData({
             msg: res.data.msg,
-            height: 460 * res.data.msg.length
+            height: 450 * res.data.msg.length
           })
 
-          //清除倒计时
-          var interval = this.data.interval;
-          if (interval != '') {
-            for (let i = interval - lottery.length; i <= interval; i++) {
-              clearInterval(i)
-            }
-          }
+          // //清除倒计时
+          // var interval = this.data.interval;
+          // if (interval != '') {
+          //   for (let i = interval - lottery.length; i <= interval; i++) {
+          //     clearInterval(i)
+          //   }
+          // }
 
-          //添加倒计时
-          for (let i in msg) {
-            let time = Number(msg[i].lottery_time) - Math.round(new Date / 1000);
-            let countDown = 'msg[' + i + '].lottery_time';
-            msg[i].lottery_time = time;
-            this.setData({
-              [countDown]: formatTime.formatTime(time)
-            })
+          // //添加倒计时
+          // for (let i in msg) {
+          //   let time = Number(msg[i].lottery_time) - Math.round(new Date / 1000);
+          //   let countDown = 'msg[' + i + '].lottery_time';
+          //   msg[i].lottery_time = time;
+          //   this.setData({
+          //     [countDown]: formatTime.formatTime(time)
+          //   })
 
-            this.data.interval = setInterval(() => {
-              if (Number(time) > 0) {
-                time--;
-                this.setData({
-                  [countDown]: formatTime.formatTime(time)
-                })
+          //   this.data.interval = setInterval(() => {
+          //     if (Number(time) > 0) {
+          //       time--;
+          //       this.setData({
+          //         [countDown]: formatTime.formatTime(time)
+          //       })
 
-              } else {
-                clearInterval(interval);
-              }
-            }, 1000)
-          }
+          //     } else {
+          //       clearInterval(interval);
+          //     }
+          //   }, 1000)
+          // }
         } else {
           wx.showToast({
             title: res.data.msg,
@@ -150,20 +163,6 @@ Page({
       fail: function (res) { },
       complete: function (res) { },
     })
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
   },
 
   /**

@@ -1,0 +1,12 @@
+/* pages/rules/rules.wxss */
+.content{
+  background: #f4f4f4;
+}
+.contOne{
+  margin-top: 20rpx;
+  width: 100%;
+}
+.conts{
+  margin-top: 10rpx;
+  width: 100%;
+}

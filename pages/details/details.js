@@ -20,10 +20,11 @@ Page({
     rows: 40,
     actionSheetHidden: true,
     report: true,
-    recomends:false,
-    confirmLucky:false,
-    sponsonId:1,
-    optionId:1
+    recomends: false,
+    confirmLucky: false,
+    sponsonId: 1,
+    optionId: 1,
+    animationData: {}
   },
   // 回到首页
   swithTab: function() {
@@ -31,6 +32,19 @@ Page({
       url: '../indexs/indexs',
     })
   },
+  // 更多商品跳转
+  detaliJump: function (e) {
+    console.log(e);
+    let id = e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '../details/details?id=' + id
+      // url: '../lottery/lottery?id=' + id
+
+    })
+  },
+  // clear:function(){
+  //   wx.clearStorageSync();
+  // },
   // 参与人员分页请求
   lower: function(e) {
     console.log(e);
@@ -169,8 +183,8 @@ Page({
           shareAvatarStatus: true
         })
       },
-      fail: function (res) { },
-      complete: function (res) { },
+      fail: function(res) {},
+      complete: function(res) {},
     })
   },
   // 点击关闭我邀请的朋友
@@ -184,7 +198,7 @@ Page({
   ranking: function() {
     wx.showLoading({
       title: '加载中...',
-      mask:true
+      mask: true
     })
     var that = this;
     wx.request({
@@ -204,8 +218,8 @@ Page({
           rankingStatus: true
         })
       },
-      fail: function (res) { },
-      complete: function (res) { },
+      fail: function(res) {},
+      complete: function(res) {},
     })
 
   },
@@ -216,7 +230,7 @@ Page({
     })
   },
   // 点击关闭抽奖
-  confirMaskExit:function(){
+  confirMaskExit: function() {
     this.setData({
       confirmLucky: false
     })
@@ -232,31 +246,21 @@ Page({
     console.log(getName);
     console.log(this.data.options.pathId);
     console.log(this.data.sponsor_id);
-    if (getName != '' && this.data.options.pathId != undefined && this.data.optionId == 1) {
-      console.log(111);
-      this.getUserInfo();
 
-    } else if (this.data.sponsor_id != undefined && this.data.sponsonId == 1 && this.data.sponsonId == ''){
-      console.log(222);
-      
-      this.getUserInfo();
-      
-    } else {
-      wx.showLoading({
-        title: '加载中...',
-        mask: true
+    wx.showLoading({
+      title: '加载中...',
+      mask: true
+    })
+    setTimeout(function() {
+      that.setData({
+        confirmLucky: true
       })
-      setTimeout(function(){
-        that.setData({
-          confirmLucky: true
-        })
-        wx.hideLoading();
-      },500);
+      wx.hideLoading();
+    }, 500);
 
-    }
   },
   // 确认抽奖
-  conLucky:function(){
+  conLucky: function() {
     wx.showLoading({
       title: '加载中...',
       mask: true
@@ -268,7 +272,7 @@ Page({
       data: {
         id: this.data.id,
         form_id: this.data.formId,
-        sponsor_id: this.data.sponsor_id
+        sponsor_id: this.data.uids
       },
       header: {
         token: wx.getStorageSync('token')
@@ -276,23 +280,27 @@ Page({
       success: res => {
         wx.hideLoading();
         that.setData({
-          confirmLucky:false
+          confirmLucky: false,
+          'detailMsg.activity.participants': parseInt(this.data.detailMsg.activity.participants) + 1,
+
         })
         console.log(res);
         if (res.data.error_code == 0) {
-          if (res.data.msg.product_type == 1) {
+          if (that.data.product_type == 1) {
             var luckPic = {
               avatar_url: res.data.msg
             };
             let user_Pic = that.data.detaPic;
             user_Pic.unshift(luckPic);
             that.setData({
-              detaPic: user_Pic
+              detaPic: user_Pic,
+              'detailMsg.activity.participate': 2
+            })
+          } else {
+            that.setData({
+              'detailMsg.activity.participate': 2
             })
           }
-          that.setData({
-            'detailMsg.activity.participate': 2
-          })
         } else {
           wx.showToast({
             title: res.data.msg,
@@ -301,18 +309,18 @@ Page({
           })
         }
       },
-      fail: function (res) { },
-      complete: function (res) { },
+      fail: function(res) {},
+      complete: function(res) {},
     })
   },
   // 用户授权
   //用户授权事件
   getUserInfo: function(e) {
     wx.showLoading({
-      title: '授权登录中...',
+      title: '加载中...',
       mask: true
     })
-    console.log(e.detail);
+
     var that = this;
     if (e.detail.userInfo) {
 
@@ -333,15 +341,15 @@ Page({
         dataType: 'json',
         responseType: 'text',
         success: res => {
-
+          console.log('请求成功');
           wx.hideLoading();
-
+          wx.setStorageSync('key', 1)
           if (res.statusCode == 200) {
             console.log(res);
             that.setData({
               report: true,
-              sponsonId:2,
-              optionId:2
+              sponsonId: 2,
+              optionId: 2
             })
           } else {
             wx.showToast({
@@ -455,7 +463,12 @@ Page({
 
   // 点击上报
   click(e) {
-      console.log(e);
+    if (e.currentTarget.dataset.path){
+      let url = encodeURIComponent(e.currentTarget.dataset.path);
+      wx.navigateTo({
+        url: '../h5ad/h5ad?h5ad=' + url
+      })
+    }
     if (this.data.detailMsg.activity.type == 1) {
       //调用组件actionSheet的_animationOuter方法
       this.selectComponent('#actionSheet').animationOuter(e.currentTarget.dataset.qr)
@@ -478,7 +491,7 @@ Page({
       method: 'GET',
       success: function(res) {
         console.log(res);
-        if (e.currentTarget.dataset.qr != ''){
+        if (e.currentTarget.dataset.qr != '') {
           var url = e.currentTarget.dataset.qr;
           var imgArr = [];
           imgArr.push(url);
@@ -493,7 +506,16 @@ Page({
       complete: function(res) {},
     })
   },
-
+  // 识别图中二维码
+  previewImage:function(e){
+    var url = e.currentTarget.dataset.icon;
+    var imgArr = [];
+    imgArr.push(url);
+    wx.previewImage({
+      current: imgArr[0], // 当前显示图片的http链接 
+      urls: imgArr // 需要预览的图片http链接”列表“ 
+    });
+  },
   // 分享给好友
   listenerButton: function() {
     this.setData({
@@ -507,7 +529,8 @@ Page({
   },
   // 一键复制
   detaGroup: function(e) {
-    var detaGroup = e.target.dataset.href;
+    // console.log(e);
+    var detaGroup = e.currentTarget.dataset.href;
     wx.setClipboardData({
       data: detaGroup,
       success(res) {
@@ -523,7 +546,7 @@ Page({
   shareCord: function(e) {
     wx.showLoading({
       title: '加载中...',
-      mask:true
+      mask: true
     })
 
     wx.request({
@@ -580,13 +603,14 @@ Page({
         if (res.statusCode == 200) {
           if (res.data.msg.product_type == 1) {
             this.setData({
-              detaPic: res.data.msg.avatar
+              product_type: res.data.msg.product_type
             })
           }
           this.setData({
-            detailMsg: res.data.msg
+            detailMsg: res.data.msg,
+            detaPic: res.data.msg.avatar
           })
-
+          // console.log(this.data.detailMsg.detail);
           //添加倒计时
           let time = Number(res.data.msg.activity.time) - Math.round(new Date / 1000);
           let countDown = 'detailMsg.activity.time';
@@ -614,6 +638,27 @@ Page({
             wx.hideShareMenu({});
           }
 
+          wx.request({
+            url: reqUrl + 'award_ad',
+            header: {
+              token: wx.getStorageSync('token')
+            },
+            method: 'GET',
+            dataType: 'json',
+            responseType: 'text',
+            data: {
+              detail_type: that.data.detailMsg.product_type
+            },
+            success: res => {
+              console.log(res);
+              that.setData({
+                listMsg:res.data.msg
+              })
+            },
+            fail: function (res) { },
+            complete: function (res) { },
+          })
+
         } else {
           wx.showToast({
             title: res.data.msg,
@@ -628,27 +673,27 @@ Page({
       fail: function(res) {},
       complete: function(res) {},
     })
+
+   
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    console.log(options);
     this.setData({
       id: options.id,
       options: options,
-      uid: wx.getStorageSync('uid')
+      uid: wx.getStorageSync('uid'),
+      uids: options.uid
     })
     console.log(options.scene);
-    
-    if (options.scene != '' && options.scene != undefined){
-      // console.log(1212);
-      // wx.showLoading({
-      //   title: '没有东西',
-      // })
+
+    if (options.scene != '' && options.scene != undefined) {
       const scene = decodeURIComponent(options.scene);
       let sceneList = scene.split("&");
       var arr = [];
-      for (let i in sceneList){
+      for (let i in sceneList) {
         this.setData({
           sponsor_id: sceneList[0].substring(11),
           id: sceneList[1].substring(11),
@@ -657,6 +702,8 @@ Page({
       console.log(this.data.sponsor_id);
       console.log(this.data.product_id);
     }
+    console.log(wx.getStorageSync("nickName"));
+
   },
 
   /**
@@ -669,72 +716,150 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function(options) {
+    // wx.setStorageSync('scene', options.scene)
+    var animation = wx.createAnimation({
+      duration: 500,
+      timingFunction: 'linear',
+      delay: 100,
+      transformOrigin: '50% 50%',
+    })
+    // animation.opacity(0).scale(3, 3).step();//修改透明度,放大 
+    this.animation = animation
+    var next = true;
+    //连续动画关键步骤
+    setInterval(function() {
+      if (next) {
+        this.animation.scale(0.8).step()
+        next = !next;
+      } else {
+        this.animation.scale(1).step()
+        next = !next;
+      }
+      this.setData({
+        animationData: animation.export()
+      })
+    }.bind(this), 500)
+
+
     wx.showLoading({
       title: '加载中...',
       mask: true
     })
     var getName = wx.getStorageSync('nickName');
-    console.log(getName);
-    console.log(this.data.options.pathId);
-    console.log(this.data.sponsor_id);
-    if (getName != '' && this.data.options.pathId != undefined) {
-      console.log('aaa');
+    if (this.data.options.pathId == 1) {
       this.setData({
         report: false
       })
-    } else if (this.data.sponsor_id != undefined && this.data.sponsor_id != ''){
-      console.log('bbb');      
+    } else if (this.data.sponsor_id != undefined && this.data.sponsor_id != '') {
       this.setData({
         report: false
       })
     } else {
-      console.log('aassssa');
-      
       this.setData({
         report: true
       })
     }
-
-    if (this.data.options.pathId != undefined || this.data.sponsor_id != undefined ) {
-        console.log(111);
-        // 登录
-        wx.login({
-          success: res => {
-
-            // 发送 res.code 到后台换取 openId, sessionKey, unionId
-            wx.request({
-              // url: reqUrl + 'token',
-              url: reqUrl + 'award_token',
-              data: {
-                code: res.code,
-                sponsor_id: this.data.options.id
-              },
-              method: 'POST',
-              dataType: 'json',
-              responseType: 'text',
-              success: res => {
-                if (res.statusCode == 200) {
-                  wx.hideLoading();
-                  //本地缓存存入token、uid
-                  wx.setStorageSync("token", res.data.msg);
-                  wx.setStorageSync("uid", res.data.uid)
-
-                  //存openid,question.js的ad上报需要
-                  wx.setStorageSync('openid', res.data.key)
-                  this.optionPath();
-
-                } else {
-                  reject(res)
-                }
-              },
-              fail: function(res) {},
-              complete: function(res) {},
-            })
-          }
-        })
-      
+    if (wx.getStorageSync("key") == 1 && this.data.options.pathId != 1) {
+      console.log(11);
+      this.setData({
+        report: true
+      })
     } else {
+      console.log(12);
+      this.setData({
+        report: false
+      })
+    }
+    console.log(this.data.options.pathId);
+    console.log(this.data.uids);
+    let that = this;
+    if (this.data.options.pathId != undefined || this.data.uids != undefined) {
+      console.log(121212);
+      // 登录
+      wx.login({
+        success: res => {
+          // 发送 res.code 到后台换取 openId, sessionKey, unionId
+          wx.request({
+            url: reqUrl + 'award_token',
+            data: {
+              code: res.code,
+              sponsor_id: this.data.options.uid,
+              scene: wx.getStorageSync('scene')
+            },
+            method: 'POST',
+            dataType: 'json',
+            responseType: 'text',
+            success: res => {
+              if (res.statusCode == 200) {
+                wx.hideLoading();
+                //本地缓存存入token、uid
+                wx.setStorageSync("token", res.data.msg);
+                wx.setStorageSync("uid", res.data.uid)
+
+                //存openid,question.js的ad上报需要
+                wx.setStorageSync('openid', res.data.key)
+                that.setData({
+                  token: res.data.msg
+                })
+                console.log(res);
+                console.log(wx.getStorageSync('token'));
+                this.optionPath();
+
+                wx.getSystemInfo({
+                  success: function (res) {
+                    console.log(res);
+                    wx.request({
+                      url: reqUrl + 'award_getSystemInfo',
+                      header: {
+                        token: wx.getStorageSync('token')
+                      },
+                      data: res,
+                      method: 'POST',
+                      success: res => {
+                        console.log(res)
+                        console.log(wx.getStorageSync('token'));
+
+                      }
+                    })
+                  },
+                })
+
+                var options = wx.getStorageSync('options');
+                // options.openid = res.data.key;
+
+                console.log(options)
+                var appid = options.referrerInfo ? options.referrerInfo.appId : null;
+                wx.request({
+                  url: reqUrl + 'award_putPlatformUserData',
+                  header: {
+                    token: wx.getStorageSync('token')
+                  },
+                  data: {
+                    scene: options.scene,
+                    openid: wx.getStorageSync('openid'),
+                    from_appid: appid,
+                    query: options.query
+                  },
+                  method: 'POST',
+                  success: res => {
+                    console.log(res)
+                  }
+                })
+
+
+              } else {
+                reject(res)
+              }
+            },
+            fail: function(res) {},
+            complete: function(res) {},
+          })
+        }
+      })
+
+    } else {
+      console.log(111111);
       this.optionPath();
     }
 
@@ -778,9 +903,11 @@ Page({
 
     var id = this.data.options.id;
     var uid = this.data.uid;
-
+    console.log(id);
+    console.log(uid);
     return {
       title: wx.getStorageSync('nickName') + arr[i],
+      imageUrl: this.data.detailMsg.activity.img_url,
       path: '/pages/details/details?id=' + id + '&uid=' + uid + '&pathId=' + 1,
       success: res => {
 
@@ -788,6 +915,7 @@ Page({
       fail: function(res) {
         wx.showToast({
           title: '转发失败，请重试',
+          icon: 'none'
         })
       }
     }

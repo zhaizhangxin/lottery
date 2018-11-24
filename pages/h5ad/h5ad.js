@@ -12,7 +12,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-   
+   console.log(options);
+   let url = decodeURIComponent(options.h5ad);
     wx.showLoading({
       title:'加载中...',
       mask:true
@@ -20,7 +21,7 @@ Page({
   
     //设置web-view的url
     this.setData({
-      bannerUrl: options.h5ad
+      bannerUrl: url
     })
     
   },
