@@ -135,9 +135,34 @@
   font-weight:600;
   color: #BE8C54;
 }
-.detail-welfare{
+.detail-welfares{
   padding: 34rpx 24rpx 30rpx 24rpx;
 }
+.detail-welfare{
+  position: relative;
+  margin-top: 20rpx;
+  height:360rpx;
+  width: 100%;
+}
+.details-wefares{
+  position: absolute;
+  top:110rpx;
+  display: flex;
+  flex-wrap: wrap;
+}
+.wefares_names{
+  display: block;
+  width: 100%;
+  text-align: center;
+  color: #BE8C54;
+}
+.wefares_frees{
+  display: block;
+  width: 100%;
+  text-align: center;
+  color: #BE8C54;
+}
+
 .welfareImg{
   position: absolute;
   left: 4%;
@@ -224,7 +249,7 @@
   width: 610rpx;
   border-radius: 20rpx;
   /* background-color:rgb(255, 241, 234); */
-  margin-top:20rpx; 
+  /* margin-top:20rpx;  */
 }
 .detail-reserve-con-in text{
   font-size: 24rpx;

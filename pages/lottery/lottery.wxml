@@ -59,7 +59,7 @@
       <view class='detail-resevers'>
         <image src='../../image/tk_bts@2x.png' class='detailRese'></image>
       </view>
-      <view class='detail-welfare'>
+      <view class='detail-welfares'>
         <!-- <image src='../../image/wzj_bg@2x.png' class='welfareImg truePic'></image> -->
         <view class='detail-wefares'>
           <view class='detailsWefa'>
@@ -129,10 +129,10 @@
         </view>
         <view class='detail-welfare'>
           <image src='../../image/wzj_bg@2x.png' class='welfareImg'></image>
-          <view class='detail-wefares'>
-            <text class='wefares_name'>{{detailMsg.product.jump_name}}</text>
-            <text class='wefares_free' wx:if="{{detailMsg.product.yhq == ''}}">点击领取福利哦~</text>
-            <text class='wefares_free' wx:else>{{detailMsg.product.yhq}}</text>
+          <view class='details-wefares'>
+            <text class='wefares_names'>{{detailMsg.product.jump_name}}</text>
+            <text class='wefares_frees' wx:if="{{detailMsg.product.yhq == ''}}">点击领取福利哦~</text>
+            <text class='wefares_frees' wx:else>{{detailMsg.product.yhq}}</text>
              <navigator class='wefares_nav' wx:if='{{detailMsg.product.jump_appid != ""}}' target='miniProgram' open-type='navigate' app-id='{{detailMsg.product.jump_appid}}' path='{{detailMsg.product.path}}'>
             领取福利
           </navigator>
