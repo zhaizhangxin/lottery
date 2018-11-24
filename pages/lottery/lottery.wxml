@@ -57,7 +57,7 @@
   <view class='maskDetail' wx:if="{{detailMask}}" catchtouchmove="ture">
     <view class='maskDetails'>
       <view class='detail-resevers'>
-        <image src='../../image/tk_bts@2x.png'></image>
+        <image src='../../image/tk_bts@2x.png' class='detailRese'></image>
       </view>
       <view class='detail-welfare'>
         <!-- <image src='../../image/wzj_bg@2x.png' class='welfareImg truePic'></image> -->

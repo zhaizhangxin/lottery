@@ -321,7 +321,13 @@ navigator button{
   line-height: 80rpx;
   font-size: 30rpx;
 }
-
+.detailRese{
+  margin: auto;
+  margin-top: 40rpx;
+  width: 400rpx;
+  height: 70rpx;
+  display: block;
+}
 .detaImg{
   width: 8rpx;
   height: 30rpx;
@@ -391,7 +397,7 @@ navigator button{
 }
 .gbExit{
   position: absolute;
-  top: 88%;
+  top: 92%;
   left: 46%;
   z-index: 99;
   width: 60rpx;

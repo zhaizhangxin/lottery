@@ -11,7 +11,7 @@ Page({
 
     //url传参
     options: null,
-    detailMask:false
+    detailMask:true
 
   },
   // 点击上报
