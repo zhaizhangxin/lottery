@@ -183,7 +183,25 @@
       </view>
       <view class='draw_box' bindtap='exitTop' wx:if="{{showModalStatus}}" catchtouchmove="ture"></view>
       <!-- 查看曾获奖人名单 -->
-      <text class='winnerList'>查看曾获奖人名单</text>
+      <text class='winnerList' wx:if="{{detailMsg.recode == ''}}">查看曾获奖人名单</text>
+      <text class='winnerList winnersColor' bindtap='winnerList' wx:else>查看曾获奖人名单</text>
+      <!-- 查看曾获奖名单 -->
+      <view class='winner_List' wx:if="{{winnersList}}" catchtouchmove="ture">
+        <image class='winnerImg' src='../../image/tk_bt@1.png'></image>
+        <!-- <text class='winnerText'>共有200人中奖</text> -->
+        <scroll-view scroll-y="true" class='drawer_list'>
+          <block wx:for="{{detailMsg.recode}}" wx:key="{{index}}">
+            <view class='winner_detail'>
+              <image src='{{item.avatar_url}}'></image>
+              <view class='winner_lottery'>
+                <text class='winner_nick'>{{item.nick_name}}</text>
+                <text class='winner_time'>获奖时间：{{item.lottery_time}}</text>
+              </view>
+            </view>
+          </block>
+        </scroll-view>
+      </view>
+      <view class='winnerMask'  wx:if="{{winnersList}}" bindtap='winnerExit' catchtouchmove="ture"></view>
     </view>
   </view>
 
@@ -229,6 +247,12 @@
     </view>
   </block>
 
+  <!-- 广告位 -->
+  <actionSheet id='actionSheet'></actionSheet>
+
+  <ad unit-id="adunit-35bb96f2a6c7a1ec "></ad>
+
+  <!-- 广告位结束 -->
   <!-- 详情 -->
   <view class='details'>
     <block wx:for="{{detailMsg.detail}}" wx:key="{{index}}">
@@ -299,410 +323,21 @@
     </view>
   </view>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <!-- 头部
-  <view class='header'>
-    <view class='head'>
-      <image src='{{detailMsg.activity.img_url}}' class='headPic'></image>
-      <text class='detaText'>{{detailMsg.activity.name}} 赞助</text>
-      <view class='headFre'>
-        <view class='freText'>免费抽奖:
-          <text>{{detailMsg.activity.product_name}}</text>
-        </view>
-        <view class='freTime' wx:if="{{detailMsg.product_type==1 }} ">
-          <text class='consTimes'>{{detailMsg.activity.time}}</text>自动开奖
-        </view>
-        <view class='freTime' wx:if="{{detailMsg.product_type==2 }} ">
-          <text class='consTimes'>{{detailMsg.activity.time}}</text> 邀请前{{detailMsg.activity.winning}}名得
-        </view>
-        <view class='freTime' wx:if="{{detailMsg.product_type==3 }} ">
-          <text class='consTimes'> 集齐{{detailMsg.activity.restrict}}人开奖</text>
-        </view>
-      </view>
-    </view>
-
-    抽奖动态
-    <view class='lottery'>
-      <view class='lottText'>
-        <image src="../../image/Rectangle3Copy5@2x.png "></image>
-        <text wx:if="{{detailMsg.product_type==1 && detailMsg.activity.status==1 }} ">邀请好友参与，他中奖，我也中奖</text>
-        <text wx:if="{{detailMsg.product_type==2 && detailMsg.activity.status==1 }} ">邀请好友参与，排名越高者得</text>
-        <text wx:if="{{detailMsg.product_type==3 && detailMsg.activity.status==1 }} ">邀请好友参与，集齐就开奖</text>
-        <text wx:if="{{detailMsg.activity.status==- 1}} ">中奖名单</text>
-      </view>
-      <view class='dynamics'>
-        <view class='dynam'>
-
-          <block wx:if="{{detailMsg.activity.participate==1 && detailMsg.activity.status==1 }} ">
-            <form report-submit='true' bindsubmit='luckDraw' wx:if="{{report}} ">
-              <button form-type='submit' class='dynamImg'>
-                <image src='../../image/Group2@2x.png' animation="{{animationData}} "></image>
-              </button>
-            </form>
-            <button open-type='getUserInfo' class='dynamImg' bindgetuserinfo='getUserInfo' wx:else>
-              <image src='../../image/Group2@2x.png' animation="{{animationData}} "></image>
-            </button>
-          </block>
-
-          确认抽奖
-          <view class='confirmLucky' wx:if="{{confirmLucky}}" catchtouchmove="ture">
-            <view class='confirms'>
-              <image src='../../image/tc_top5@2x.png' class='confirImg'></image>
-              <view class='confirmCont'>
-                <text class='confirmText'>您将有机会获得</text>
-                <text class='confirmTexts'>{{detailMsg.activity.product_name}}</text>
-                <view class='conSponsor'>
-                  <image src='../../image/tk_bg@2x.png' class='conSponImg' mode="widthFix "></image>
-                  <view class='conSpon'>
-                    <text class='conSponText'>本活动由<text class='conSponNane'>{{detailMsg.activity.name}}</text>赞助</text>
-                    <text class='brief'>{{detailMsg.activity.brief}}</text>
-                    <block wx:if="{{detailMsg.activity.is_gz==1 }} ">
-                      <view class='aboutBut introds' style='width:88%;'>
-                        <text style='width:64%;height:48rpx;'>{{detailMsg.platform.href}}</text>
-                        <image src='../../image/Group4@2x.png' data-href="{{detailMsg.platform.href}} " bindtap='detaGroup'></image>
-                      </view>
-                    </block>
-                    <block wx:else>
-                      <navigator class='introd introds' style='background:#80B7EF;' wx:if='{{detailMsg.activity.app_id != " "}}' bindtap='click' data-id='{{detailMsg.activity.advert_id}}' target='{{detailMsg.activity.ad_type == 0 ? "miniProgram
-          " : "self "}}' open-type='navigate'
-              app-id='{{detailMsg.activity.app_id}}' path='{{detailMsg.activity.path}}' data-qr='{{detailMsg.activity.qr_url}}'>
-                        <view>
-                          <image src='{{detailMsg.activity.icon}}'></image>
-                          <text style='color:#fff;'>{{detailMsg.activity.name}}</text>
-                        </view>
-                        <view>
-                          <text style='color:#fff;'>></text>
-                        </view>
-                      </navigator>
-                      <navigator class='introd introds' style='background:#80B7EF;' bindtap='click' data-id='{{detailMsg.activity.advert_id}}' wx:else  data-path="{{detailMsg.activity.href_url}} ">
-                        <view>
-                          <image src='{{detailMsg.activity.icon}}'></image>
-                          <text style='color:#fff;'>{{detailMsg.activity.name}}</text>
-                        </view>
-                        <view>
-                          <text style='color:#fff;'>></text>
-                        </view>
-                      </navigator>
-                    </block>
-                  </view>
-                </view>
-              </view>
-            </view>
-            <view class='conBtn' bindtap='conLucky'>
-              <image src='../../image/tc_bt@2x(1).png'></image>
-            </view>
-          </view>
-          <view class='confirMask' bindtap='confirMaskExit' wx:if="{{confirmLucky}}" catchtouchmove="ture"></view>
-
-          中奖名单
-          <block wx:if="{{detailMsg.activity.status==- 1}} ">
-              <image src='{{detailMsg.luck_user.avatar_url}}' class='dynamImg'></image>
-              <text class='nickName'>{{detailMsg.luck_user.nick_name}}</text>
-          </block>
-          
-          免费抽奖且已参与
-          <block wx:if="{{detailMsg.product_type==1 && detailMsg.activity.participate==2 && detailMsg.activity.status==1 }} ">
-            <image src='../../image/Group9@2x.png' class='groop'></image>
-            <button open-type='share' class='openShare'>
-              <image src='../../image/cj_bt2@2x(1).png' animation="{{animationData}} "></image>
-            </button>
-            <text class='dynamText'>
-              已有 <text class='firendNum'>0</text>为好友帮您抽奖，中奖概率×<text class='probability'>{{detailMsg.activity.probability}}</text>倍
-            </text>
-            <text class='dyFind' bindtap='shareAvatar'>查看我邀请的{{detailMsg.activity.dragonball}}位朋友></text>
-          </block>
-
-          已参与未开奖(排名)
-          <block wx:if="{{detailMsg.product_type==2 && detailMsg.activity.participate==2 && detailMsg.activity.status==1 }} ">
-            <image src='../../image/Group9@2x.png' class='groop'></image>
-            <button open-type='share' class='openShare'>
-              <image src='../../image/cj_bt2@2x(1).png' animation="{{animationData}} "></image>
-            </button>
-          </block>
-
-          邀请好友，排名
-          <block wx:if="{{detailMsg.product_type==2 }} ">
-            <text class='dyFind' bindtap='shareAvatar' style='margin-top:40rpx'>查看我邀请的{{detailMsg.activity.dragonball}}位朋友></text>
-            <view class='freNum' bindtap='avatarPic'>
-              <text>已有<text>{{detailMsg.activity.participants}}</text>人参与</text>
-              <view class='freImg'>
-                <block wx:for="{{detaPic}} " wx:key="{{index}} ">
-                  <image class='frePic' src='{{item.avatar_url}}'></image>
-                </block>
-              </view>
-              <text>></text>
-            </view>
-
-            <block wx:if="{{detailMsg.activity.participate==2 }} ">
-              <view class='ranking' bindtap='ranking'>
-                <text>我的排名：第{{detailMsg.activity.ranking}}名</text>
-                <text>查看排名 > </text>
-              </view>
-            </block>
-          </block>
-
-          查看排名
-          <view class='drawer_screen' bindtap='ranking' wx:if="{{rankingStatus}} " catchtouchmove="ture ">
-            <view class='drawers'>
-              <image src='../../image/tc_top3@2x.png' class='brawImg'></image>
-              <scroll-view scroll-y="true " class='drawer'>
-                <view class='draPic'>
-                  <block wx:for="{{avatarUrl}} " wx:key="{{index}} ">
-                    <view class='rankPic'>
-                      <view class='rankDra'>
-                        <text class='rankIndex'>{{item.ranking}}</text>
-                        <image class='frePic_s' src='{{item.avatar_url}}'></image>
-                        <text class='rankName'>{{item.nickname}}</text>
-                      </view>
-                      <text class='rankNum'>{{item.power_number}}人</text>
-                    </view>
-                  </block>
-                </view>
-              </scroll-view>
-            </view>
-          </view>
-          <view class='draw_box' bindtap='rankingTop' wx:if="{{rankingStatus}} " catchtouchmove="ture "></view>
-
-          已参与未开奖（参与）集齐开奖
-          <block wx:if="{{detailMsg.product_type==3 && detailMsg.activity.participate==2 && detailMsg.activity.status==1 }} ">
-            <image src='../../image/Group9@2x.png' class='groop'></image>
-            <button open-type='share' class='openShare'>
-              <image src='../../image/cj_bt2@2x(1).png' animation="{{animationData}} "></image>
-            </button>
-          </block>
-
-          邀请好友集齐开奖
-          <block wx:if="{{detailMsg.product_type==3 }} ">
-            <text class='dyFind' bindtap='shareAvatar' style='margin-top:40rpx'>查看我邀请{{detailMsg.activity.dragonball}}位的朋友></text>
-             <view class='freNum' bindtap='avatarPic'>
-                <text>已有<text>{{detailMsg.activity.participants}}</text>人参与</text>
-                <view class='freImg'>
-                  <block wx:for="{{detaPic}} " wx:key="{{index}} ">
-                    <image class='frePic' src='{{item.avatar_url}}'></image>
-                  </block>
-                </view>
-                <text>></text>
-              </view>
-          </block>
-
-          邀请好友总数
-          <view class='drawer_screen' bindtap='shareAvatar' wx:if="{{shareAvatarStatus}} " catchtouchmove="ture ">
-            <image src='../../image/tc_top1@2x.png' class='brawImg'></image>
-            <scroll-view scroll-y="true " class='drawer' bindscrolltolower="lowers ">
-              <view class='draText'>
-                <text wx:if="{{dragonball==0 }} ">您还没有邀请好友</text>
-                <text wx:else>已邀请<text>{{dragonball}}</text>人参与，共<text>{{restrict}}</text>人自动开奖</text>
-              </view>
-              <view class='draPic'>
-                <block wx:if="{{dragonball==0 }} ">
-                    <button class='avatIcon' open-type='share'>
-                      <image src='../../image/tc_bt@2x.png' animation="{{animationData}} "></image>
-                    </button>
-                </block>
-                <block wx:else>
-                  <block wx:for="{{shareImg}} " wx:key="{{index}} ">
-                    <image class='frePics' src='{{item.avatar_url}}'></image>
-                  </block>
-                </block> 
-              </view>
-            </scroll-view>
-          </view>
-          <view class='draw_box' bindtap='shareAvatarTop' wx:if="{{shareAvatarStatus}} " catchtouchmove="ture "></view>
-
-          免费抽奖参与人员
-          <block wx:if="{{detailMsg.product_type==1 }} ">
-            <view class='freNum' bindtap='avatarPic'>
-              <text>已有<text>{{detailMsg.activity.participants}}</text>人参与</text>
-              <view class='freImg'>
-                <block wx:for="{{detaPic}} " wx:key="{{index}} ">
-                  <image class='frePic' src='{{item.avatar_url}}'></image>
-                </block>
-              </view>
-              <text>></text>
-            </view>
-          </block>
-          参与总人数
-          <view class='drawer_screen' bindtap='avatarPic' wx:if="{{showModalStatus}} " catchtouchmove="ture ">
-            <image src='../../image/tc_top1@2x(1).png' class='brawImg'></image>
-            <scroll-view scroll-y="true " class='drawer' bindscrolltolower="lower ">
-              <view class='draText'>
-                <text>已<text>{{detailMsg.activity.participants}}</text>人参与</text>
-              </view>
-              <view class='draPic'>
-                <block wx:for="{{avatarImg}} " wx:key="{{index}} ">
-                  <image class='frePics' src='{{item.avatar_url}}'></image>
-                </block>
-              </view>
-            </scroll-view>
-          </view>
-          <view class='draw_box' bindtap='exitTop' wx:if="{{showModalStatus}} " catchtouchmove="ture "></view>
-
-        </view>
-      </view>
-    </view>
-
-    赞助商介绍
-    <block wx:if="{{detailMsg.activity.is_gz==1 }} ">
-      <block wx:if="{{detailMsg.platform.length !=0 }} ">
-        <view class='about'>
-          <view class='aboutsUs'>
-            <image src="../../image/Rectangle3Copy5@2x.png "></image>
-            <text>{{detailMsg.platform.title}}</text>
-          </view>
-          <view class='aboutText'>
-            <text>{{detailMsg.platform.brief}}</text>
-          </view>
-          <view class='aboutBut'>
-            <text>{{detailMsg.platform.href}}</text>
-            <image src='../../image/Group4@2x.png' data-href="{{detailMsg.platform.href}} " bindtap='detaGroup'></image>
-          </view>
-        </view>
-      </block>
-    </block>
-
-    <block wx:else>
-      <view class='sponsor'>
-        <view class='spon'>
-          <image src="../../image/Rectangle3Copy5@2x.png "></image>
-          <text>赞助商介绍</text>
-        </view>
-        <view class='introduce'>
-          <view class='intTexts'>
-            <text class='intText'>{{detailMsg.activity.brief}}</text>
-          </view>
-          <navigator class='introd' wx:if='{{detailMsg.activity.app_id != " "}}' bindtap='click' data-id='{{detailMsg.activity.advert_id}}' target='{{detailMsg.activity.ad_type == 0 ? "miniProgram " : "self "}}' open-type='navigate'
-              app-id='{{detailMsg.activity.app_id}}' path='{{detailMsg.activity.path}}' data-qr='{{detailMsg.activity.qr_url}}'>
-              <view>
-                <image src='{{detailMsg.activity.icon}}'></image>
-                <text>{{detailMsg.activity.name}}</text>
-              </view>
-              <view>
-                <text>></text>
-              </view>
-            </navigator>
-            <navigator class='introd' bindtap='click' data-id='{{detailMsg.activity.advert_id}}' data-path="{{detailMsg.activity.href_url}} " wx:else >
-              <view>
-                <image src='{{detailMsg.activity.icon}}'></image>
-                <text>{{detailMsg.activity.name}}</text>
-              </view>
-              <view>
-                <text>></text>
-              </view>
-            </navigator>
-        </view>
-      </view>
-    </block> -->
-
-  <!-- 广告位 -->
-  <actionSheet id='actionSheet'></actionSheet>
-
-  <ad unit-id="adunit-35bb96f2a6c7a1ec "></ad>
-  <!-- 广告位结束 -->
-
-  <!-- 商品详情 -->
-  <!-- <view class='shopDetails'>
-      <view class='detailText'>
-        <image src="../../image/Group5Copy@2x.png "></image>
-      </view>
-      <view class='details'>
-        <block wx:for="{{detailMsg.detail}} " wx:key="{{index}} ">
-          <image src='{{item.detail_img_url}}' mode="widthFix "></image>
-        </block>
-      </view>
-    </view>
-
-    
-    赞助商介绍
-    <block wx:if="{{detailMsg.activity.is_gz==1 }} ">
-      <block wx:if="{{detailMsg.platform.length !=0 }} ">
-        <view class='about'>
-          <view class='aboutsUs'>
-            <image src="../../image/Rectangle3Copy5@2x.png "></image>
-            <text>{{detailMsg.platform.title}}</text>
-          </view>
-          <view class='aboutText'>
-            <text>{{detailMsg.platform.brief}}</text>
-          </view>
-          <view class='aboutBut'>
-            <text>{{detailMsg.platform.href}}</text>
-            <image src='../../image/Group4@2x.png' data-href="{{detailMsg.platform.href}} " bindtap='detaGroup'></image>
-          </view>
-        </view>
-      </block>
-    </block>
-
-    <block wx:else>
-      <view class='sponsor'>
-        <view class='spon'>
-          <image src="../../image/Rectangle3Copy5@2x.png "></image>
-          <text>赞助商介绍</text>
-        </view>
-        <view class='introduce'>
-          <view class='intTexts'>
-            <text class='intText'>{{detailMsg.activity.brief}}</text>
-          </view>
-          <navigator class='introd' wx:if='{{detailMsg.activity.app_id != " "}}' bindtap='click' data-id='{{detailMsg.activity.advert_id}}' target='{{detailMsg.activity.ad_type == 0 ? "miniProgram " : "self "}}' open-type='navigate'
-              app-id='{{detailMsg.activity.app_id}}' path='{{detailMsg.activity.path}}' data-qr='{{detailMsg.activity.qr_url}}'>
-              <view>
-                <image src='{{detailMsg.activity.icon}}'></image>
-                <text>{{detailMsg.activity.name}}</text>
-              </view>
-              <view>
-                <text>></text>
-              </view>
-            </navigator>
-            <navigator class='introd' bindtap='click' data-id='{{detailMsg.activity.advert_id}}' data-path="{{detailMsg.activity.href_url}} " wx:else >
-              <view>
-                <image src='{{detailMsg.activity.icon}}'></image>
-                <text>{{detailMsg.activity.name}}</text>
-              </view>
-              <view>
-                <text>></text>
-              </view>
-            </navigator>
-        </view>
-      </view>
-    </block>
-
-    <view class='line'></view>
-  </view> -->
-
 </view>
 
 <view class='footer'>
   <button class='home' bindtap='swithTab'>主页</button>
-  <button class='share' bindtap="listenerButton ">分享给好友</button>
+  <button class='share' bindtap="listenerButton">分享给好友</button>
 </view>
 
-<!-- 默认action-sheet为隐藏，由button触发 -->
-<action-sheet hidden="{{actionSheetHidden}} " bindchange="listenerActionSheet ">
-
-  <action-sheet-item>
-
-    <button open-type="share " class='openTypeBtn' style='height:50rpx;line-height:50rpx;top:-16rpx;'>分享给好友</button>
+<!--默认action-sheet为隐藏，由button触发-->
+<action-sheet hidden="{{actionSheetHidden}}" bindchange="listenerActionSheet">
+   <action-sheet-item>
+         <button open-type="share" class='openTypeBtn' style='height:90rpx;line-height:90rpx;'>分享给好友</button>
+   </action-sheet-item>
+   <action-sheet-item>
+      <button bindtap='shareCord' class='openTypeBtn' data-id="{{id}}" data-src="{{detailMsg.activity.img_url}}" data-name="{{detailMsg.activity.product_name}}">生成分享卡片</button>
   </action-sheet-item>
-
-  <action-sheet-item>
-    <button bindtap='shareCord' class='openTypeBtn' data-id="{{id}} " data-src="{{detailMsg.activity.img_url}} " data-name="{{detailMsg.activity.product_name}} " style='top:10rpx;'>生成分享卡片</button>
-  </action-sheet-item>
-
-  <!--自动隐藏action-sheet-->
-
-  <action-sheet-cancel>取消</action-sheet-cancel>
+   <!--自动隐藏action-sheet-->
+   <action-sheet-cancel>取消</action-sheet-cancel>
 </action-sheet>

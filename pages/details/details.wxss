@@ -120,10 +120,12 @@
   width: 220rpx;
   height: 52rpx;
 }
-.farr_fineds{
+
+.farr_fineds {
   outline: none;
   border: none;
 }
+
 .farr_fined {
   position: relative;
   padding: 0;
@@ -133,10 +135,12 @@
   height: 182rpx;
   background: none;
 }
-.farr_fined::after{
+
+.farr_fined::after {
   border: none;
   outline: none;
 }
+
 .fraaImg {
   width: 100%;
   height: 100%;
@@ -279,30 +283,36 @@
   height: 70rpx;
   display: block;
 }
-.draText{
+
+.draText {
   margin-top: 20rpx;
-  font-size:30rpx;
-  font-family:MicrosoftYaHei;
+  font-size: 30rpx;
+  font-family: MicrosoftYaHei;
   color: #999;
   display: block;
   text-align: center;
 }
+
 .drawer {
   width: 600rpx;
   height: 500rpx;
 }
-.draPic{
+
+.draPic {
   margin-top: 30rpx;
 }
-.frePics{
+
+.frePics {
   margin-left: 30rpx;
   margin-bottom: 30rpx;
   width: 80rpx;
   height: 80rpx;
   border-radius: 50%;
 }
+
 /* 邀请好友总数 */
-.drawer_screen{
+
+.drawer_screen {
   position: fixed;
   background: #fff;
   left: 10%;
@@ -310,22 +320,25 @@
   z-index: 99;
   border-radius: 20rpx;
 }
-.brawImgs{
+
+.brawImgs {
   margin: auto;
   margin-top: 40rpx;
   width: 314rpx;
   height: 70rpx;
   display: block;
 }
-.nonePic{
+
+.nonePic {
   margin-top: 100rpx;
-  font-size:36rpx;
-  font-family:MicrosoftYaHei;
+  font-size: 36rpx;
+  font-family: MicrosoftYaHei;
   color: #999;
   display: block;
   text-align: center;
 }
-.avatIcon{
+
+.avatIcon {
   position: relative;
   width: 300rpx;
   height: 90rpx;
@@ -334,28 +347,30 @@
   margin: 0 auto;
   margin-top: 116rpx;
 }
-.avatIcon image{
+
+.avatIcon image {
   width: 100%;
   height: 100%;
 }
-.avatIcon::after{
+
+.avatIcon::after {
   border: none;
   outline: none;
 }
-.avatIcon text{
+
+.avatIcon text {
   position: absolute;
   left: 0;
   top: 0;
   display: block;
   width: 100%;
   text-align: center;
-  font-size:28rpx;
-  font-family:MicrosoftYaHei-Bold;
-  font-weight:bold;
-  color: #513A2E;
+  font-size: 28rpx;
+  font-family: MicrosoftYaHei-Bold;
+  font-weight: bold;
+  color: #513a2e;
   line-height: 80rpx;
 }
-
 
 /* 查看曾获奖人名单 */
 
@@ -371,6 +386,80 @@
   font-size: 20rpx;
   font-family: MicrosoftYaHei;
   color: #999;
+}
+.winnersColor{
+  background: #F8D652;
+  color: #fff;
+}
+/* 中奖名单 */
+
+.winnerMask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.winner_List {
+  position: fixed;
+  top: 14%;
+  left: 7%;
+  z-index: 99;
+  background: #fff;
+  border-radius: 20rpx;
+}
+
+.winnerImg {
+  margin: auto;
+  margin-top: 40rpx;
+  width: 246rpx;
+  height: 70rpx;
+  display: block;
+}
+.drawer_list{
+  padding: 30rpx 24rpx;
+  width: 600rpx;
+  height: 500rpx;
+}
+.winnerText {
+  margin-top: 30rpx;
+  font-size: 30rpx;
+  text-align: center;
+  font-family: MicrosoftYaHei;
+  color: rgba(153, 153, 153, 1);
+  display: block;
+}
+
+.winner_detail {
+  display: flex;
+  margin-top: 30rpx;
+}
+
+.winner_detail image {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+}
+
+.winner_lottery {
+  margin-left: 14rpx;
+}
+
+.winner_nick {
+  font-size: 36rpx;
+  font-family: MicrosoftYaHei;
+  color: rgba(81, 58, 46, 1);
+  display: block;
+}
+
+.winner_time {
+  font-size: 24rpx;
+  font-family: MicrosoftYaHei;
+  color: rgba(153, 153, 153, 1);
+  display: block;
 }
 
 /* 怎样领取更多福利 ||赞助商简介*/
@@ -941,11 +1030,11 @@
 
 action-sheet-item {
   padding: 0;
-  height: 50rpx;
+  height: 90rpx;
 }
 
 action-sheet-item:nth-child(1) {
-  height: 70rpx;
+  height: 90rpx;
 }
 
 .openTypeBtn::after {
@@ -956,4 +1045,6 @@ action-sheet-item:nth-child(1) {
   background: none;
   outline: none;
   border-top: transparent;
+  height: 90rpx;
+  line-height: 90rpx;
 }

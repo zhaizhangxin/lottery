@@ -136,7 +136,7 @@
   color: #BE8C54;
 }
 .detail-welfares{
-  padding: 34rpx 24rpx 30rpx 24rpx;
+  padding: 0 24rpx;
 }
 .detail-welfare{
   position: relative;

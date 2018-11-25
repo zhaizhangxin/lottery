@@ -24,7 +24,19 @@ Page({
     confirmLucky: false,
     sponsonId: 1,
     optionId: 1,
-    animationData: {}
+    animationData: {},
+    winnersList:false,
+  },
+  // 中奖人数
+  winnerList:function(){
+    this.setData({
+      winnersList:true
+    })
+  },
+  winnerExit:function(){
+    this.setData({
+      winnersList: false
+    })
   },
   // 回到首页
   swithTab: function() {

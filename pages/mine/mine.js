@@ -12,6 +12,12 @@ Page({
     //倒计时
     interval: '',
   },
+  // 跳转首页
+  porize:function(){
+    wx.switchTab({
+      url: '../indexs/indexs',
+    })
+  },
   // 点击切换
   clickTab:function(e){
     var that = this;
