@@ -27,6 +27,13 @@ Page({
     optionId: 1,
     animationData: {},
     winnersList:false,
+    detailMask:true
+  },
+  // 点击关闭弹窗
+  detailExit: function () {
+    this.setData({
+      detailMask: false
+    })
   },
   // 中奖人数
   winnerList:function(){
@@ -633,6 +640,17 @@ Page({
       success: res => {
         console.log(res)
         if (res.statusCode == 200) {
+          if (that.data.navpath == 1){
+            if (res.data.msg.luck_user.is_luck != 1) {
+              that.setData({
+                detailMask: true
+              })
+            } else {
+              that.setData({
+                detailMask: false
+              })
+            }
+          }
           if (res.data.msg.product_type == 1) {
             this.setData({
               product_type: res.data.msg.product_type
@@ -722,7 +740,8 @@ Page({
       id: options.id,
       options: options,
       uid: wx.getStorageSync('uid'),
-      uids: options.uid
+      uids: options.uid,
+      navpath: options.navpath
     })
     console.log(options.scene);
 
@@ -944,7 +963,7 @@ Page({
     console.log(uid);
     return {
       title: wx.getStorageSync('nickName') + arr[i],
-      imageUrl: this.data.detailMsg.activity.img_url,
+      imageUrl: this.data.detailMsg.share_img,
       path: '/pages/details/details?id=' + id + '&uid=' + uid + '&pathId=' + 1,
       success: res => {
 

@@ -40,20 +40,20 @@ Page({
   currDeils:function(e){
     console.log(e);
     let id = e.currentTarget.dataset.id;
-    // if (e.currentTarget.dataset.status == 0){
-    //   wx.navigateTo({
-    //     url: '../lottery/lottery?id=' + id
-    //   })
-    // }else{
-    // }
+    if (e.currentTarget.dataset.status == 0){
+      wx.navigateTo({
+        url: '../details/details?id=' + id
+      })
+    }else{
     wx.navigateTo({
-      url: '../details/details?id=' + id
+      url: '../details/details?id=' + id+'&navpath='+1
     })
+    }
   },  
   currDeil:function(e){
     let id = e.currentTarget.dataset.id;
     wx.navigateTo({
-      url: '../details/details?id=' + id
+      url: '../details/details?id=' + id + '&navpath=' + 1
     })
   },
   

@@ -36,6 +36,66 @@
             </navigator>
           </view>
         </view>
+  <!-- 未中奖弹框 -->
+  <view class='maskDetail' wx:if="{{detailMask}}" catchtouchmove="ture">
+    <view class='maskDetails'>
+      <view class='detail-resevers'>
+        <image src='../../image/tk_bts@2x.png' class='detailRese'></image>
+      </view>
+      <view class='detail-welfares'>
+        <!-- <image src='../../image/wzj_bg@2x.png' class='welfareImg truePic'></image> -->
+        <view class='detail-wefares'>
+          <view class='detailsWefa'>
+            <text class='wefares_name'>{{detailMsg.jump.jump_name}}</text>
+            <text class='briefs'>{{detailMsg.jump.brief}}</text>
+          </view>
+          <view class='detailBrief'>
+            <navigator class='introds' wx:if='{{detailMsg.jump.jump_appid != ""}}' target='miniProgram' open-type='navigate' app-id='{{detailMsg.jump.jump_appid}}' path='{{detailMsg.jump.path}}'>
+              <view class='flexDetails'>
+                <image src='../../image/xcx@2x.png' class='ben_sponImg'></image>
+                <text class='ben_sponTexts'>点击查看></text>
+              </view>
+            </navigator>
+            <navigator class='introds' wx:else url='../h5ad/h5ad?h5ad={{detailMsg.jump.href}}'>
+              <view class='flexDetails'>
+                <image src='../../image/xcx@2x.png' class='ben_sponImg'></image>
+                <text class='ben_sponTexts'>点击查看></text>
+              </view>
+            </navigator>
+          </view>
+        </view>
+      </view>
+
+      <view class='detail-reserve-con-in'>
+        <view class='detail-avatar-title'>
+          <image src='../../image/line-left.png'></image>
+          <text>中奖者名单</text>
+          <image src='../../image/line-right.png'></image>
+        </view>
+        <image id='detail-btn-reserve' src='{{detailMsg.luck_user.avatar_url}}'></image>
+        <text>{{detailMsg.luck_user.nick_name}}</text>
+      </view>
+
+      <view class='more'>
+        <navigator class='wefares_zy' wx:if='{{detailMsg.product.jump_appid != ""}}' target='miniProgram' open-type='navigate' app-id='{{detailMsg.product.jump_appid}}' path='{{detailMsg.product.path}}'>
+          <image src='../../image/zy_btx@2x.png'></image>
+          <view class='zy_btx'>
+            <text class='more_zy'>领取更多福利</text>
+            <text class='more_text'>总有抽中的时候</text>
+          </view>
+        </navigator>
+        <navigator class='wefares_zy' wx:else url='../h5ad/h5ad?h5ad={{detailMsg.product.href}}'>
+          <image src='../../image/zy_btx@2x.png'></image>
+          <view class='zy_btx'>
+            <text class='more_zy'>领取更多福利</text>
+            <text class='more_text'>总有抽中的时候</text>
+          </view>
+        </navigator>
+      </view>
+    </view>
+  </view>
+  <view class='mask' wx:if="{{detailMask}}" catchtouchmove="ture"  bindtap='detailExit'></view>
+
         <!-- 中奖者名单 -->
         <view class='detail-reserve-con-in'>
           <view class='detail-avatar-title'>
