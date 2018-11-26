@@ -2,6 +2,30 @@
 .content{
   background: #f4f4f4;
 }
+/* 引导图 */
+.copyMask{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 10;
+}
+.groupCopy{
+  position: fixed;
+  top: 6%;
+  left: 7%;
+  z-index: 99;
+  padding: 0;
+  margin: 0;
+  background: none;
+}
+.groupImg{
+  width: 650rpx;
+  height: 988rpx;
+  display: block;
+}
 /* 头部 */
 .header{
   position: relative;
@@ -55,7 +79,7 @@
   position: absolute;
   left: 46rpx;
   font-size:32rpx;
-  line-height: 90rpx;
+  line-height: 80rpx;
   font-family:Helvetica;
   color: #513A2E;
   font-weight:400;
@@ -73,7 +97,7 @@
   font-size:32rpx;
   font-family:PingFangSC-Regular;
   font-weight:400;
-  line-height: 90rpx;
+  line-height: 80rpx;
   color: #fff;
 }
 /* 签到弹框 */
@@ -152,7 +176,7 @@
   position: absolute;
   left: 46rpx;
   font-size:32rpx;
-  line-height: 90rpx;
+  line-height: 80rpx;
   font-family:Helvetica;
   color: #513A2E;
   font-weight:400;
@@ -187,9 +211,45 @@
   font-weight:400;
   color: #666;
 }
+.groupMask{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  background: rgba(0,0,0,0.5);
+}
+.codesGroup{
+  position: fixed;
+  top: 10%;
+  left: 7%;
+  background: #fff;
+  z-index: 99;
+  border-radius: 20rpx;
+  width: 650rpx;
+}
+.groupList{
+  padding: 70rpx 74rpx 54rpx 74rpx;
+}
+.groupList image{
+  margin: auto;
+  width: 500rpx;
+  height: 500rpx;
+  display: block;
+}
+.groupList text{
+  margin-top: 42rpx;
+  display: block;
+  text-align: center;
+  font-size:32rpx;
+  font-family:MicrosoftYaHei;
+  color:rgba(51,51,51,1);
+}
 /* 中奖播报 */
 .coll{
   padding: 16rpx 24rpx;
+  margin-top: 20rpx;
 }
 .collRow{
   display: flex;
@@ -230,10 +290,13 @@
 }
 .freeCont{
   position: relative;
-  margin-top: 40rpx;
+  margin-top: 30rpx;
   background: #fff;
   border-radius: 20rpx;
   width: 700rpx;
+}
+.freeCont:nth-child(1){
+  margin-top: 20rpx;
 }
 .freeImg{
   border-radius: 20rpx 20rpx 0 0;
@@ -256,7 +319,7 @@
 .shopsCon{
   display: flex;
   justify-content: space-between;
-  padding: 20rpx 24rpx;
+  padding: 20rpx 24rpx 36rpx 24rpx;
 }
 .shopNames{
   display: flex;
@@ -270,9 +333,11 @@
   color: #666;
 }
 .conTime{
+  margin-top: 10rpx;
   font-size:24rpx;
   font-family:MicrosoftYaHei;
   color: #999;
+  display: block;
 }
 .consTimes{
   color: #E74E53;

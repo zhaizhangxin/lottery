@@ -31,6 +31,7 @@ App({
 
                 //存openid,question.js的ad上报需要
                 wx.setStorageSync('openid', res.data.key)
+                wx.setStorageSync('is_auto', res.data.is_auto);
 
                 resolve(res)
               }else{

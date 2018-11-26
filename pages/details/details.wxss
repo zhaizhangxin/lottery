@@ -13,7 +13,7 @@
 
 .headPic {
   width: 100%;
-  height: 500rpx;
+  height: 342rpx;
 }
 
 .detaText {
@@ -29,8 +29,8 @@
   border-radius: 28rpx 0 0 28rpx;
 }
 
-.freeDraw {
-  padding: 10rpx 22rpx;
+.freeDraws {
+  padding: 10rpx 22rpx 30rpx 22rpx;
 }
 
 .freeShops {
@@ -42,15 +42,143 @@
 }
 
 .consTimes {
+  margin-top: 10rpx;
+  display: block;
   font-size: 24rpx;
   font-family: MicrosoftYaHei;
   color: #999;
-  display: block;
 }
 
 .freTime {
   color: #e74e53;
   font-weight: bold;
+}
+/* 未中奖 */
+.content_detail{
+  margin-top: 30rpx;
+  background: #fff;
+}
+.detail_content{
+  padding: 28rpx 74rpx 48rpx 74rpx;
+}
+.detailImg{
+  width: 600rpx;
+  height: 104rpx;
+  display: block;
+}
+.detail-welfare{
+  position: relative;
+  margin-top: 20rpx;
+  height:360rpx;
+  width: 100%;
+}
+.welfareImg{
+  position: absolute;
+  left: 0;
+  width: 600rpx;
+  height: 360rpx;
+}
+.details-wefares{
+  position: absolute;
+  top:110rpx;
+  display: flex;
+  flex-wrap: wrap;
+}
+.wefares_names{
+  display: block;
+  width: 100%;
+  text-align: center;
+  color: #BE8C54;
+}
+.wefares_frees{
+  display: block;
+  width: 100%;
+  text-align: center;
+  color: #BE8C54;
+}
+.wefares_nav{
+  margin: auto;
+  margin-top: 48rpx;
+  width: 300rpx;
+  height: 62rpx;
+  border: 2rpx solid #BE8C54;
+  border-radius: 20rpx;
+  text-align: center;
+  font-size: 24rpx;
+  line-height: 62rpx;
+  color: #BE8C54;
+  font-family:PingFangSC-Semibold;
+  font-weight:600;
+}
+/* 中奖者名单 */
+.detail-reserve-con-in{
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+  width: 100%;
+  border-radius: 20rpx;
+}
+.detail-avatar-title{
+  display: flex;
+  justify-content:space-around;
+  align-items:center;
+  margin: 30rpx auto;
+}
+.detail-avatar-title image:first-child,.detail-avatar-title image:last-child{
+  width:168rpx;
+  height: 1px;
+}
+.detail-avatar-title text{
+  color: #4a4a4a;
+  margin: 0 10rpx;
+  font-size:40rpx;
+  font-family:PingFangSC-Medium;
+  font-weight:500;
+}
+.detailAvaimg{
+  margin: auto;
+  display: block;
+  width: 400rpx;
+  height: 70rpx;
+}
+#detail-btn-reserve{
+  padding: 0;
+  width: 122rpx;
+  height:122rpx;
+  line-height: 162rpx;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 32rpx;
+  box-shadow: 0 4px 8px rgba(197, 183, 182, 0.5);
+}
+.detail_text{
+  margin:18rpx 0 20rpx;
+  font-size:36rpx;
+  font-family:MicrosoftYaHei;
+  color:#513A2E;
+}
+#detail-btn-nav{
+  margin-top: 40rpx;
+  position: relative;
+  width: 480rpx;
+  height: 100rpx;
+}
+#detail-btn-nav image{
+  width: 100%;
+  height: 100%;
+}
+#detail-btn-nav text{
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+  width: 100%;
+  text-align: center;
+  line-height:90rpx;
+  font-size:32rpx;
+  font-family:MicrosoftYaHei-Bold;
+  font-weight:bold;
+  color:#513A2E;
 }
 
 /* 抽奖流程 */
@@ -60,7 +188,7 @@
 }
 
 .process {
-  margin-top: 20rpx;
+  margin-top: 30rpx;
   height: 200rpx;
 }
 
@@ -160,6 +288,7 @@
 }
 
 .participan {
+  margin-bottom: 70rpx;
   background: #fff;
 }
 
@@ -230,7 +359,7 @@
 /* 参与人员 */
 
 .freNum {
-  margin: 82rpx 86rpx 24rpx 86rpx;
+  margin: 82rpx 86rpx 34rpx 86rpx;
   display: flex;
   justify-content: space-around;
   line-height: 34rpx;
@@ -300,6 +429,7 @@
 
 .draPic {
   margin-top: 30rpx;
+  padding-left: 10rpx;
 }
 
 .frePics {
@@ -389,7 +519,7 @@
 }
 .winnersColor{
   background: #F8D652;
-  color: #fff;
+  color: #513A2E;
 }
 /* 中奖名单 */
 
@@ -465,7 +595,7 @@
 /* 怎样领取更多福利 ||赞助商简介*/
 
 .mastList {
-  margin-top: 20rpx;
+  margin-top: 40rpx;
   width: 100%;
   height: 450rpx;
 }
@@ -476,7 +606,7 @@
 }
 
 .sponsor {
-  margin-top: 20rpx;
+  margin-top: 40rpx;
 }
 
 .spon_intro {
@@ -484,9 +614,11 @@
 }
 
 .sponsorImg {
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
   display: block;
-  width: 232rpx;
-  height: 40rpx;
+  width: 230rpx;
+  height: 38rpx;
 }
 
 .introduction {
@@ -571,7 +703,7 @@
 /* 商品详情 */
 
 .details {
-  margin-top: 20rpx;
+  margin-top: 40rpx;
 }
 
 .details image {
@@ -582,11 +714,12 @@
 /* 领取更多福利 ||赞助商介绍*/
 
 .benefits {
-  margin-top: 20rpx;
+  margin-top: 40rpx;
   background: #fff;
 }
 
 .benefitsImg {
+  padding-top: 12rpx;
   width: 232rpx;
   height: 40rpx;
   display: block;
@@ -644,12 +777,14 @@
 
 .benSponsor {
   background: #fff;
-  margin-top: 22rpx;
+  margin-top: 40rpx;
 }
 
 .benSponImg {
-  width: 232rpx;
-  height: 40rpx;
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+  width: 230rpx;
+  height: 38rpx;
   display: block;
 }
 
@@ -699,10 +834,17 @@
 
 .mareShop {
   background: #fff;
-  margin-top: 26rpx;
+  margin-top: 40rpx;
+  padding-bottom: 100rpx;
 }
-
+.shops_img{
+  width: 100%;
+  height: 70rpx;
+  background: #fff;
+}
 .shopsImg {
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
   width: 232rpx;
   height: 40rpx;
   display: block;
@@ -867,12 +1009,12 @@
   height: 80rpx;
 }
 
-.welfBtn image {
+.welfBtns image {
   width: 100%;
   height: 100%;
 }
 
-.welfBtn text {
+.welfBtns text {
   position: absolute;
   left: 0;
   top: 0;
@@ -883,6 +1025,13 @@
   font-size: 32rpx;
   font-family: MicrosoftYaHei;
   color: #513a2e;
+}
+.welfBtns{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .close {
@@ -902,16 +1051,22 @@
   height: 250rpx;
   border-radius: 0 0 70rpx 70rpx;
 }
+.hd_img image{
+  width: 100%;
+  height: 100%;
+}
 
 /* 免费商品 */
 
 .freeDraw {
   padding: 0 24rpx;
+  padding-top: 10rpx;
+  background: #f4f4f4;
 }
 
 .freeCont {
   position: relative;
-  margin-top: 40rpx;
+  margin-top: 60rpx;
   background: #fff;
   border-radius: 20rpx;
   width: 700rpx;
@@ -940,7 +1095,7 @@
 .shopsCon {
   display: flex;
   justify-content: space-between;
-  padding: 20rpx 24rpx;
+  padding: 20rpx 24rpx 36rpx 24rpx;
 }
 
 .shopNames {
@@ -956,9 +1111,11 @@
 }
 
 .conTime {
+  margin-top: 10rpx;
   font-size: 24rpx;
   font-family: MicrosoftYaHei;
   color: #999;
+  display: block;
 }
 
 .consTime_s {

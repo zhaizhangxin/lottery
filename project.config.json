@@ -12,7 +12,7 @@
 		"autoAudits": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.4.0",
+	"libVersion": "2.3.2",
 	"appid": "wxd17beefaa53e52ee",
 	"projectname": "lottery",
 	"isGameTourist": false,

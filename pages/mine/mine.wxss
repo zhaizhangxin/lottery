@@ -139,19 +139,20 @@ open-data[type=userNickName] {
   position: relative;
   background: #fff;
   border-radius: 20rpx;
-  margin-top: 20rpx;
+  margin-top: 30rpx;
 }
 
 .participate{
   position: absolute;
   top: 46rpx;
   right: 0;
-  padding: 10rpx 30rpx 10rpx 40rpx;
-  background:linear-gradient(172deg,rgba(252,249,209,1) 0%,rgba(239,212,157,1) 100%);
-  border-radius:28rpx 0px 0px 28rpx;
+  padding:10rpx 20rpx 10rpx 30rpx;
   font-size:24rpx;
   font-family:MicrosoftYaHei;
-  color: #BE8C54;
+  color: #fff;
+  display: block;
+  background:rgba(0,0,0,0.3);
+  border-radius:28rpx 0 0 28rpx;
 }
 
 
@@ -164,7 +165,7 @@ open-data[type=userNickName] {
 .shopsInfor{
   display: flex;
   justify-content: space-between;
-  padding: 10rpx 62rpx 18rpx 18rpx;
+  padding: 10rpx 62rpx 28rpx 18rpx;
 }
 .shopNme{
   display: flex;
@@ -178,9 +179,11 @@ open-data[type=userNickName] {
   color: #666;
 }
 .inform{
+  margin-top: 10rpx;
   font-size:24rpx;
   font-family:MicrosoftYaHei;
   color: #999;
+  display: block;
 }
 .consTimes{
   color: #E44348;

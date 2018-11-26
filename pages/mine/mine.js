@@ -40,22 +40,20 @@ Page({
   currDeils:function(e){
     console.log(e);
     let id = e.currentTarget.dataset.id;
-    let ids = e.currentTarget.dataset.actid;
-    console.log(ids);
-    if (e.currentTarget.dataset.status == 0){
-      wx.navigateTo({
-        url: '../lottery/lottery?id=' + ids
-      })
-    }else{
-      wx.navigateTo({
-        url: '../details/details?id=' + ids
-      })
-    }
+    // if (e.currentTarget.dataset.status == 0){
+    //   wx.navigateTo({
+    //     url: '../lottery/lottery?id=' + id
+    //   })
+    // }else{
+    // }
+    wx.navigateTo({
+      url: '../details/details?id=' + id
+    })
   },  
   currDeil:function(e){
     let id = e.currentTarget.dataset.id;
     wx.navigateTo({
-      url: '../lottery/lottery?id=' + id
+      url: '../details/details?id=' + id
     })
   },
   
@@ -122,9 +120,23 @@ Page({
         console.log(res)
         if (res.statusCode == 200) {
           let msg = res.data.msg;
+          if (res.data.msg.length == 1){
+            this.setData({
+              height: 800
+            })
+          } else if (res.data.msg.length == 0) {
+            console.log(111);
+            this.setData({
+              height: 800
+            })
+          }else{
+            this.setData({
+              height: 490 * res.data.msg.length
+            })
+          }
+          
           this.setData({
-            msg: res.data.msg,
-            height: 450 * res.data.msg.length
+            msg: res.data.msg
           })
 
           // //清除倒计时

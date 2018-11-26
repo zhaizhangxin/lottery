@@ -22,6 +22,7 @@ Page({
     report: true,
     recomends: false,
     confirmLucky: false,
+    confirmLuckys:false,
     sponsonId: 1,
     optionId: 1,
     animationData: {},
@@ -244,7 +245,7 @@ Page({
   // 点击关闭抽奖
   confirMaskExit: function() {
     this.setData({
-      confirmLucky: false
+      confirmLuckys: false
     })
   },
   // 点击抽奖
@@ -265,7 +266,8 @@ Page({
     })
     setTimeout(function() {
       that.setData({
-        confirmLucky: true
+        confirmLucky: true,
+        confirmLuckys:true
       })
       wx.hideLoading();
     }, 500);
@@ -475,10 +477,28 @@ Page({
 
   // 点击上报
   click(e) {
+    wx.navigateToMiniProgram({
+      appId: this.data.detailMsg.activity.app_id,
+      // envVersion: 'trial',
+      success:res=>{
+        this.conLucky();
+        this.setData({
+          confirmLuckys:false
+        })
+      },
+      fail:function(){
+        console.log('跳转失败');
+      },
+      complete:function(){}
+    })
     if (e.currentTarget.dataset.path){
       let url = encodeURIComponent(e.currentTarget.dataset.path);
       wx.navigateTo({
         url: '../h5ad/h5ad?h5ad=' + url
+      })
+      this.conLucky();
+      this.setData({
+        confirmLuckys: false
       })
     }
     if (this.data.detailMsg.activity.type == 1) {
@@ -622,26 +642,31 @@ Page({
             detailMsg: res.data.msg,
             detaPic: res.data.msg.avatar
           })
-          // console.log(this.data.detailMsg.detail);
-          //添加倒计时
-          let time = Number(res.data.msg.activity.time) - Math.round(new Date / 1000);
-          let countDown = 'detailMsg.activity.time';
+          if (that.data.detailMsg.activity.status == -1){
+            this.setData({
+              detailTime: res.data.msg.activity.time
+            })
+          }else{
+            //添加倒计时
+            let time = Number(res.data.msg.activity.time) - Math.round(new Date / 1000);
+            let countDown = 'detailMsg.activity.time';
 
-          this.setData({
-            [countDown]: formatTime.formatTime(time)
-          })
+            this.setData({
+              [countDown]: formatTime.formatTime(time)
+            })
 
-          var interval = setInterval(() => {
-            if (Number(time) > 0) {
-              time--;
-              this.setData({
-                [countDown]: formatTime.formatTime(time)
-              })
+            var interval = setInterval(() => {
+              if (Number(time) > 0) {
+                time--;
+                this.setData({
+                  [countDown]: formatTime.formatTime(time)
+                })
 
-            } else {
-              clearInterval(interval);
-            }
-          }, 1000)
+              } else {
+                clearInterval(interval);
+              }
+            }, 1000)
+          }
 
 
 

@@ -21,7 +21,14 @@ Page({
     //倒计时
     interval: '',
     signInSuccess: false,
-    maskingShow:true
+    maskingShow:false,
+    group:false,
+  },
+  // 关闭引导
+  group_mask:function(){
+    this.setData({
+      maskingShow: false
+    })
   },
 
   // 规则页面
@@ -29,6 +36,26 @@ Page({
     wx.navigateTo({
       url: '../rules/rules',
     })
+  },
+  codeGroup:function(){
+    this.setData({
+      group:true
+    })
+  },
+  groupExit:function(){
+    this.setData({
+      group: false
+    })
+  },
+  // 识别图中二维码
+  previewImage: function (e) {
+    var url = e.currentTarget.dataset.icon;
+    var imgArr = [];
+    imgArr.push(url);
+    wx.previewImage({
+      current: imgArr[0], // 当前显示图片的http链接 
+      urls: imgArr // 需要预览的图片http链接”列表“ 
+    });
   },
   /**
    * 事件处理函数
@@ -211,13 +238,18 @@ Page({
         if (res.statusCode == 200) {
           console.log(wx.getStorageSync("nickName"));
           //判断用户是否授权，决定是否显示授权页面
-          if (wx.getStorageSync("nickName")) {
+          if (wx.getStorageSync('is_auto') != 0){
             that.setData({
-              maskingShow: false
+              maskingShow: true
             })
-          }else{
-            // that.showQuery();
           }
+          // if (wx.getStorageSync("nickName")) {
+          //   that.setData({
+          //     maskingShow: false
+          //   })
+          // }else{
+          //   // that.showQuery();
+          // }
 
           //获取终端信息
           wx.getSystemInfo({
@@ -358,7 +390,8 @@ Page({
             lottery_num: res.data.msg.lottery_num,
             wining_num: res.data.msg.wining_num,
             is_sign: res.data.msg.is_sign,
-            share_img: res.data.msg.share_img
+            share_img: res.data.msg.share_img,
+            qr_crowd: res.data.msg.qr_crowd
           })
           // 已中奖人数
 
@@ -501,7 +534,8 @@ Page({
             lottery_num: res.data.msg.lottery_num,
             wining_num: res.data.msg.wining_num,
             is_sign: res.data.msg.is_sign,
-            share_img: res.data.msg.share_img
+            share_img: res.data.msg.share_img,
+            qr_crowd: res.data.msg.qr_crowd
           })
           // 已中奖人数
 
