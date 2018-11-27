@@ -98,10 +98,11 @@
 .detail-wefares{
   border: 2rpx soli #C4C4C4;
   display: flex;
-  padding: 46rpx 26rpx 46rpx 26rpx;
+  padding: 36rpx 16rpx 26rpx 16rpx;
+  height: 300rpx;
 }
 .detail-wefares text{
-  display: block;
+  /* display: block; */
   text-align: center;
   /* color: #BE8C54; */
 }
@@ -116,11 +117,21 @@
   color: #5D7BCC;
 }
 .briefs{
-   display: block;
+  display: block;
+  margin-top: 10rpx;
   font-size:24rpx;
   font-family:MicrosoftYaHei-Bold;
   /* font-weight:bold; */
   color: #666;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  width: 100%;
+  height: 200rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+  line-height: 40rpx;
 }
 .flexDetails {
   display: flex;
@@ -259,10 +270,11 @@
   font-weight:500;
 }
 .detailAvaimg{
-  margin: auto;
+  /* margin: auto; */
   display: block;
-  width: 400rpx;
-  height: 70rpx;
+  width: 180rpx;
+  height: 2rpx;
+  background: #979797;
 }
 #detail-btn-reserve{
   padding: 0;
@@ -323,7 +335,7 @@
 /* 抽奖 */
 
 .lotteryIcon {
-  margin: 48rpx 286rpx;
+  margin: 54rpx 286rpx;
   position: relative;
 }
 
@@ -359,10 +371,11 @@
 
 .raffle {
   background: #fff;
+  margin-bottom: 40rpx;
 }
 
 .raffles {
-  padding: 30rpx 90rpx 0 90rpx;
+  padding: 0 90rpx;
   display: flex;
   justify-content: space-between;
 }
@@ -482,7 +495,7 @@
 /* 参与人员 */
 
 .freNum {
-  margin: 82rpx 86rpx 34rpx 86rpx;
+  margin: 44rpx 86rpx 34rpx 86rpx;
   display: flex;
   justify-content: space-around;
   line-height: 34rpx;
@@ -519,7 +532,7 @@
   z-index: 10;
 }
 
-.drawer_screen {
+.drawer_screens {
   position: fixed;
   top: 18%;
   left: 10%;
@@ -546,6 +559,8 @@
 }
 
 .drawer {
+  padding-top:10rpx;
+  padding-bottom: 10rpx;
   width: 600rpx;
   height: 500rpx;
 }
@@ -569,7 +584,7 @@
   position: fixed;
   background: #fff;
   left: 10%;
-  top: 10%;
+  top: 19%;
   z-index: 99;
   border-radius: 20rpx;
 }
@@ -658,7 +673,7 @@
 
 .winner_List {
   position: fixed;
-  top: 14%;
+  top: 19%;
   left: 7%;
   z-index: 99;
   background: #fff;
@@ -673,7 +688,7 @@
   display: block;
 }
 .drawer_list{
-  padding: 30rpx 24rpx;
+  padding: 10rpx 24rpx;
   width: 600rpx;
   height: 500rpx;
 }
@@ -689,6 +704,7 @@
 .winner_detail {
   display: flex;
   margin-top: 30rpx;
+  margin-left: 40rpx;
 }
 
 .winner_detail image {
@@ -706,6 +722,7 @@
   font-family: MicrosoftYaHei;
   color: rgba(81, 58, 46, 1);
   display: block;
+  height: 46rpx;
 }
 
 .winner_time {
@@ -729,7 +746,7 @@
 }
 
 .sponsor {
-  margin-top: 40rpx;
+  margin-top: 30rpx;
 }
 
 .spon_intro {
@@ -826,7 +843,7 @@
 /* 商品详情 */
 
 .details {
-  margin-top: 40rpx;
+  margin-top: 30rpx;
 }
 
 .details image {
@@ -900,7 +917,7 @@
 
 .benSponsor {
   background: #fff;
-  margin-top: 40rpx;
+  margin-top: 30rpx;
 }
 
 .benSponImg {
@@ -956,8 +973,8 @@
 /* 更多免费商品 */
 
 .mareShop {
-  background: #fff;
-  margin-top: 40rpx;
+  background: #f4f4f4;
+  margin-top: 30rpx;
   padding-bottom: 100rpx;
 }
 .shops_img{
@@ -1183,13 +1200,14 @@
 
 .freeDraw {
   padding: 0 24rpx;
-  padding-top: 10rpx;
+  /* padding-top: 10rpx; */
+  margin-bottom: 30rpx;
   background: #f4f4f4;
 }
 
 .freeCont {
   position: relative;
-  margin-top: 60rpx;
+  margin-top: 30rpx;
   background: #fff;
   border-radius: 20rpx;
   width: 700rpx;
@@ -1231,6 +1249,7 @@
   font-family: MicrosoftYaHei-Bold;
   font-weight: bold;
   color: #666;
+  display: block;
 }
 
 .conTime {
@@ -1271,6 +1290,100 @@
   display: block;
   border-radius: 50rpx;
 }
+/* 查看排名 */
+/* .rankIndex:nth-child(1){
+  color: #EC5B5A;
+} */
+.rankPic:nth-child(1) .rankIndex{
+  color: #EC5B5A;
+}
+.rankPic:nth-child(1) .rankNum{
+  color: #EC5B5A;
+}
+.rankPic:nth-child(2) .rankIndex{
+  color: #EC5B5A;
+}
+.rankPic:nth-child(2) .rankNum{
+  color: #EC5B5A;
+}
+.rankPic:nth-child(3) .rankIndex{
+  color: #EC5B5A;
+}
+.rankPic:nth-child(3) .rankNum{
+  color: #EC5B5A;
+}
+.drawer_s {
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
+  width: 600rpx;
+  height: 600rpx;
+}
+.ranking{
+  margin-top: 40rpx;
+  padding: 0 30rpx;
+  display: flex;
+  justify-content: space-between;
+  font-size: 24rpx;
+  color: #4a4a4a;
+}
+.brawImg{
+  margin: auto;
+  margin-top: 40rpx;
+  width: 246rpx;
+  height: 70rpx;
+  display: block;
+}
+.draPics{
+  padding: 0 52rpx 42rpx 42rpx;
+  /* width: 600rpx; */
+  height: 600rpx;
+}
+.rankPic{
+  display: flex;
+  justify-content: space-between;
+  padding-top: 20rpx;
+}
+.rankDra{
+  display: flex;
+  width: 80%;
+}
+.rankIndex{
+  font-size:36rpx;
+  font-family:PingFangSC-Semibold;
+  font-weight:600;
+  color: #513A2E;
+  line-height: 60rpx;
+  width: 14%;
+  text-align: center;
+}
+.frePic_s{
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+}
+.rankName{
+  font-size:32rpx;
+  font-family:MicrosoftYaHei;
+  color: #333;
+  width: 65%;
+  height: 60rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 60rpx;
+}
+.rankNum{
+  font-size:32rpx;
+  font-family:MicrosoftYaHei;
+  color: #513A2E;
+  line-height: 60rpx;
+}
+/* .lines{
+  width: 100%;
+  height: 66rpx;
+} */
 
 /* 尾部悬浮 */
 

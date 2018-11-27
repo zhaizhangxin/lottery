@@ -27,7 +27,10 @@ Page({
     optionId: 1,
     animationData: {},
     winnersList:false,
-    detailMask:true
+    detailMask:true,
+    navpath:'',
+    uids:'',
+    isClose:true
   },
   // 点击关闭弹窗
   detailExit: function () {
@@ -323,6 +326,9 @@ Page({
             })
           }
         } else {
+          that.setData({
+            titles: res.data.msg
+          })
           wx.showToast({
             title: res.data.msg,
             icon: 'none',
@@ -490,7 +496,8 @@ Page({
       success:res=>{
         this.conLucky();
         this.setData({
-          confirmLuckys:false
+          confirmLuckys:false,
+          isClose:false
         })
       },
       fail:function(){
@@ -505,7 +512,8 @@ Page({
       })
       this.conLucky();
       this.setData({
-        confirmLuckys: false
+        confirmLuckys: false,
+        isClose: false
       })
     }
     if (this.data.detailMsg.activity.type == 1) {
@@ -640,6 +648,7 @@ Page({
       success: res => {
         console.log(res)
         if (res.statusCode == 200) {
+          console.log(that.data.navpath);
           if (that.data.navpath == 1){
             if (res.data.msg.luck_user.is_luck != 1) {
               that.setData({
@@ -773,6 +782,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function(options) {
+    console.log(this.data.isClose);
+    if (!this.data.isClose) {
+      wx.showModal({
+        title:'提示',
+        content: this.data.titles
+      })
+    }
     // wx.setStorageSync('scene', options.scene)
     var animation = wx.createAnimation({
       duration: 500,

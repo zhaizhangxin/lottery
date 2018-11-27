@@ -238,7 +238,7 @@ Page({
         if (res.statusCode == 200) {
           console.log(wx.getStorageSync("nickName"));
           //判断用户是否授权，决定是否显示授权页面
-          if (wx.getStorageSync('is_auto') != 0){
+          if (wx.getStorageSync('is_auth') == 0){
             that.setData({
               maskingShow: true
             })

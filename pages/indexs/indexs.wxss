@@ -322,8 +322,8 @@
   padding: 20rpx 24rpx 36rpx 24rpx;
 }
 .shopNames{
-  display: flex;
-  flex-wrap: wrap;
+  /* display: flex;
+  flex-wrap: wrap; */
   /* width: 80%; */
 }
 .conName{
@@ -331,6 +331,7 @@
   font-family:MicrosoftYaHei-Bold;
   font-weight:bold;
   color: #666;
+  display: block;
 }
 .conTime{
   margin-top: 10rpx;
@@ -382,7 +383,7 @@
 }
 .collCot{
   padding: 0 24rpx;
-  padding-top: 236rpx;
+  padding-top: 248rpx;
 }
 /* 集齐人数就开奖 */
 .invitaPopers{

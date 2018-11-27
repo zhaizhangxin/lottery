@@ -13,11 +13,11 @@
       <block wx:else>
         <text class='consTimes' wx:if="{{detailMsg.product_type == 1}}"><text class='freTime'>{{detailMsg.activity.time}}</text>自动开奖</text>
         <text class='consTimes' wx:if="{{detailMsg.product_type == 2}}"><text class='freTime'>{{detailMsg.activity.time}}</text>邀请前{{detailMsg.activity.winning}}名得</text>
-        <text class='consTimes' wx:if="{{detailMsg.product_type == 3}}">集齐<text class='freTime'>{{detailMsg.activity.restrict}}</text>人开奖</text>
+        <text class='consTimes' wx:if="{{detailMsg.product_type == 3}}"><text class='freTime'>集齐{{detailMsg.activity.restrict}}人开奖</text></text>
       </block>
     </view>
   </view>
-<!-- 未中奖 -->
+  <!-- 未中奖 -->
   <block wx:if="{{detailMsg.activity.status == -1 && detailMsg.luck_user.is_luck == 0}}">
     <view class='content_detail'>
       <view class='detail_content'>
@@ -28,80 +28,79 @@
             <text class='wefares_names'>{{detailMsg.jump.jump_name}}</text>
             <text class='wefares_frees' wx:if="{{detailMsg.jump.yhq == ''}}">点击领取福利哦~</text>
             <text class='wefares_frees' wx:else>{{detailMsg.jump.yhq}}</text>
-              <navigator class='wefares_nav' wx:if='{{detailMsg.jump.jump_appid != ""}}' target='miniProgram' open-type='navigate' app-id='{{detailMsg.jump.jump_appid}}' path='{{detailMsg.jump.path}}'>
-            领取福利
+            <navigator class='wefares_nav' wx:if='{{detailMsg.jump.jump_appid != ""}}' target='miniProgram' open-type='navigate' app-id='{{detailMsg.jump.jump_appid}}' path='{{detailMsg.jump.path}}'>
+              领取福利
             </navigator>
             <navigator class='wefares_nav' wx:else url='../h5ad/h5ad?h5ad={{detailMsg.jump.href}}'>
               领取福利
             </navigator>
           </view>
         </view>
-  <!-- 未中奖弹框 -->
-  <view class='maskDetail' wx:if="{{detailMask}}" catchtouchmove="ture">
-    <view class='maskDetails'>
-      <view class='detail-resevers'>
-        <image src='../../image/tk_bts@2x.png' class='detailRese'></image>
-      </view>
-      <view class='detail-welfares'>
-        <!-- <image src='../../image/wzj_bg@2x.png' class='welfareImg truePic'></image> -->
-        <view class='detail-wefares'>
-          <view class='detailsWefa'>
-            <text class='wefares_name'>{{detailMsg.jump.jump_name}}</text>
-            <text class='briefs'>{{detailMsg.jump.brief}}</text>
-          </view>
-          <view class='detailBrief'>
-            <navigator class='introds' wx:if='{{detailMsg.jump.jump_appid != ""}}' target='miniProgram' open-type='navigate' app-id='{{detailMsg.jump.jump_appid}}' path='{{detailMsg.jump.path}}'>
-              <view class='flexDetails'>
-                <image src='../../image/xcx@2x.png' class='ben_sponImg'></image>
-                <text class='ben_sponTexts'>点击查看></text>
+        <!-- 未中奖弹框 -->
+        <view class='maskDetail' wx:if="{{detailMask}}" catchtouchmove="ture">
+          <view class='maskDetails'>
+            <view class='detail-resevers'>
+              <image src='../../image/tk_bts@2x.png' class='detailRese'></image>
+            </view>
+            <view class='detail-welfares'>
+              <view class='detail-wefares'>
+                <view class='detailsWefa'>
+                  <text class='wefares_name'>{{detailMsg.jump.jump_name}}</text>
+                  <text class='briefs'>{{detailMsg.jump.jump_brief}}</text>
+                </view>
+                <view class='detailBrief'>
+                  <navigator class='introds' wx:if='{{detailMsg.jump.jump_appid != ""}}' target='miniProgram' open-type='navigate' app-id='{{detailMsg.jump.jump_appid}}' path='{{detailMsg.jump.path}}'>
+                    <view class='flexDetails'>
+                      <image src='../../image/xcx@2x.png' class='ben_sponImg'></image>
+                      <text class='ben_sponTexts'>点击查看></text>
+                    </view>
+                  </navigator>
+                  <navigator class='introds' wx:else url='../h5ad/h5ad?h5ad={{detailMsg.jump.href}}'>
+                    <view class='flexDetails'>
+                      <image src='../../image/xcx@2x.png' class='ben_sponImg'></image>
+                      <text class='ben_sponTexts'>点击查看></text>
+                    </view>
+                  </navigator>
+                </view>
               </view>
-            </navigator>
-            <navigator class='introds' wx:else url='../h5ad/h5ad?h5ad={{detailMsg.jump.href}}'>
-              <view class='flexDetails'>
-                <image src='../../image/xcx@2x.png' class='ben_sponImg'></image>
-                <text class='ben_sponTexts'>点击查看></text>
+            </view>
+
+            <view class='detail-reserve-con-in'>
+              <view class='detail-avatar-title'>
+                <image src='../../image/line-left.png'></image>
+                <text>中奖者名单</text>
+                <image src='../../image/line-right.png'></image>
               </view>
-            </navigator>
+              <image id='detail-btn-reserve' src='{{detailMsg.luck_user.avatar_url}}'></image>
+              <text>{{detailMsg.luck_user.nick_name}}</text>
+            </view>
+
+            <view class='more'>
+              <navigator class='wefares_zy' wx:if='{{detailMsg.jump.jump_appid != ""}}' target='miniProgram' open-type='navigate' app-id='{{detailMsg.jump.jump_appid}}' path='{{detailMsg.jump.path}}'>
+                <image src='../../image/zy_btx@2x.png'></image>
+                <view class='zy_btx'>
+                  <text class='more_zy'>领取更多福利</text>
+                  <text class='more_text'>总有抽中的时候</text>
+                </view>
+              </navigator>
+              <navigator class='wefares_zy' wx:else url='../h5ad/h5ad?h5ad={{detailMsg.jump.href}}'>
+                <image src='../../image/zy_btx@2x.png'></image>
+                <view class='zy_btx'>
+                  <text class='more_zy'>领取更多福利</text>
+                  <text class='more_text'>总有抽中的时候</text>
+                </view>
+              </navigator>
+            </view>
           </view>
         </view>
-      </view>
-
-      <view class='detail-reserve-con-in'>
-        <view class='detail-avatar-title'>
-          <image src='../../image/line-left.png'></image>
-          <text>中奖者名单</text>
-          <image src='../../image/line-right.png'></image>
-        </view>
-        <image id='detail-btn-reserve' src='{{detailMsg.luck_user.avatar_url}}'></image>
-        <text>{{detailMsg.luck_user.nick_name}}</text>
-      </view>
-
-      <view class='more'>
-        <navigator class='wefares_zy' wx:if='{{detailMsg.product.jump_appid != ""}}' target='miniProgram' open-type='navigate' app-id='{{detailMsg.product.jump_appid}}' path='{{detailMsg.product.path}}'>
-          <image src='../../image/zy_btx@2x.png'></image>
-          <view class='zy_btx'>
-            <text class='more_zy'>领取更多福利</text>
-            <text class='more_text'>总有抽中的时候</text>
-          </view>
-        </navigator>
-        <navigator class='wefares_zy' wx:else url='../h5ad/h5ad?h5ad={{detailMsg.product.href}}'>
-          <image src='../../image/zy_btx@2x.png'></image>
-          <view class='zy_btx'>
-            <text class='more_zy'>领取更多福利</text>
-            <text class='more_text'>总有抽中的时候</text>
-          </view>
-        </navigator>
-      </view>
-    </view>
-  </view>
-  <view class='mask' wx:if="{{detailMask}}" catchtouchmove="ture"  bindtap='detailExit'></view>
+        <view class='mask' wx:if="{{detailMask}}" catchtouchmove="ture" bindtap='detailExit'></view>
 
         <!-- 中奖者名单 -->
         <view class='detail-reserve-con-in'>
           <view class='detail-avatar-title'>
-            <image src='../../image/line-left.png' class='detailAvaimg'></image>
+            <view class='detailAvaimg'></view>
             <text>中奖者名单</text>
-            <image src='../../image/line-right.png'></image>
+            <view class='detailAvaimg'></view>
           </view>
           <image id='detail-btn-reserve' src='{{detailMsg.luck_user.avatar_url}}'></image>
           <text class='detail_text'>{{detailMsg.luck_user.nick_name}}</text>
@@ -110,10 +109,52 @@
             <text>继续抽奖</text>
           </navigator>
         </view>
-
       </view>
     </view>
   </block>
+  <!-- 已中奖 -->
+  <block wx:if="{{detailMsg.activity.status == -1 && detailMsg.luck_user.is_luck == 1}}">
+    <view class='detail-reserve-con-in'>
+        <view class='detail-avatar-title'>
+          <view class='detailAvaimg'></view>
+          <text>中奖者名单</text>
+          <view class='detailAvaimg'></view>
+        </view>
+        <image id='detail-btn-reserve' src='{{detailMsg.luck_user.avatar_url}}'></image>
+        <text class='detail_text'>{{detailMsg.luck_user.nick_name}}</text>
+        <navigator open-type='switchTab' url='../indexs/indexs' id='detail-btn-nav'>
+          <image src='../../image/zy_btx@2x.png'></image>
+          <text>继续抽奖</text>
+        </navigator>
+      </view>
+      <!-- <block wx:if="{{detailMsg.product_type == 1}}"> -->
+      <view class='freNum' bindtap='avatarPic'>
+        <text>已有<text>{{detailMsg.activity.participants}}</text>人参与</text>
+        <view class='freImg'>
+          <block wx:for="{{detaPic}}" wx:key="{{index}}">
+            <image class='frePic' src='{{item.avatar_url}}'></image>
+          </block>
+        </view>
+        <text>></text>
+      </view>
+        <!-- </block> -->
+        <!-- 参与总人数 -->
+    <view class='drawer_screen' bindtap='avatarPic' wx:if="{{showModalStatus}}" catchtouchmove="ture">
+      <image src='../../image/tks_bt@2x.png' class='brawImg'></image>
+      <view class='draText'>
+        <text>已<text>{{detailMsg.activity.participants}}</text>人参与</text>
+      </view>
+      <scroll-view scroll-y="true" class='drawer' bindscrolltolower="lower">
+        <view class='draPic'>
+          <block wx:for="{{avatarImg}}" wx:key="{{index}}">
+            <image class='frePics' src='{{item.avatar_url}}'></image>
+          </block>
+        </view>
+      </scroll-view>
+    </view>
+    <view class='draw_box' bindtap='exitTop' wx:if="{{showModalStatus}}" catchtouchmove="ture"></view>
+  </block>
+
 
   <block wx:if="{{detailMsg.activity.status == 1}}">
     <view class='proce'>
@@ -123,25 +164,27 @@
       </view>
 
       <!-- 抽奖 -->
-      <view class='lottery'>
-        <view class='lotteryIcon'>
+        <view class='lottery'>
           <block wx:if="{{detailMsg.activity.participate == 1 && detailMsg.activity.status == 1}}">
-            <form report-submit='true' bindsubmit='luckDraw' wx:if="{{report}}">
-              <button form-type='submit' class='dynamImg'>
+            <view class='lotteryIcon'>
+              <form report-submit='true' bindsubmit='luckDraw' wx:if="{{report}}">
+                <button form-type='submit' class='dynamImg'>
+                  <image src='../../image/ej_bt@2x.png' animation="{{animationData}}"></image>
+                  <text>立即抽奖</text>
+                </button>
+              </form>
+              <button open-type='getUserInfo' class='dynamImg' bindgetuserinfo='getUserInfo' wx:else>
                 <image src='../../image/ej_bt@2x.png' animation="{{animationData}}"></image>
                 <text>立即抽奖</text>
               </button>
-            </form>
-            <button open-type='getUserInfo' class='dynamImg' bindgetuserinfo='getUserInfo' wx:else>
-              <image src='../../image/ej_bt@2x.png' animation="{{animationData}}"></image>
-              <text>立即抽奖</text>
-            </button>
+            </view>
           </block>
-        </view>
-        
+        <!-- <block wx:if="{{detailMsg.activity.is_gz == 1 && detailMsg.product_type == 2}}">
+          <view class='lines'></view>
+        </block> -->
         <!-- 已抽奖 -->
         <block wx:if="{{detailMsg.activity.participate == 2 && detailMsg.activity.status == 1}}">
-        
+
           <block wx:if="{{detailMsg.activity.is_gz == 1 && detailMsg.product_type == 2}}">
             <view class='participan'>
               <button open-type='share' class='openShare'>
@@ -150,6 +193,11 @@
                 <text class='shareText'>排名高者得</text>
               </button>
               <text class='lookFired' bindtap='shareAvatar'>查看我邀请的{{detailMsg.activity.dragonball}}位好友></text>
+              
+              <view class='ranking' bindtap='ranking'>
+                <text>我的排名：第{{detailMsg.activity.ranking}}名</text>
+                <text>查看排名 > </text>
+              </view>
             </view>
           </block>
 
@@ -178,7 +226,7 @@
                   <image class='raffFired' src='../../image/bt_l_z@2x.png'></image>
 
                   <view class='farr_fineds' wx:if='{{detailMsg.activity.app_id != ""}}' bindtap='click' data-id='{{detailMsg.activity.advert_id}}' target='{{detailMsg.activity.ad_type == 0 ? "miniProgram" : "self"}}' open-type='navigate' app-id='{{detailMsg.activity.app_id}}'
-              path='{{detailMsg.activity.path}}' data-qr='{{detailMsg.activity.qr_url}}'>
+                    path='{{detailMsg.activity.path}}' data-qr='{{detailMsg.activity.qr_url}}'>
                     <view class='farr_fined'>
                       <image class='fraaImg' src='../../image/bt_l@2x.png'></image>
                       <text>小程序</text>
@@ -195,11 +243,36 @@
             </view>
           </block>
         </block>
+        <!-- 查看排名 -->
+        <view class='drawer_screens' bindtap='ranking' wx:if="{{rankingStatus}}" catchtouchmove="ture">
+          <view class='drawers'>
+            <image src='../../image/tkbt@2x.png' class='brawImg'></image>
+            <view class='draText'>
+              <text>已有<text>{{detailMsg.activity.participants}}</text>人参与</text>
+            </view>
+            <scroll-view scroll-y="true" class='drawer_s'>
+              <view class='draPics'>
+                <block wx:for="{{avatarUrl}}" wx:key="{{index}}">
+                  <view class='rankPic'>
+                    <view class='rankDra'>
+                      <text class='rankIndex'>{{item.ranking}}</text>
+                      <image class='frePic_s' src='{{item.avatar_url}}'></image>
+                      <text class='rankName'>{{item.nickname}}</text>
+                    </view>
+                    <text class='rankNum'>{{item.power_number}}人</text>
+                  </view>
+                </block>
+              </view>
+            </scroll-view>
+          </view>
+        </view>
+        <view class='draw_box' bindtap='rankingTop' wx:if="{{rankingStatus}}" catchtouchmove="ture"></view>
         <!-- 邀请好友总数 -->
         <view class='drawer_screen' bindtap='shareAvatar' wx:if="{{shareAvatarStatus}}" catchtouchmove="ture">
           <image src='../../image/fired_bt@2x.png' class='brawImgs'></image>
           <view class='draText'>
-            <text wx:if="{{dragonball != 0}}">已邀请<text>{{dragonball}}</text>人参与，共<text>{{restrict}}</text>人自动开奖</text>
+            <text wx:if="{{dragonball != 0}}">已邀请<text>{{dragonball}}</text>人参与，共
+            <text>{{restrict}}</text>人自动开奖</text>
           </view>
           <block wx:if="{{dragonball == 0}}">
             <view class='draPic' style="width:600rpx;height:500rpx;">
@@ -219,7 +292,7 @@
                 </block>
               </view>
             </scroll-view>
-          </block> 
+          </block>
         </view>
         <view class='draw_box' bindtap='shareAvatarTop' wx:if="{{shareAvatarStatus}}" catchtouchmove="ture"></view>
 
@@ -249,20 +322,20 @@
             <image class='wxBack' src='../../image/hb_gx@2x.png' bindtap='confirMaskExit'></image>
             <view class='welfares'>
               <image class='wxwelfare' src='../../image/bg@2x.png'></image>
-              <view class='hd_img' wx:if='{{detailMsg.activity.app_id != ""}}' bindtap='click' data-id='{{detailMsg.activity.advert_id}}' target='{{detailMsg.activity.ad_type == 0 ? "miniProgram" : "self"}}' app-id='{{detailMsg.activity.app_id}}'
-              path='{{detailMsg.activity.path}}' data-qr='{{detailMsg.activity.qr_url}}'>
-                 <image  src='{{detailMsg.activity.hd_img}}'></image>
+              <view class='hd_img' wx:if='{{detailMsg.activity.app_id != ""}}' bindtap='click' data-id='{{detailMsg.activity.advert_id}}' target='{{detailMsg.activity.ad_type == 0 ? "miniProgram" : "self"}}' app-id='{{detailMsg.activity.app_id}}' path='{{detailMsg.activity.path}}'
+                data-qr='{{detailMsg.activity.qr_url}}'>
+                <image src='{{detailMsg.activity.hd_img}}'></image>
               </view>
               <navigator class='hd_img' bindtap='click' data-id='{{detailMsg.activity.advert_id}}' wx:else data-path="{{detailMsg.activity.href_url}}">
-                 <image  src='{{detailMsg.activity.hd_img}}'></image>
+                <image src='{{detailMsg.activity.hd_img}}'></image>
               </navigator>
-             
+
               <text class='welfTetx'>{{detailMsg.activity.name}}送你一个福利</text>
               <text class='welfTetxs'>大红包,快快领取吧!</text>
             </view>
             <view class='welfBtn'>
-              <view class='welfBtns' wx:if='{{detailMsg.activity.app_id != ""}}' bindtap='click' data-id='{{detailMsg.activity.advert_id}}' target='{{detailMsg.activity.ad_type == 0 ? "miniProgram" : "self"}}' app-id='{{detailMsg.activity.app_id}}'
-              path='{{detailMsg.activity.path}}' data-qr='{{detailMsg.activity.qr_url}}'>
+              <view class='welfBtns' wx:if='{{detailMsg.activity.app_id != ""}}' bindtap='click' data-id='{{detailMsg.activity.advert_id}}' target='{{detailMsg.activity.ad_type == 0 ? "miniProgram" : "self"}}' app-id='{{detailMsg.activity.app_id}}' path='{{detailMsg.activity.path}}'
+                data-qr='{{detailMsg.activity.qr_url}}'>
                 <image src='../../image/zy_btx@2x.png'></image>
                 <text>立即领取</text>
               </view>
@@ -277,7 +350,7 @@
         </block>
 
         <!-- 参与人员 -->
-        <block wx:if="{{detailMsg.product_type == 1}}">
+        <block wx:if="{{detailMsg.product_type != 2}}">
           <view class='freNum' bindtap='avatarPic'>
             <text>已有<text>{{detailMsg.activity.participants}}</text>人参与</text>
             <view class='freImg'>
@@ -292,7 +365,7 @@
         <view class='drawer_screen' bindtap='avatarPic' wx:if="{{showModalStatus}}" catchtouchmove="ture">
           <image src='../../image/tks_bt@2x.png' class='brawImg'></image>
           <view class='draText'>
-            <text>已<text>{{detailMsg.activity.participants}}</text>人参与</text>
+            <text>已有<text>{{detailMsg.activity.participants}}</text>人参与</text>
           </view>
           <scroll-view scroll-y="true" class='drawer' bindscrolltolower="lower">
             <view class='draPic'>
@@ -322,7 +395,7 @@
             </block>
           </scroll-view>
         </view>
-        <view class='winnerMask'  wx:if="{{winnersList}}" bindtap='winnerExit' catchtouchmove="ture"></view>
+        <view class='winnerMask' wx:if="{{winnersList}}" bindtap='winnerExit' catchtouchmove="ture"></view>
       </view>
     </view>
   </block>
@@ -404,7 +477,7 @@
       <view class='ben_spon'>
         <text class='ben_sponText'>{{detailMsg.activity.brief}}</text>
         <view class='introds' wx:if='{{detailMsg.activity.app_id != ""}}' bindtap='click' data-id='{{detailMsg.activity.advert_id}}' target='{{detailMsg.activity.ad_type == 0 ? "miniProgram" : "self"}}' open-type='navigate' app-id='{{detailMsg.activity.app_id}}'
-            path='{{detailMsg.activity.path}}' data-qr='{{detailMsg.activity.qr_url}}'>
+          path='{{detailMsg.activity.path}}' data-qr='{{detailMsg.activity.qr_url}}'>
           <view class='flexDetails'>
             <image src='../../image/xcx@2x.png' class='ben_sponImg'></image>
             <text class='ben_sponTexts'>点击查看></text>
@@ -433,9 +506,12 @@
           <view class='shopsCon'>
             <view class='shopNames'>
               <text class='conName'>免费抽奖:{{item.product_name}}</text>
-              <view class='conTime' wx:if="{{item.product_type == 1}}"><text class='consTime_s'>{{item.lottery_time}}</text>自动开奖</view>
-              <view class='conTime' wx:if="{{item.product_type == 2}}"><text class='consTime_s'>{{item.lottery_time}}</text>邀请前{{item.ranking}}名得</view>
-              <view class='conTime' wx:if="{{item.product_type == 3}}">集齐<text class='consTime_s'>{{item.restrict}}</text>开奖</view>
+              <view class='conTime' wx:if="{{item.product_type == 1}}">
+                <text class='consTime_s'>{{item.lottery_time}}</text>自动开奖</view>
+              <view class='conTime' wx:if="{{item.product_type == 2}}">
+                <text class='consTime_s'>{{item.lottery_time}}</text>邀请前{{item.ranking}}名得</view>
+              <view class='conTime' wx:if="{{item.product_type == 3}}">集齐
+                <text class='consTime_s'>{{item.restrict}}</text>开奖</view>
             </view>
             <view class='commodity'>
               <text class='conText' wx:if="{{item.participate == 1}}">免费领取</text>
@@ -456,12 +532,12 @@
 
 <!--默认action-sheet为隐藏，由button触发-->
 <action-sheet hidden="{{actionSheetHidden}}" bindchange="listenerActionSheet">
-   <action-sheet-item>
-         <button open-type="share" class='openTypeBtn' style='height:90rpx;line-height:90rpx;'>分享给好友</button>
-   </action-sheet-item>
-   <action-sheet-item>
-      <button bindtap='shareCord' class='openTypeBtn' data-id="{{id}}" data-src="{{detailMsg.activity.img_url}}" data-name="{{detailMsg.activity.product_name}}">生成分享卡片</button>
+  <action-sheet-item>
+    <button open-type="share" class='openTypeBtn' style='height:90rpx;line-height:90rpx;'>分享给好友</button>
   </action-sheet-item>
-   <!--自动隐藏action-sheet-->
-   <action-sheet-cancel>取消</action-sheet-cancel>
+  <action-sheet-item>
+    <button bindtap='shareCord' class='openTypeBtn' data-id="{{id}}" data-src="{{detailMsg.activity.img_url}}" data-name="{{detailMsg.activity.product_name}}">生成分享卡片</button>
+  </action-sheet-item>
+  <!--自动隐藏action-sheet-->
+  <action-sheet-cancel>取消</action-sheet-cancel>
 </action-sheet>
