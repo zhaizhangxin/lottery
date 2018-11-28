@@ -43,15 +43,15 @@ Page({
       method: 'GET',
       success: function (res) {
         console.log(res);
-        if (e.currentTarget.dataset.qr != '') {
-          var url = e.currentTarget.dataset.qr;
-          var imgArr = [];
-          imgArr.push(url);
-          wx.previewImage({
-            current: imgArr[0], // 当前显示图片的http链接 
-            urls: imgArr // 需要预览的图片http链接”列表“ 
-          });
-        }
+        // if (e.currentTarget.dataset.qr != '') {
+        //   var url = e.currentTarget.dataset.qr;
+        //   var imgArr = [];
+        //   imgArr.push(url);
+        //   wx.previewImage({
+        //     current: imgArr[0], // 当前显示图片的http链接 
+        //     urls: imgArr // 需要预览的图片http链接”列表“ 
+        //   });
+        // }
         wx.hideLoading();
       },
       fail: function (res) { },

@@ -323,23 +323,23 @@
             <view class='welfares'>
               <image class='wxwelfare' src='../../image/bg@2x.png'></image>
               <view class='hd_img' wx:if='{{detailMsg.activity.app_id != ""}}' bindtap='click' data-id='{{detailMsg.activity.advert_id}}' target='{{detailMsg.activity.ad_type == 0 ? "miniProgram" : "self"}}' app-id='{{detailMsg.activity.app_id}}' path='{{detailMsg.activity.path}}'
-                data-qr='{{detailMsg.activity.qr_url}}'>
+                data-qr='{{detailMsg.activity.qr_url}}' data-key="1">
                 <image src='{{detailMsg.activity.hd_img}}'></image>
               </view>
-              <navigator class='hd_img' bindtap='click' data-id='{{detailMsg.activity.advert_id}}' wx:else data-path="{{detailMsg.activity.href_url}}">
+              <view class='hd_img' bindtap='click' data-id='{{detailMsg.activity.advert_id}}' wx:else data-path="{{detailMsg.activity.href_url}}" data-key="1">
                 <image src='{{detailMsg.activity.hd_img}}'></image>
-              </navigator>
+              </view>
 
               <text class='welfTetx'>{{detailMsg.activity.name}}送你一个福利</text>
               <text class='welfTetxs'>大红包,快快领取吧!</text>
             </view>
             <view class='welfBtn'>
               <view class='welfBtns' wx:if='{{detailMsg.activity.app_id != ""}}' bindtap='click' data-id='{{detailMsg.activity.advert_id}}' target='{{detailMsg.activity.ad_type == 0 ? "miniProgram" : "self"}}' app-id='{{detailMsg.activity.app_id}}' path='{{detailMsg.activity.path}}'
-                data-qr='{{detailMsg.activity.qr_url}}'>
+                data-qr='{{detailMsg.activity.qr_url}}' data-key="1">
                 <image src='../../image/zy_btx@2x.png'></image>
                 <text>立即领取</text>
               </view>
-              <navigator class='welfBtns' bindtap='click' data-id='{{detailMsg.activity.advert_id}}' wx:else data-path="{{detailMsg.activity.href_url}}">
+              <navigator class='welfBtns' bindtap='click' data-id='{{detailMsg.activity.advert_id}}' wx:else data-path="{{detailMsg.activity.href_url}}" data-key="1">
                 <image src='../../image/zy_btx@2x.png'></image>
                 <text>立即领取</text>
               </navigator>

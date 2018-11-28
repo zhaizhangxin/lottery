@@ -255,7 +255,8 @@ Page({
   // 点击关闭抽奖
   confirMaskExit: function() {
     this.setData({
-      confirmLuckys: false
+      confirmLuckys: false,
+      confirmLucky:false
     })
   },
   // 点击抽奖
@@ -305,6 +306,7 @@ Page({
         wx.hideLoading();
         that.setData({
           confirmLucky: false,
+          // confirmLuckys: false,
           'detailMsg.activity.participants': parseInt(this.data.detailMsg.activity.participants) + 1,
 
         })
@@ -490,32 +492,80 @@ Page({
 
   // 点击上报
   click(e) {
-    wx.navigateToMiniProgram({
-      appId: this.data.detailMsg.activity.app_id,
-      // envVersion: 'trial',
-      success:res=>{
-        this.conLucky();
-        this.setData({
-          confirmLuckys:false,
-          isClose:false
+    console.log(e);
+    if (e.currentTarget.dataset.key != ''){
+      if (e.currentTarget.dataset.key == 1){
+        wx.navigateToMiniProgram({
+          appId: this.data.detailMsg.activity.app_id,
+          success:res=>{
+            this.conLucky();
+            this.setData({
+              confirmLuckys: false,
+              confirmLucky:false,
+              isClose:false
+            })
+          },
+          fail:function(){
+            console.log('跳转失败');
+          },
+          complete:function(){}
         })
-      },
-      fail:function(){
-        console.log('跳转失败');
-      },
-      complete:function(){}
-    })
-    if (e.currentTarget.dataset.path){
-      let url = encodeURIComponent(e.currentTarget.dataset.path);
-      wx.navigateTo({
-        url: '../h5ad/h5ad?h5ad=' + url
-      })
-      this.conLucky();
-      this.setData({
-        confirmLuckys: false,
-        isClose: false
+
+        
+      } else {
+        wx.navigateToMiniProgram({
+          appId: this.data.detailMsg.activity.app_id,
+          success: res => {
+          },
+          fail: function () {
+          },
+          complete: function () { }
+        })
+      }
+    } else {
+      wx.navigateToMiniProgram({
+        appId: this.data.detailMsg.activity.app_id,
+        success: res => {
+        },
+        fail: function () {
+        },
+        complete: function () { }
       })
     }
+
+    if (e.currentTarget.dataset.key != '') {
+      if (e.currentTarget.dataset.key == 1) {
+        if (e.currentTarget.dataset.path) {
+          let url = encodeURIComponent(e.currentTarget.dataset.path);
+          wx.navigateTo({
+            url: '../h5ad/h5ad?h5ad=' + url
+          })
+          this.conLucky();
+          this.setData({
+            confirmLuckys: false,
+            confirmLucky: false,
+            isClose: false
+          })
+        }
+
+      }else{
+        if (e.currentTarget.dataset.path) {
+          let url = encodeURIComponent(e.currentTarget.dataset.path);
+          wx.navigateTo({
+            url: '../h5ad/h5ad?h5ad=' + url
+          })
+        }
+      }
+
+    } else {
+      if (e.currentTarget.dataset.path) {
+        let url = encodeURIComponent(e.currentTarget.dataset.path);
+        wx.navigateTo({
+          url: '../h5ad/h5ad?h5ad=' + url
+        })
+      }
+    }
+
     if (this.data.detailMsg.activity.type == 1) {
       //调用组件actionSheet的_animationOuter方法
       this.selectComponent('#actionSheet').animationOuter(e.currentTarget.dataset.qr)
@@ -538,15 +588,15 @@ Page({
       method: 'GET',
       success: function(res) {
         console.log(res);
-        if (e.currentTarget.dataset.qr != '') {
-          var url = e.currentTarget.dataset.qr;
-          var imgArr = [];
-          imgArr.push(url);
-          wx.previewImage({
-            current: imgArr[0], // 当前显示图片的http链接 
-            urls: imgArr // 需要预览的图片http链接”列表“ 
-          });
-        }
+        // if (e.currentTarget.dataset.qr != '') {
+        //   var url = e.currentTarget.dataset.qr;
+        //   var imgArr = [];
+        //   imgArr.push(url);
+        //   wx.previewImage({
+        //     current: imgArr[0], // 当前显示图片的http链接 
+        //     urls: imgArr // 需要预览的图片http链接”列表“ 
+        //   });
+        // }
         wx.hideLoading();
       },
       fail: function(res) {},
