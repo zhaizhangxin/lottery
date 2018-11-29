@@ -379,6 +379,15 @@
         <!-- 查看曾获奖人名单 -->
         <text class='winnerList' wx:if="{{detailMsg.recode == ''}}">查看曾获奖人名单</text>
         <text class='winnerList winnersColor' bindtap='winnerList' wx:else>查看曾获奖人名单</text>
+
+        <block wx:if="{{detailMsg.activity.participate == 2 && detailMsg.activity.status == 1}}">
+          <block wx:if="{{detailMsg.activity.is_gz == 1 && detailMsg.product_type == 2}}">
+              <view class='ranking' bindtap='ranking'>
+                <text>我的排名：第{{detailMsg.activity.ranking}}名</text>
+                <text>查看排名 > </text>
+              </view>
+          </block>
+        </block>
         <!-- 查看曾获奖名单 -->
         <view class='winner_List' wx:if="{{winnersList}}" catchtouchmove="ture">
           <image class='winnerImg' src='../../image/tk_bt@1.png'></image>

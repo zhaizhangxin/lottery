@@ -30,7 +30,8 @@ Page({
     detailMask:true,
     navpath:'',
     uids:'',
-    isClose:true
+    isClose:true,
+    clickData:''
   },
   // 点击关闭弹窗
   detailExit: function () {
@@ -492,7 +493,11 @@ Page({
 
   // 点击上报
   click(e) {
+    var that = this;
     console.log(e);
+    this.setData({
+      clickData:e
+    })
     if (e.currentTarget.dataset.key != ''){
       if (e.currentTarget.dataset.key == 1){
         wx.navigateToMiniProgram({
@@ -833,11 +838,18 @@ Page({
    */
   onShow: function(options) {
     console.log(this.data.isClose);
-    if (!this.data.isClose) {
-      wx.showModal({
-        title:'提示',
-        content: this.data.titles
-      })
+    if (this.data.clickData != ''){
+      console.log(this.data.clickData);
+      // if (this.data.clickData.currentTarget.dataset.key != '') {
+        if (this.data.clickData.currentTarget.dataset.key == 1) {
+          if (!this.data.isClose) {
+            wx.showModal({
+              title:'提示',
+              content: this.data.titles
+            })
+          }
+        }
+      // }
     }
     // wx.setStorageSync('scene', options.scene)
     var animation = wx.createAnimation({

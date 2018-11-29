@@ -1319,12 +1319,16 @@
   height: 600rpx;
 }
 .ranking{
-  margin-top: 40rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  background: #E6E9EE;
+  /* margin-top: 40rpx; */
   padding: 0 30rpx;
   display: flex;
   justify-content: space-between;
   font-size: 24rpx;
-  color: #4a4a4a;
+  color: #666;
+  font-family:MicrosoftYaHei;
 }
 .brawImg{
   margin: auto;
