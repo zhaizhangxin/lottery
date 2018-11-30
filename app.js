@@ -1,5 +1,22 @@
 const reqUrl = require('utils/reqUrl');
 
+
+
+// 1、觅有品 wxb19a236e51a8d248
+// 2、零元购 wx04ae6db5ac8838c8
+// 3、凡人飞仙传和凡人修仙传 wxd7c5b7d77ff1b238
+// 4、京东 wxa42959523195f527
+// 5、决战白日门 wxefe8997276c7a7d4
+// 6、风流霸业 wxa331708430664298
+// 7、闯关 wx23c7f38689be4392
+// 8、小鸡商店 wxd2b9331ac904b5de
+// 9、家具达分奇 wxe784b2d26d254912
+// 10、挖矿小队 wxc021569276c9f0ec
+
+
+
+
+
 //app.js
 App({
   //login promise

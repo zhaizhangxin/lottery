@@ -502,6 +502,8 @@ Page({
       if (e.currentTarget.dataset.key == 1){
         wx.navigateToMiniProgram({
           appId: this.data.detailMsg.activity.app_id,
+          path: this.data.detailMsg.activity.path,
+          extraData: this.data.detailMsg.activity.extra_data,
           success:res=>{
             this.conLucky();
             this.setData({
@@ -520,6 +522,7 @@ Page({
       } else {
         wx.navigateToMiniProgram({
           appId: this.data.detailMsg.activity.app_id,
+          path: this.data.detailMsg.activity.path,
           success: res => {
           },
           fail: function () {
@@ -530,6 +533,7 @@ Page({
     } else {
       wx.navigateToMiniProgram({
         appId: this.data.detailMsg.activity.app_id,
+        path: this.data.detailMsg.activity.path,
         success: res => {
         },
         fail: function () {
