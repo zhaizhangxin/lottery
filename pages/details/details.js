@@ -909,10 +909,10 @@ Page({
         report: false
       })
     }
-    console.log(this.data.options.pathId);
+    console.log('pathId:'+this.data.options.pathId);
     console.log(this.data.uids);
     let that = this;
-    if (this.data.options.pathId != undefined || this.data.uids != undefined) {
+    if (this.data.options.pathId != undefined || this.data.uids == undefined) {
       console.log(121212);
       // 登录
       wx.login({
