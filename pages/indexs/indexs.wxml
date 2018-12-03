@@ -25,7 +25,7 @@
       <text>今日已签到</text>
     </view>
     <!-- 签到弹框 -->
-    <view class='successFully' bindtap='signIn' wx:if="{{signInSuccess}}" catchtouchmove="true">
+    <view class='successFully' wx:if="{{signInSuccess}}" catchtouchmove="true">
       <view class='success'>
         <image src='../../image/sign_bt@2x.png' class='successImg'></image>
         <text class='signSuccess'>抽奖机会+1</text>
@@ -42,21 +42,22 @@
   </view>
 
   <!-- 扫码进群 -->
-  <view class='codeGroup' bindtap='codeGroup'>
-    <view class='scanCode'>
+  <button open-type="contact" class='codeGroup'>
+   <view class='scanCode'>
       <image src='../../image/zy_ewm@2x.png' class='scan'></image>
       <text>扫码进群，获取更多优惠信息</text>
     </view>
     <text> > </text>
-  </view>
+  </button>
+  <!-- <view class='codeGroup' bindtap='codeGroup'></view> -->
   <!-- 扫码进群 -->
-  <view class='codesGroup' wx:if="{{group}}" catchtouchmove="ture">
+  <!-- <view class='codesGroup' wx:if="{{group}}" catchtouchmove="ture">
     <view class='groupList'>
       <image src='{{qr_crowd}}' data-icon="{{qr_crowd}}" bindtap='previewImage'></image>
       <text>点击上图识别图中二维码进群，获取更多优惠信息</text>
     </view>
   </view>
-  <view class='groupMask' wx:if="{{group}}" bindtap='groupExit' catchtouchmove="ture"></view>
+  <view class='groupMask' wx:if="{{group}}" bindtap='groupExit' catchtouchmove="ture"></view> -->
 
   <!-- 中奖滚动 -->
   <view class='coll'>

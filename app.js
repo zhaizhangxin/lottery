@@ -66,7 +66,7 @@ App({
   },
 
   onLaunch: function (options) {
-    console.log(options.scene);
+    // console.log(options.scene);
     wx.setStorageSync('options', options);
     wx.setStorageSync('scene', options.scene);
 
@@ -74,7 +74,7 @@ App({
 
     updateManager.onCheckForUpdate(function (res) {
       // 请求完新版本信息的回调
-      console.log(res)
+      // console.log(res)
     })
 
     updateManager.onUpdateReady(function () {

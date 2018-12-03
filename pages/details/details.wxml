@@ -139,7 +139,7 @@
       </view>
         <!-- </block> -->
         <!-- 参与总人数 -->
-    <view class='drawer_screen' bindtap='avatarPic' wx:if="{{showModalStatus}}" catchtouchmove="ture">
+    <view class='drawer_screen' wx:if="{{showModalStatus}}" catchtouchmove="ture">
       <image src='../../image/tks_bt@2x.png' class='brawImg'></image>
       <view class='draText'>
         <text>已<text>{{detailMsg.activity.participants}}</text>人参与</text>
@@ -194,10 +194,10 @@
               </button>
               <text class='lookFired' bindtap='shareAvatar'>查看我邀请的{{detailMsg.activity.dragonball}}位好友></text>
               
-              <view class='ranking' bindtap='ranking'>
+              <!-- <view class='ranking' bindtap='ranking'>
                 <text>我的排名：第{{detailMsg.activity.ranking}}名</text>
                 <text>查看排名 > </text>
-              </view>
+              </view> -->
             </view>
           </block>
 
@@ -244,7 +244,7 @@
           </block>
         </block>
         <!-- 查看排名 -->
-        <view class='drawer_screens' bindtap='ranking' wx:if="{{rankingStatus}}" catchtouchmove="ture">
+        <view class='drawer_screens' wx:if="{{rankingStatus}}" catchtouchmove="ture">
           <view class='drawers'>
             <image src='../../image/tkbt@2x.png' class='brawImg'></image>
             <view class='draText'>
@@ -268,7 +268,7 @@
         </view>
         <view class='draw_box' bindtap='rankingTop' wx:if="{{rankingStatus}}" catchtouchmove="ture"></view>
         <!-- 邀请好友总数 -->
-        <view class='drawer_screen' bindtap='shareAvatar' wx:if="{{shareAvatarStatus}}" catchtouchmove="ture">
+        <view class='drawer_screen' wx:if="{{shareAvatarStatus}}" catchtouchmove="ture">
           <image src='../../image/fired_bt@2x.png' class='brawImgs'></image>
           <view class='draText'>
             <text wx:if="{{dragonball != 0}}">已邀请<text>{{dragonball}}</text>人参与，共
@@ -332,19 +332,22 @@
 
               <text class='welfTetx'>{{detailMsg.activity.name}}送你一个福利</text>
               <text class='welfTetxs'>大红包,快快领取吧!</text>
-            </view>
-            <view class='welfBtn'>
-              <view class='welfBtns' wx:if='{{detailMsg.activity.app_id != ""}}' bindtap='click' data-id='{{detailMsg.activity.advert_id}}' target='{{detailMsg.activity.ad_type == 0 ? "miniProgram" : "self"}}' app-id='{{detailMsg.activity.app_id}}' path='{{detailMsg.activity.path}}'
-                data-qr='{{detailMsg.activity.qr_url}}' data-key="1">
-                <image src='../../image/zy_btx@2x.png'></image>
-                <text>立即领取</text>
+
+              <view class='welfBtn'>
+                <view class='welfBtns' wx:if='{{detailMsg.activity.app_id != ""}}' bindtap='click' data-id='{{detailMsg.activity.advert_id}}' target='{{detailMsg.activity.ad_type == 0 ? "miniProgram" : "self"}}' app-id='{{detailMsg.activity.app_id}}' path='{{detailMsg.activity.path}}'
+                  data-qr='{{detailMsg.activity.qr_url}}' data-key="1">
+                  <image src='../../image/zy_btx@2x.png'></image>
+                  <text>立即领取</text>
+                </view>
+                <navigator class='welfBtns' bindtap='click' data-id='{{detailMsg.activity.advert_id}}' wx:else data-path="{{detailMsg.activity.href_url}}" data-key="1">
+                  <image src='../../image/zy_btx@2x.png'></image>
+                  <text>立即领取</text>
+                </navigator>
               </view>
-              <navigator class='welfBtns' bindtap='click' data-id='{{detailMsg.activity.advert_id}}' wx:else data-path="{{detailMsg.activity.href_url}}" data-key="1">
-                <image src='../../image/zy_btx@2x.png'></image>
-                <text>立即领取</text>
-              </navigator>
+                <image src='../../image/gb@2x.png' class='close' bindtap='confirMaskExit' wx:if="{{confirmLucky}}" catchtouchmove="ture"></image>
+
             </view>
-            <image src='../../image/gb@2x.png' class='close' bindtap='confirMaskExit' wx:if="{{confirmLucky}}" catchtouchmove="ture"></image>
+            
           </view>
           <view class='drawingMask' wx:if="{{confirmLuckys}}" catchtouchmove="ture"></view>
         </block>
@@ -362,7 +365,7 @@
           </view>
         </block>
         <!-- 参与总人数 -->
-        <view class='drawer_screen' bindtap='avatarPic' wx:if="{{showModalStatus}}" catchtouchmove="ture">
+        <view class='drawer_screen' wx:if="{{showModalStatus}}" catchtouchmove="ture">
           <image src='../../image/tks_bt@2x.png' class='brawImg'></image>
           <view class='draText'>
             <text>已有<text>{{detailMsg.activity.participants}}</text>人参与</text>
@@ -536,6 +539,7 @@
 
 <view class='footer'>
   <button class='home' bindtap='swithTab'>主页</button>
+  <navigator class='miyoupin' target='miniProgram' open-type='navigate' app-id='wxb19a236e51a8d248'>领福利</navigator>
   <button class='share' bindtap="listenerButton">分享给好友</button>
 </view>
 

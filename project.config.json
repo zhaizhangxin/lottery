@@ -34,20 +34,20 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 5,
+			"current": 1,
 			"list": [
 				{
 					"id": 0,
 					"name": "分享",
 					"pathName": "pages/share/share",
-					"query": "id=996&uid=10003",
+					"query": "id=1446&uid=14093",
 					"scene": "1007"
 				},
 				{
 					"id": 1,
 					"name": "query",
 					"pathName": "pages/details/details",
-					"query": "id=1410&uid=16893",
+					"query": "id=1446&uid=14093&pathId=1",
 					"scene": "1007"
 				},
 				{

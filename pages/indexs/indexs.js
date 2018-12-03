@@ -37,26 +37,26 @@ Page({
       url: '../rules/rules',
     })
   },
-  codeGroup:function(){
-    this.setData({
-      group:true
-    })
-  },
-  groupExit:function(){
-    this.setData({
-      group: false
-    })
-  },
-  // 识别图中二维码
-  previewImage: function (e) {
-    var url = e.currentTarget.dataset.icon;
-    var imgArr = [];
-    imgArr.push(url);
-    wx.previewImage({
-      current: imgArr[0], // 当前显示图片的http链接 
-      urls: imgArr // 需要预览的图片http链接”列表“ 
-    });
-  },
+  // codeGroup:function(){
+  //   this.setData({
+  //     group:true
+  //   })
+  // },
+  // groupExit:function(){
+  //   this.setData({
+  //     group: false
+  //   })
+  // },
+  // // 识别图中二维码
+  // previewImage: function (e) {
+  //   var url = e.currentTarget.dataset.icon;
+  //   var imgArr = [];
+  //   imgArr.push(url);
+  //   wx.previewImage({
+  //     current: imgArr[0], // 当前显示图片的http链接 
+  //     urls: imgArr // 需要预览的图片http链接”列表“ 
+  //   });
+  // },
   /**
    * 事件处理函数
    */
@@ -77,7 +77,7 @@ Page({
       mask: true
     })
 
-    console.log(e.detail);
+    // console.log(e.detail);
     if (e.detail.userInfo) {
 
       wx.setStorageSync('nickName', e.detail.userInfo.nickName)
@@ -141,7 +141,7 @@ Page({
    */
   onLoad: function(options) {
     let that = this;
-    console.log(options);
+    // console.log(options);
     wx.showLoading({
       title: '加载中...',
       mask: true
@@ -156,7 +156,7 @@ Page({
       // 登录
       wx.login({
         success: res => {
-          console.log(res);
+          // console.log(res);
           // 发送 res.code 到后台换取 openId, sessionKey, unionId
           wx.request({
             // url: reqUrl + 'token',
@@ -184,7 +184,7 @@ Page({
 
                 // resolve(res)
               } else {
-                console.log(res);
+                // console.log(res);
                 // reject(res)
               }
             },
@@ -211,7 +211,7 @@ Page({
             dataType: 'json',
             responseType: 'text',
             success: res => {
-              console.log(res);
+              // console.log(res);
               wx.hideLoading();
               if (res.statusCode == 200) {
                 //本地缓存存入token、uid
@@ -233,10 +233,10 @@ Page({
     } else {
       //异步登录执行完的 resolve 
       getApp().login().then(res => {
-        console.log(res);
+        // console.log(res);
         wx.hideLoading()
         if (res.statusCode == 200) {
-          console.log(wx.getStorageSync("nickName"));
+          // console.log(wx.getStorageSync("nickName"));
           //判断用户是否授权，决定是否显示授权页面
           if (wx.getStorageSync('is_auth') == 0){
             that.setData({
@@ -254,7 +254,7 @@ Page({
           //获取终端信息
           wx.getSystemInfo({
             success: function (res) {
-              console.log(res);
+              // console.log(res);
               wx.request({
                 url: reqUrl + 'award_getSystemInfo',
                 header: {
@@ -263,7 +263,7 @@ Page({
                 data: res,
                 method: 'POST',
                 success: res => {
-                  console.log(res)
+                  // console.log(res)
                 }
               })
             },
@@ -333,7 +333,7 @@ Page({
       success: res => {
         wx.hideLoading();
 
-        console.log(res);
+        // console.log(res);
         if (res.data.error_code == 0) {
           that.setData({
             signInSuccess: true
@@ -350,7 +350,7 @@ Page({
       complete: function(res) {},
     })
   },
-  // 点击关闭
+  // 点击
   successExit: function() {
     this.setData({
       signInSuccess: false,
@@ -378,7 +378,7 @@ Page({
       success: res => {
 
         wx.hideLoading();
-        console.log(res);
+        // console.log(res);
         if (res.statusCode == 200) {
           // 滚动信息
           var rollMsg = res.data.msg.roll;
@@ -521,7 +521,7 @@ Page({
         wx.stopPullDownRefresh();
 
         wx.hideLoading();
-        console.log(res);
+        // console.log(res);
         if (res.statusCode == 200) {
 
           // 滚动信息
@@ -631,7 +631,7 @@ Page({
    */
   onShareAppMessage: function() {
     var uid = wx.getStorageSync('uid');
-    console.log(uid);
+    // console.log(uid);
     return {
       title: '先到先得！口袋喊你大奖一起免费拿',
       path: '/pages/login/login?uid=' + uid,

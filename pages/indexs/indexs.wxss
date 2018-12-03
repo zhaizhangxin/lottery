@@ -186,14 +186,18 @@
 .codeGroup{
   display: flex;
   justify-content: space-between;
-  padding: 14rpx 34rpx;
+  padding: 0;
   margin-top: 36rpx;
-  margin-left: 24rpx;
+  margin-left: 54rpx;
   background: #fff;
   width: 640rpx;
   height: 46rpx;
   line-height: 46rpx;
   border-radius: 20rpx;
+}
+.codeGroup::after{
+  border: none;
+  outline: none;
 }
 .scanCode{
   display: flex;

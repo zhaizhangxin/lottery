@@ -58,21 +58,19 @@ Page({
   },
   // 更多商品跳转
   detaliJump: function (e) {
-    console.log(e);
     let id = e.currentTarget.dataset.id;
     wx.navigateTo({
       url: '../details/details?id=' + id
-      // url: '../lottery/lottery?id=' + id
-
     })
   },
-  // clear:function(){
-  //   wx.clearStorageSync();
-  // },
   // 参与人员分页请求
   lower: function(e) {
-    console.log(e);
-    if (e != '' && this.data.avatarImg.length > 200) {
+    if (e != '' && this.data.avatarImg.length >= 200) {
+      wx.showLoading({
+        title: '加载中...',
+        mask: true
+      })
+      console.log('分页');
       this.data.page++;
       var pages = this.data.page++;
       this.setData({
@@ -90,7 +88,8 @@ Page({
           token: wx.getStorageSync('token')
         },
         success: res => {
-          console.log(res);
+          wx.hideLoading();
+          // console.log(res);
           let avatarsImg = that.data.avatarImg;
           this.setData({
             avatarImg: avatarsImg.concat(res.data.msg)
@@ -103,8 +102,11 @@ Page({
   },
   // 邀请好友分页
   lowers: function(e) {
-    console.log(e);
     if (e != '' && this.data.shareImg.length >= this.data.rows) {
+      wx.showLoading({
+        title: '加载中...',
+        mask: true
+      })
       this.data.page++;
       var pages = this.data.page++;
       this.setData({
@@ -124,7 +126,8 @@ Page({
           token: wx.getStorageSync('token')
         },
         success: res => {
-          console.log(res);
+          // console.log(res);
+          wx.hideLoading();
           let avaterMsg = that.data.shareImg;
           let dragonMsg = that.data.dragonball;
           let restrictMsg = that.data.restrict;
@@ -198,7 +201,7 @@ Page({
         token: wx.getStorageSync('token')
       },
       success: res => {
-        console.log(res);
+        // console.log(res);
         wx.hideLoading();
         that.setData({
           shareImg: res.data.msg.avatar,
@@ -236,7 +239,7 @@ Page({
       },
       success: res => {
         wx.hideLoading();
-        console.log(res);
+        // console.log(res);
         that.setData({
           avatarUrl: res.data.msg.rankList,
           rankingStatus: true
@@ -268,9 +271,9 @@ Page({
     })
     var getName = wx.getStorageSync('nickName');
     var that = this;
-    console.log(getName);
-    console.log(this.data.options.pathId);
-    console.log(this.data.sponsor_id);
+    // console.log(getName);
+    // console.log(this.data.options.pathId);
+    // console.log(this.data.sponsor_id);
 
     wx.showLoading({
       title: '加载中...',
@@ -311,7 +314,7 @@ Page({
           'detailMsg.activity.participants': parseInt(this.data.detailMsg.activity.participants) + 1,
 
         })
-        console.log(res);
+        // console.log(res);
         if (res.data.error_code == 0) {
           if (that.data.product_type == 1) {
             var luckPic = {
@@ -371,11 +374,11 @@ Page({
         dataType: 'json',
         responseType: 'text',
         success: res => {
-          console.log('请求成功');
+          // console.log('请求成功');
           wx.hideLoading();
           wx.setStorageSync('key', 1)
           if (res.statusCode == 200) {
-            console.log(res);
+            // console.log(res);
             that.setData({
               report: true,
               sponsonId: 2,
@@ -494,7 +497,7 @@ Page({
   // 点击上报
   click(e) {
     var that = this;
-    console.log(e);
+    // console.log(e);
     this.setData({
       clickData:e
     })
@@ -596,7 +599,7 @@ Page({
       },
       method: 'GET',
       success: function(res) {
-        console.log(res);
+        // console.log(res);
         // if (e.currentTarget.dataset.qr != '') {
         //   var url = e.currentTarget.dataset.qr;
         //   var imgArr = [];
@@ -642,7 +645,7 @@ Page({
       success(res) {
         wx.getClipboardData({
           success(res) {
-            console.log(res);
+            // console.log(res);
           }
         })
       }
@@ -669,7 +672,7 @@ Page({
       dataType: 'json',
       responseType: 'text',
       success: res => {
-        console.log(res);
+        // console.log(res);
         wx.hideLoading();
         if (res.data.error_code == 0) {
           wx.navigateTo({
@@ -705,9 +708,9 @@ Page({
       dataType: 'json',
       responseType: 'text',
       success: res => {
-        console.log(res)
+        // console.log(res)
         if (res.statusCode == 200) {
-          console.log(that.data.navpath);
+          // console.log(that.data.navpath);
           if (that.data.navpath == 1){
             if (res.data.msg.luck_user.is_luck != 1) {
               that.setData({
@@ -773,7 +776,7 @@ Page({
               detail_type: that.data.detailMsg.product_type
             },
             success: res => {
-              console.log(res);
+              // console.log(res);
               that.setData({
                 listMsg:res.data.msg
               })
@@ -803,7 +806,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log(options);
+    // console.log(options);
     this.setData({
       id: options.id,
       options: options,
@@ -811,7 +814,7 @@ Page({
       uids: options.uid,
       navpath: options.navpath
     })
-    console.log(options.scene);
+    // console.log(options.scene);
 
     if (options.scene != '' && options.scene != undefined) {
       const scene = decodeURIComponent(options.scene);
@@ -823,10 +826,10 @@ Page({
           id: sceneList[1].substring(11),
         })
       }
-      console.log(this.data.sponsor_id);
-      console.log(this.data.product_id);
+      // console.log(this.data.sponsor_id);
+      // console.log(this.data.product_id);
     }
-    console.log(wx.getStorageSync("nickName"));
+    // console.log(wx.getStorageSync("nickName"));
 
   },
 
@@ -836,14 +839,97 @@ Page({
   onReady: function() {
 
   },
+  login:function(){
+    var that = this;
+    wx.login({
+      success: res => {
+        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        wx.request({
+          url: reqUrl + 'award_token',
+          data: {
+            code: res.code,
+            sponsor_id: this.data.options.uid,
+            scene: wx.getStorageSync('scene')
+          },
+          method: 'POST',
+          dataType: 'json',
+          responseType: 'text',
+          success: res => {
+            if (res.statusCode == 200) {
+              wx.hideLoading();
+              //本地缓存存入token、uid
+              wx.setStorageSync("token", res.data.msg);
+              wx.setStorageSync("uid", res.data.uid)
 
+              //存openid,question.js的ad上报需要
+              wx.setStorageSync('openid', res.data.key)
+              that.setData({
+                token: res.data.msg
+              })
+              // console.log(res);
+              // console.log(wx.getStorageSync('token'));
+              this.optionPath();
+
+              wx.getSystemInfo({
+                success: function (res) {
+                  console.log(res);
+                  wx.request({
+                    url: reqUrl + 'award_getSystemInfo',
+                    header: {
+                      token: wx.getStorageSync('token')
+                    },
+                    data: res,
+                    method: 'POST',
+                    success: res => {
+                      // console.log(res)
+                      // console.log(wx.getStorageSync('token'));
+
+                    }
+                  })
+                },
+              })
+
+              var options = wx.getStorageSync('options');
+              // options.openid = res.data.key;
+
+              console.log(options)
+              var appid = options.referrerInfo ? options.referrerInfo.appId : null;
+              wx.request({
+                url: reqUrl + 'award_putPlatformUserData',
+                header: {
+                  token: wx.getStorageSync('token')
+                },
+                data: {
+                  scene: options.scene,
+                  openid: wx.getStorageSync('openid'),
+                  from_appid: appid,
+                  query: options.query
+                },
+                method: 'POST',
+                success: res => {
+                  // console.log(res)
+                }
+              })
+
+
+            } else {
+              reject(res)
+            }
+          },
+          fail: function (res) { },
+          complete: function (res) { },
+        })
+      }
+    })
+
+  },
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function(options) {
-    console.log(this.data.isClose);
+    console.log(options);
     if (this.data.clickData != ''){
-      console.log(this.data.clickData);
+      // console.log(this.data.clickData);
       // if (this.data.clickData.currentTarget.dataset.key != '') {
         if (this.data.clickData.currentTarget.dataset.key == 1) {
           if (!this.data.isClose) {
@@ -886,119 +972,32 @@ Page({
     })
     var getName = wx.getStorageSync('nickName');
     if (this.data.options.pathId == 1) {
+      console.log('分享');
       this.setData({
         report: false
       })
+      this.login();
     } else if (this.data.sponsor_id != undefined && this.data.sponsor_id != '') {
+      console.log('二维码');
+      this.login();
       this.setData({
         report: false
       })
     } else {
+      console.log('正常');
+      this.optionPath();
       this.setData({
         report: true
       })
     }
     if (wx.getStorageSync("key") == 1 && this.data.options.pathId != 1) {
-      console.log(11);
       this.setData({
         report: true
       })
     } else {
-      console.log(12);
       this.setData({
         report: false
       })
-    }
-    console.log('pathId:'+this.data.options.pathId);
-    console.log(this.data.uids);
-    let that = this;
-    if (this.data.options.pathId != undefined || this.data.uids == undefined) {
-      console.log(121212);
-      // 登录
-      wx.login({
-        success: res => {
-          // 发送 res.code 到后台换取 openId, sessionKey, unionId
-          wx.request({
-            url: reqUrl + 'award_token',
-            data: {
-              code: res.code,
-              sponsor_id: this.data.options.uid,
-              scene: wx.getStorageSync('scene')
-            },
-            method: 'POST',
-            dataType: 'json',
-            responseType: 'text',
-            success: res => {
-              if (res.statusCode == 200) {
-                wx.hideLoading();
-                //本地缓存存入token、uid
-                wx.setStorageSync("token", res.data.msg);
-                wx.setStorageSync("uid", res.data.uid)
-
-                //存openid,question.js的ad上报需要
-                wx.setStorageSync('openid', res.data.key)
-                that.setData({
-                  token: res.data.msg
-                })
-                console.log(res);
-                console.log(wx.getStorageSync('token'));
-                this.optionPath();
-
-                wx.getSystemInfo({
-                  success: function (res) {
-                    console.log(res);
-                    wx.request({
-                      url: reqUrl + 'award_getSystemInfo',
-                      header: {
-                        token: wx.getStorageSync('token')
-                      },
-                      data: res,
-                      method: 'POST',
-                      success: res => {
-                        console.log(res)
-                        console.log(wx.getStorageSync('token'));
-
-                      }
-                    })
-                  },
-                })
-
-                var options = wx.getStorageSync('options');
-                // options.openid = res.data.key;
-
-                console.log(options)
-                var appid = options.referrerInfo ? options.referrerInfo.appId : null;
-                wx.request({
-                  url: reqUrl + 'award_putPlatformUserData',
-                  header: {
-                    token: wx.getStorageSync('token')
-                  },
-                  data: {
-                    scene: options.scene,
-                    openid: wx.getStorageSync('openid'),
-                    from_appid: appid,
-                    query: options.query
-                  },
-                  method: 'POST',
-                  success: res => {
-                    console.log(res)
-                  }
-                })
-
-
-              } else {
-                reject(res)
-              }
-            },
-            fail: function(res) {},
-            complete: function(res) {},
-          })
-        }
-      })
-
-    } else {
-      console.log(111111);
-      this.optionPath();
     }
 
   },

@@ -22,7 +22,7 @@ Page({
       mask: true
     })
 
-    console.log(e.detail);
+    // console.log(e.detail);
     // avatarUrl
     if (e.detail.userInfo) {
 
@@ -86,7 +86,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log(options);
+    // console.log(options);
     var that = this;
     wx.showLoading({
       title: '加载中...',
@@ -99,7 +99,7 @@ Page({
       let sceneList = scene.split("&");
       var arr = [];
       for (let i in sceneList) {
-        console.log(sceneList[i]);
+        // console.log(sceneList[i]);
         this.setData({
           p: sceneList[0].substring(2),
           media: sceneList[1].substring(6),
@@ -109,7 +109,7 @@ Page({
       // 登录
       wx.login({
         success: res => {
-          console.log(res);
+          // console.log(res);
           // 发送 res.code 到后台换取 openId, sessionKey, unionId
           wx.request({
             // url: reqUrl + 'token',
@@ -157,7 +157,7 @@ Page({
       // 登录
       wx.login({
         success: res => {
-            console.log(res);
+            // console.log(res);
           // 发送 res.code 到后台换取 openId, sessionKey, unionId
           wx.request({
             // url: reqUrl + 'token',
@@ -188,7 +188,7 @@ Page({
                   url: '../indexs/indexs',
                 })
               } else {
-                console.log(res);
+                // console.log(res);
                 // reject(res)
               }
             },
@@ -215,7 +215,7 @@ Page({
             dataType: 'json',
             responseType: 'text',
             success: res => {
-              console.log(res);
+              // console.log(res);
               wx.hideLoading();
               if (res.statusCode == 200) {
                 //本地缓存存入token、uid
@@ -240,10 +240,10 @@ Page({
     } else {
       //异步登录执行完的 resolve 
       getApp().login().then(res => {
-        console.log('进入登录');
+        // console.log('进入登录');
         wx.hideLoading()
         if (res.statusCode == 200) {
-          console.log(wx.getStorageSync("nickName"));
+          // console.log(wx.getStorageSync("nickName"));
 
           //判断用户是否授权，决定是否显示授权页面
           // if (wx.getStorageSync("nickName")) {
@@ -255,7 +255,7 @@ Page({
           //获取终端信息
           wx.getSystemInfo({
             success: function(res) {
-              console.log(res);
+              // console.log(res);
               wx.request({
                 url: reqUrl + 'award_getSystemInfo',
                 header: {
@@ -264,7 +264,7 @@ Page({
                 data: res,
                 method: 'POST',
                 success: res => {
-                  console.log(res)
+                  // console.log(res)
                 }
               })
             },
