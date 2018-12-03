@@ -499,7 +499,8 @@ Page({
     var that = this;
     // console.log(e);
     this.setData({
-      clickData:e
+      clickData:e,
+      types:0
     })
     if (e.currentTarget.dataset.key != ''){
       if (e.currentTarget.dataset.key == 1){
@@ -508,7 +509,11 @@ Page({
           path: this.data.detailMsg.activity.path,
           extraData: this.data.detailMsg.activity.extra_data,
           success:res=>{
+            that.setData({
+              types:1
+            })
             this.conLucky();
+            this.clicksData();
             this.setData({
               confirmLuckys: false,
               confirmLucky:false,
@@ -526,7 +531,12 @@ Page({
         wx.navigateToMiniProgram({
           appId: this.data.detailMsg.activity.app_id,
           path: this.data.detailMsg.activity.path,
+          extraData: this.data.detailMsg.activity.extra_data,
           success: res => {
+            that.setData({
+              types: 1
+            })
+            this.clicksData();
           },
           fail: function () {
           },
@@ -537,7 +547,12 @@ Page({
       wx.navigateToMiniProgram({
         appId: this.data.detailMsg.activity.app_id,
         path: this.data.detailMsg.activity.path,
+        extraData: this.data.detailMsg.activity.extra_data,
         success: res => {
+          that.setData({
+            types: 1
+          })
+          this.clicksData();
         },
         fail: function () {
         },
@@ -553,6 +568,7 @@ Page({
             url: '../h5ad/h5ad?h5ad=' + url
           })
           this.conLucky();
+          this.clicksData();
           this.setData({
             confirmLuckys: false,
             confirmLucky: false,
@@ -563,6 +579,7 @@ Page({
       }else{
         if (e.currentTarget.dataset.path) {
           let url = encodeURIComponent(e.currentTarget.dataset.path);
+          this.clicksData();
           wx.navigateTo({
             url: '../h5ad/h5ad?h5ad=' + url
           })
@@ -572,6 +589,7 @@ Page({
     } else {
       if (e.currentTarget.dataset.path) {
         let url = encodeURIComponent(e.currentTarget.dataset.path);
+        this.clicksData();
         wx.navigateTo({
           url: '../h5ad/h5ad?h5ad=' + url
         })
@@ -583,22 +601,27 @@ Page({
       this.selectComponent('#actionSheet').animationOuter(e.currentTarget.dataset.qr)
       return;
     }
-
+    this.clicksData();
+  
+  },
+  clicksData:function(){
     wx.showLoading({
       title: '加载中...',
       mask: true
     })
     var that = this;
+    console.log(that.data.types);
     wx.request({
       url: reqUrl + 'award_click',
       data: {
-        id: e.currentTarget.dataset.id
+        id: that.data.clickData.currentTarget.dataset.id,
+        type:that.data.types
       },
       header: {
         token: wx.getStorageSync('token')
       },
       method: 'GET',
-      success: function(res) {
+      success: function (res) {
         // console.log(res);
         // if (e.currentTarget.dataset.qr != '') {
         //   var url = e.currentTarget.dataset.qr;
@@ -611,8 +634,8 @@ Page({
         // }
         wx.hideLoading();
       },
-      fail: function(res) {},
-      complete: function(res) {},
+      fail: function (res) { },
+      complete: function (res) { },
     })
   },
   // 识别图中二维码

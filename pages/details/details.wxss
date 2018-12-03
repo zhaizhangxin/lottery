@@ -251,6 +251,7 @@
   align-items:center;
   width: 100%;
   border-radius: 20rpx;
+  /* background: #fff; */
 }
 .detail-avatar-title{
   display: flex;
@@ -317,7 +318,11 @@
 }
 
 /* 抽奖流程 */
-
+.proces{
+  margin-top: 30rpx;
+  padding-bottom: 20rpx;
+  background: #fff;
+}
 .proce {
   background: #fff;
 }

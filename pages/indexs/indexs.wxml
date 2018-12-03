@@ -42,7 +42,7 @@
   </view>
 
   <!-- 扫码进群 -->
-  <button open-type="contact" class='codeGroup'>
+  <button open-type="contact" class='codeGroup' send-message-title='先到先得！口袋喊你大奖一起免费拿' send-message-path='/pages/login/login?uid={{uid}}' send-message-img='{{share_img}}' show-message-card='true'>
    <view class='scanCode'>
       <image src='../../image/zy_ewm@2x.png' class='scan'></image>
       <text>扫码进群，获取更多优惠信息</text>
