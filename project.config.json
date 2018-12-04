@@ -34,7 +34,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 6,
 			"list": [
 				{
 					"id": 0,
@@ -83,6 +83,13 @@
 					"name": "模拟更新",
 					"pathName": "pages/login/login",
 					"query": "",
+					"scene": "1007"
+				},
+				{
+					"id": -1,
+					"name": "query",
+					"pathName": "pages/details/details",
+					"query": "id=1446&uid=14093&pathId=1",
 					"scene": "1007"
 				}
 			]

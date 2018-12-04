@@ -994,7 +994,13 @@ Page({
       mask: true
     })
     var getName = wx.getStorageSync('nickName');
-    if (this.data.options.pathId == 1) {
+    if (wx.getStorageSync("key") == 1 && this.data.options.pathId == undefined) {
+      console.log('未授权');
+      this.setData({
+        report: false
+      })
+      this.login();
+    } else if (this.data.options.pathId == 1) {
       console.log('分享');
       this.setData({
         report: false
@@ -1011,15 +1017,6 @@ Page({
       this.optionPath();
       this.setData({
         report: true
-      })
-    }
-    if (wx.getStorageSync("key") == 1 && this.data.options.pathId != 1) {
-      this.setData({
-        report: true
-      })
-    } else {
-      this.setData({
-        report: false
       })
     }
 

@@ -29,6 +29,7 @@ Page({
     this.setData({
       maskingShow: false
     })
+    wx.setStorageSync('key', 1)
   },
 
   // 规则页面
@@ -101,7 +102,7 @@ Page({
           wx.hideLoading();
 
           if (res.statusCode == 200) {
-            wx.setStorageSync('key', 1)
+            wx.setStorageSync('key', 0)
             this.setData({
               maskingShow: false
             })
@@ -128,6 +129,7 @@ Page({
       this.setData({
         maskingShow: false
       })
+      wx.setStorageSync('key', 1)
       wx.showToast({
         title: '授权登录失败！',
         icon: 'none',
@@ -146,169 +148,13 @@ Page({
     })
     let that = this;
     // console.log(options);
-    wx.showLoading({
-      title: '加载中...',
-      mask: true
-    })
-
-    let dataArr = (JSON.stringify(options) == "{}");
-    if (options.media != '' && options.media != undefined) {
-      this.setData({
-        media: options.media,
-        p: options.p
+    //判断用户是否授权，决定是否显示授权页面
+    if (wx.getStorageSync('is_auth') == 0) {
+      that.setData({
+        maskingShow: true
       })
-      // 登录
-      wx.login({
-        success: res => {
-          // console.log(res);
-          // 发送 res.code 到后台换取 openId, sessionKey, unionId
-          wx.request({
-            // url: reqUrl + 'token',
-            url: reqUrl + 'award_token',
-            data: {
-              code: res.code,
-              media: options.media,
-              p: options.p,
-              scene: wx.getStorageSync('scene')
-              // sponsor_id:
-            },
-            method: 'POST',
-            dataType: 'json',
-            responseType: 'text',
-            success: res => {
-
-              if (res.statusCode == 200) {
-                wx.hideLoading();
-                //本地缓存存入token、uid
-                wx.setStorageSync("token", res.data.msg);
-                wx.setStorageSync("uid", res.data.uid)
-
-                //存openid,question.js的ad上报需要
-                wx.setStorageSync('openid', res.data.key)
-
-                // resolve(res)
-              } else {
-                // console.log(res);
-                // reject(res)
-              }
-            },
-            fail: function (res) { },
-            complete: function (res) { },
-          })
-        }
-      })
-    } else if (options.uid != '' && dataArr != true) {
-      // 登录
-      var sponsor_id = options.sponsor_id;
-      wx.login({
-        success: res => {
-          // 发送 res.code 到后台换取 openId, sessionKey, unionId
-          wx.request({
-            // url: reqUrl + 'token',
-            url: reqUrl + 'award_token',
-            data: {
-              code: res.code,
-              sponsor_id: sponsor_id,
-              scene: wx.getStorageSync('scene')
-            },
-            method: 'POST',
-            dataType: 'json',
-            responseType: 'text',
-            success: res => {
-              // console.log(res);
-              wx.hideLoading();
-              if (res.statusCode == 200) {
-                //本地缓存存入token、uid
-                wx.setStorageSync("token", res.data.msg);
-                wx.setStorageSync("uid", res.data.uid)
-
-                //存openid,question.js的ad上报需要
-                wx.setStorageSync('openid', res.data.key)
-                // resolve(res)
-              } else {
-                reject(res)
-              }
-            },
-            fail: function (res) { },
-            complete: function (res) { },
-          })
-        }
-      })
-    } else {
-      //异步登录执行完的 resolve 
-      getApp().login().then(res => {
-        // console.log(res);
-        wx.hideLoading()
-        if (res.statusCode == 200) {
-          // console.log(wx.getStorageSync("nickName"));
-          //判断用户是否授权，决定是否显示授权页面
-          if (wx.getStorageSync('is_auth') == 0){
-            that.setData({
-              maskingShow: true
-            })
-          }
-          // if (wx.getStorageSync("nickName")) {
-          //   that.setData({
-          //     maskingShow: false
-          //   })
-          // }else{
-          //   // that.showQuery();
-          // }
-
-          //获取终端信息
-          wx.getSystemInfo({
-            success: function (res) {
-              // console.log(res);
-              wx.request({
-                url: reqUrl + 'award_getSystemInfo',
-                header: {
-                  token: wx.getStorageSync('token')
-                },
-                data: res,
-                method: 'POST',
-                success: res => {
-                  // console.log(res)
-                }
-              })
-            },
-          })
-
-
-          //获取app.js存的options，并添加openid属性
-          var options = wx.getStorageSync('options');
-          // options.openid = res.data.key;
-
-          // console.log(options)
-          var appid = options.referrerInfo ? options.referrerInfo.appId : null;
-          wx.request({
-            url: reqUrl + 'award_putPlatformUserData',
-            header: {
-              token: wx.getStorageSync('token')
-            },
-            data: {
-              scene: options.scene,
-              openid: res.data.key,
-              from_appid: appid,
-              query: options.query
-            },
-            method: 'POST',
-            success: res => {
-              // console.log(res)
-            }
-          })
-
-
-        } else {
-          wx.showToast({
-            title: res.data.msg,
-            icon: 'none',
-            duration: 1000
-          })
-
-        }
-
-      })
-
+    }else{
+      wx.setStorageSync('key', 0);      
     }
 
   },

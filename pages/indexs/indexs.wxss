@@ -379,6 +379,7 @@
   position: relative;
   padding-bottom: 20rpx;
   background:rgba(220,220,220,1);
+  /* background: #e8e9ea; */
 }
 .Invitation{
   position: absolute;
