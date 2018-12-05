@@ -331,7 +331,7 @@
               <text class='welfTetx'>{{detailMsg.activity.name}}送你一个福利</text>
               <text class='welfTetxs'>大红包,快快领取吧!</text>
 
-              <view class='welfBtn'>
+              <view class='welfBtn' animation="{{animationData}}">
                 <view class='welfBtns' wx:if='{{detailMsg.activity.app_id != ""}}' bindtap='click' data-id='{{detailMsg.activity.advert_id}}' target='{{detailMsg.activity.ad_type == 0 ? "miniProgram" : "self"}}' app-id='{{detailMsg.activity.app_id}}' path='{{detailMsg.activity.path}}'
                   data-qr='{{detailMsg.activity.qr_url}}' data-key="1">
                   <image src='../../image/zy_btx@2x.png'></image>
@@ -501,36 +501,39 @@
         </navigator>
       </view>
     </view>
-  </block>
+    </block>
+  
 
   <!-- 更多免费商品 -->
   <view class='mareShop'>
-    <view class='shops_img'>
-      <image class='shopsImg' src='../../image/shop_lqbt@2x.png'></image>
-    </view>
-    <view class='freeDraw'>
-      <view class='freeCont' wx:for="{{listMsg}}" wx:key="{{index}}">
-        <view class='contents' bindtap='detaliJump' data-id='{{item.id}}'>
-          <image src='{{item.img_url}}' class='freeImg'></image>
-          <text class='sponText'>{{item.name}} 赞助</text>
-          <view class='shopsCon'>
-            <view class='shopNames'>
-              <text class='conName'>免费抽奖:{{item.product_name}}</text>
-              <view class='conTime' wx:if="{{item.product_type == 1}}">
-                <text class='consTime_s'>{{item.lottery_time}}</text>自动开奖</view>
-              <view class='conTime' wx:if="{{item.product_type == 2}}">
-                <text class='consTime_s'>{{item.lottery_time}}</text>邀请前{{item.ranking}}名得</view>
-              <view class='conTime' wx:if="{{item.product_type == 3}}">集齐
-                <text class='consTime_s'>{{item.restrict}}</text>开奖</view>
-            </view>
-            <view class='commodity'>
-              <text class='conText' wx:if="{{item.participate == 1}}">免费领取</text>
-              <text class='conBtn' wx:if="{{item.participate == 2}}">已参与</text>
+    <block wx:if="{{listMsg != ''}}">
+      <view class='shops_img'>
+        <image class='shopsImg' src='../../image/shop_lqbt@2x.png'></image>
+      </view>
+      <view class='freeDraw'>
+        <view class='freeCont' wx:for="{{listMsg}}" wx:key="{{index}}">
+          <view class='contents' bindtap='detaliJump' data-id='{{item.id}}'>
+            <image src='{{item.img_url}}' class='freeImg'></image>
+            <text class='sponText'>{{item.name}} 赞助</text>
+            <view class='shopsCon'>
+              <view class='shopNames'>
+                <text class='conName'>免费抽奖:{{item.product_name}}</text>
+                <view class='conTime' wx:if="{{item.product_type == 1}}">
+                  <text class='consTime_s'>{{item.lottery_time}}</text>自动开奖</view>
+                <view class='conTime' wx:if="{{item.product_type == 2}}">
+                  <text class='consTime_s'>{{item.lottery_time}}</text>邀请前{{item.ranking}}名得</view>
+                <view class='conTime' wx:if="{{item.product_type == 3}}">集齐
+                  <text class='consTime_s'>{{item.restrict}}</text>开奖</view>
+              </view>
+              <view class='commodity'>
+                <text class='conText' wx:if="{{item.participate == 1}}">免费领取</text>
+                <text class='conBtn' wx:if="{{item.participate == 2}}">已参与</text>
+              </view>
             </view>
           </view>
         </view>
       </view>
-    </view>
+    </block>
   </view>
 
 </view>
