@@ -4,7 +4,7 @@ const reqUrl = require('utils/reqUrl');
 
 // 1、觅有品 wxb19a236e51a8d248
 // 2、零元购 wx04ae6db5ac8838c8
-// 3、凡人飞仙传和凡人修仙传 wxd7c5b7d77ff1b238
+// 3、胖球 wxb869461219ec2d02
 // 4、京东 wxa42959523195f527
 // 5、决战白日门 wxefe8997276c7a7d4
 // 6、风流霸业 wxa331708430664298
