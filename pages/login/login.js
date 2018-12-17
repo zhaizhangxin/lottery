@@ -199,7 +199,7 @@ Page({
       })
     }else if (options.uid != '' && dataArr != true) {
       // 登录
-      var sponsor_id = options.sponsor_id;
+      var sponsor_id = options.uid;
       wx.login({
         success: res => {
           // 发送 res.code 到后台换取 openId, sessionKey, unionId

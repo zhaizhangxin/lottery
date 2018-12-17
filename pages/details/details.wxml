@@ -8,10 +8,10 @@
     <view class='freeDraws'>
       <text class='freeShops'>免费抽奖：{{detailMsg.activity.product_name}}</text>
       <block wx:if="{{detailMsg.activity.status == -1}}">
-        <text class='consTimes'><text class='freTime'>{{detailTime}}</text>自动开奖</text>
+        <text class='consTimes'><text class='freTime'>{{detailTime}}</text>  自动开奖</text>
       </block>
       <block wx:else>
-        <text class='consTimes' wx:if="{{detailMsg.product_type == 1}}"><text class='freTime'>{{detailMsg.activity.time}}</text>自动开奖</text>
+        <text class='consTimes' wx:if="{{detailMsg.product_type == 1}}"><text class='freTime'>{{detailMsg.activity.time}}</text>   自动开奖</text>
         <text class='consTimes' wx:if="{{detailMsg.product_type == 2}}"><text class='freTime'>{{detailMsg.activity.time}}</text>邀请前{{detailMsg.activity.winning}}名得</text>
         <text class='consTimes' wx:if="{{detailMsg.product_type == 3}}"><text class='freTime'>集齐{{detailMsg.activity.restrict}}人开奖</text></text>
       </block>
@@ -317,7 +317,7 @@
         <block wx:else>
           <!-- 抽奖弹窗(小程序类型) -->
           <view class='wxCode' wx:if="{{confirmLuckys}}" catchtouchmove="ture">
-            <image class='wxBack' src='../../image/hb_gx@2x.png' bindtap='confirMaskExit'></image>
+            <image class='wxBack' src='../../image/hb_gx@2x.png' bindtap='confirMaskExit' animation="{{animation}}" mode='aspectFit'></image>
             <view class='welfares'>
               <image class='wxwelfare' src='../../image/bg@2x.png'></image>
               <view class='hd_img' wx:if='{{detailMsg.activity.app_id != ""}}' bindtap='click' data-id='{{detailMsg.activity.advert_id}}' target='{{detailMsg.activity.ad_type == 0 ? "miniProgram" : "self"}}' app-id='{{detailMsg.activity.app_id}}' path='{{detailMsg.activity.path}}'

@@ -2,6 +2,11 @@ const reqUrl = require('../../utils/reqUrl');
 const formatTime = require('../../utils/util.js');
 
 // pages/detail/detail.js
+var _animation; // 动画实体
+var _animationIndex = 0; // 动画执行次数index（当前执行了多少次）
+var _animationIntervalId = -1; // 动画定时任务id，通过setInterval来达到无限旋转，记录id，用于结束定时任务
+const _ANIMATION_TIME = 2000; // 动画播放一次的时长ms
+
 Page({
 
   /**
@@ -26,12 +31,14 @@ Page({
     sponsonId: 1,
     optionId: 1,
     animationData: {},
+    animationDatas:{},
     winnersList:false,
     detailMask:true,
     navpath:'',
     uids:'',
     isClose:true,
-    clickData:''
+    clickData:'',
+    animation:''
   },
   // 点击关闭弹窗
   detailExit: function () {
@@ -262,9 +269,11 @@ Page({
       confirmLuckys: false,
       confirmLucky:false
     })
+    this.stopAnimationInterval();
   },
   // 点击抽奖
   luckDraw: function(e) {
+    this.startAnimationInterval();//开始旋转
     let formId = e.detail.formId;
     this.setData({
       formId: formId
@@ -274,7 +283,6 @@ Page({
     // console.log(getName);
     // console.log(this.data.options.pathId);
     // console.log(this.data.sponsor_id);
-
     wx.showLoading({
       title: '加载中...',
       mask: true
@@ -308,6 +316,7 @@ Page({
       },
       success: res => {
         wx.hideLoading();
+        that.stopAnimationInterval();
         that.setData({
           confirmLucky: false,
           // confirmLuckys: false,
@@ -514,6 +523,7 @@ Page({
             })
             this.conLucky();
             this.clicksData();
+            this.stopAnimationInterval();
             this.setData({
               confirmLuckys: false,
               confirmLucky:false,
@@ -574,6 +584,7 @@ Page({
             confirmLucky: false,
             isClose: false
           })
+          this.stopAnimationInterval();
         }
 
       }else{
@@ -860,7 +871,9 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-
+    _animationIndex = 0;
+    _animationIntervalId = -1;
+    this.data.animation = ''; 
   },
   login:function(){
     var that = this;
@@ -950,6 +963,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function(options) {
+    _animation = wx.createAnimation({
+      duration: _ANIMATION_TIME,
+      timingFunction: 'linear', // "linear","ease","ease-in","ease-in-out","ease-out","step-start","step-end"
+      delay: 0,
+      transformOrigin: '50% 50% 0'
+    })
+
     console.log(options);
     if (this.data.clickData != ''){
       // console.log(this.data.clickData);
@@ -971,7 +991,6 @@ Page({
       delay: 100,
       transformOrigin: '50% 50%',
     })
-    // animation.opacity(0).scale(3, 3).step();//修改透明度,放大 
     this.animation = animation
     var next = true;
     //连续动画关键步骤
@@ -1019,8 +1038,32 @@ Page({
         report: true
       })
     }
-
   },
+  rotateAni: function (n) {
+    _animation.rotate(120 * (n)).step()
+    this.setData({
+      animation: _animation.export()
+    })
+  },
+
+  /**
+   * 开始旋转
+   */
+  startAnimationInterval: function () {
+    var that = this;
+    that.rotateAni(++_animationIndex); // 进行一次旋转
+    _animationIntervalId = setInterval(function () {
+      that.rotateAni(++_animationIndex);
+    }, _ANIMATION_TIME); // 每间隔_ANIMATION_TIME进行一次旋转
+  },
+  // 停止旋转
+  stopAnimationInterval: function () {
+    if (_animationIntervalId > 0) {
+      clearInterval(_animationIntervalId);
+      _animationIntervalId = 0;
+    }
+  },
+
 
   /**
    * 生命周期函数--监听页面隐藏

@@ -138,6 +138,7 @@ open-data[type=userNickName] {
 .shops{
   position: relative;
   background: #fff;
+  box-shadow: 0 0 30rpx #cccccc;
   border-radius: 20rpx;
   margin-top: 30rpx;
 }

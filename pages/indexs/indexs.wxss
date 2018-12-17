@@ -302,6 +302,10 @@
 .freeCont:nth-child(1){
   margin-top: 20rpx;
 }
+.contents{
+  box-shadow: 0 0 30rpx #cccccc;
+  border-radius: 20rpx;
+}
 .freeImg{
   border-radius: 20rpx 20rpx 0 0;
   width: 100%;

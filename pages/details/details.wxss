@@ -1218,6 +1218,10 @@
   border-radius: 20rpx;
   width: 700rpx;
 }
+.contents{
+  box-shadow: 0 0 30rpx #cccccc;
+  border-radius: 20rpx;
+}
 
 .freeImg {
   border-radius: 20rpx 20rpx 0 0;
