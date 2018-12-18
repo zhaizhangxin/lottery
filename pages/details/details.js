@@ -269,11 +269,10 @@ Page({
       confirmLuckys: false,
       confirmLucky:false
     })
-    this.stopAnimationInterval();
+    // this.stopAnimationInterval();
   },
   // 点击抽奖
   luckDraw: function(e) {
-    this.startAnimationInterval();//开始旋转
     let formId = e.detail.formId;
     this.setData({
       formId: formId
@@ -316,7 +315,7 @@ Page({
       },
       success: res => {
         wx.hideLoading();
-        that.stopAnimationInterval();
+        // that.stopAnimationInterval();
         that.setData({
           confirmLucky: false,
           // confirmLuckys: false,
@@ -523,7 +522,7 @@ Page({
             })
             this.conLucky();
             this.clicksData();
-            this.stopAnimationInterval();
+            // this.stopAnimationInterval();
             this.setData({
               confirmLuckys: false,
               confirmLucky:false,
@@ -584,7 +583,7 @@ Page({
             confirmLucky: false,
             isClose: false
           })
-          this.stopAnimationInterval();
+          // this.stopAnimationInterval();
         }
 
       }else{
@@ -1038,20 +1037,22 @@ Page({
         report: true
       })
     }
+    this.startAnimationInterval();//开始旋转
   },
+  // 旋转角度
   rotateAni: function (n) {
     _animation.rotate(120 * (n)).step()
     this.setData({
       animation: _animation.export()
     })
   },
-
   /**
    * 开始旋转
    */
   startAnimationInterval: function () {
     var that = this;
-    that.rotateAni(++_animationIndex); // 进行一次旋转
+    let _animationIndex = 0;
+    // that.rotateAni(++_animationIndex); // 进行一次旋转
     _animationIntervalId = setInterval(function () {
       that.rotateAni(++_animationIndex);
     }, _ANIMATION_TIME); // 每间隔_ANIMATION_TIME进行一次旋转
